@@ -1,4 +1,4 @@
-Drupal.behaviors.close_messages = {
+ae_base.behaviors.close_messages = {
 	attach: function(context, settings) {
 		(function ($) {
 			/* =============================================================================
@@ -7,7 +7,7 @@ Drupal.behaviors.close_messages = {
 			$.fn.closeButtonMessages = function() {
 				$('.messages').each(function() {
 					if ($(this).find('a.close').length < 1) {
-						$(this).prepend('<a class="close" href="#" title="' + Drupal.t('Close') + '">Close</a>');
+						$(this).prepend('<a class="close" href="#" title="' + ae_base.t('Close') + '">x</a>');
 					}
 				});
 				$('.messages a.close').click(function(e) {

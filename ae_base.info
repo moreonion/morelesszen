@@ -3,7 +3,6 @@
 
 name = AE Base
 description = Basetheme of the Advocacy Engine
-base theme = lesszen
 screenshot = screenshot.png
 core = 7.x
 
@@ -14,6 +13,7 @@ core = 7.x
 ; some are special hidden regions: page_top, page_bottom, and help
 
 ; these are the stock regions
+
 regions[top_bar] = Top bar
 regions[header] = Header
 regions[help] = Help
@@ -29,6 +29,7 @@ regions[sidebar_second] = Sidebar second
 
 regions[bottom] = Bottom
 regions[footer] = Footer
+
 
 
 ; main CSS files

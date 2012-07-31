@@ -184,7 +184,7 @@ function ae_base_preprocess_maintenance_page(&$vars) {
     unset($vars['site_name']);
   }
 
-  drupal_add_css(drupal_get_path('theme', 'ae') . '/css/maintenance-page.css');
+  drupal_add_css(drupal_get_path('theme', 'ae_base') . '/css/maintenance-page.css');
 }
 
 /**
