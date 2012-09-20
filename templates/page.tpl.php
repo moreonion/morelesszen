@@ -73,7 +73,11 @@
 
   <div id="page">
     <?php if ($page['top_bar']): ?>
-        <div id="top_bar"><?php print render($page['top_bar']); ?></div>
+      <div id="top_bar">
+        <div class="section middle clearfix">
+          <?php print render($page['top_bar']); ?>
+        </div>
+      </div>
     <?php endif; ?>
     
     <header id="header" role="banner">
@@ -114,8 +118,12 @@
 	<?php endif; ?>
 	
 	<?php if ($page['banner']): ?>
-        <div id="banner"><?php print render($page['banner']); ?></div>
-    <?php endif; ?>
+    <div id="banner">
+      <div class="section middle clearfix">
+        <?php print render($page['banner']); ?>
+      </div>
+    </div>
+  <?php endif; ?>
     
   <?php if ($page['featured']): ?>
     <div id="featured"><div class="section middle clearfix">
@@ -172,10 +180,20 @@
 
     </div><!-- /#main -->
   </div><!-- /#main-wrapper -->
-
-	<?php if ($page['bottom']): ?>
-		<div id="bottom"><?php print render($page['bottom']); ?></div>
-	<?php endif; ?>
+  
+  
+  <?php if ($page['bottom']): ?>
+  <div id="bottom">
+    <div class="section middle">
+      <div id="bottom-wrapper" class="clearfix">
+        <div class="section">
+        <?php print render($page['bottom']); ?>
+        </div><!-- /.section -->
+      </div><!-- /#bottom-wrapper -->
+    </div><!-- /.section -->
+  </div><!-- /#footer -->
+  <?php endif; ?>
+  
     
   <?php if($page['footer']): ?>
   
