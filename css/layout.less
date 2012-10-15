@@ -68,8 +68,10 @@
 		
 
 		.two-sidebars #content .section {
-		padding-left: @3 + 2;   /* LC width */
-		padding-right: @3 + 2;  /* RC width */
+		margin-left: @3;   /* LC width */
+		padding-left: 2;
+		margin-right: @3;  /* RC width */
+		padding-right: 2;
 		}
 
 		#sidebar-first {
@@ -91,9 +93,7 @@
 .sevensome {
 	.sevenlayoutmacro;
 }
-
-
-
+  
 /*
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  basic classes for layouts and reuse of layouts
@@ -149,15 +149,13 @@
 }
 
 .col {
-	margin: 0 @gridpercent @oneline;
+	margin: 0 2% @oneline 0;
 	list-style: none;
-	margin-left: 0px;
 	float: left;
 	position: relative;
 	display: block;
+	width: 100%;
 }
-
-
 
 .fivegridmacro() {
 	
@@ -172,6 +170,11 @@
 			width: @2;
 		}
 	}
+	
+	.col.last{
+		float:right;
+		margin-right:0;
+	}
 }
 
 .five {
@@ -183,17 +186,21 @@
 }
 
 .sevengridmacro() {
-
+		.twocol{
+			.col {
+				width: @2+1;
+			}
+		}
 
 		.threecol {
 			.col {
-				width: @3;
+				width: @3+.5;
 			}
 		}
 
 		.fourcol {
 			.col {
-				eidth: @4;
+				width: @4+.5;
 			}
 		}
 
@@ -221,12 +228,7 @@
 	clear: both;
 }
 
-.five #featured .twocol {
-	.col {
-		width: 100%;
-		clear: both;
-	}	
-}
+
 
 @media screen and (win-width: 500px) {
 	
@@ -238,12 +240,6 @@
 	}
 }
 
-.sevensome #featured .twocol {
-	.col {
-		width: @2;
-		clear: none;
-	}	
-}
 
 @media screen and (win-width: 768px) {
 	

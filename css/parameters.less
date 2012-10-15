@@ -419,18 +419,7 @@ Equation for font sizing:
     color: #a1a1a1;
   }
   
-  .block-ae-wireframes {
-    .wireframe-box {
-      background-color: #bacdb4;
-     border: 1px solid #a1b19b;
-     .rounded;
-      height: 3em;
-     margin-top: .5em;
-    }
-    ul{
-    list-style-type:none;
-    }
-  }
+
     
   #top_bar, #featured {
     padding: .5em 0;
@@ -447,9 +436,7 @@ Equation for font sizing:
   #banner {
     padding: .5em 0 2em;
     border-bottom: 1px solid #c2c2c2; 
-    .wireframe-box {
-      height: 6em;
-    }
+
   }
 
   #block-search-form {
@@ -502,134 +489,16 @@ Equation for font sizing:
         -moz-box-shadow: 2px 2px 2px #5b5b5b inset;
       }
     }
-
   }
   
   #main {
-    padding-top: @oneline;
+    margin-top: @oneline;
     min-height: 35em;
-    padding-bottom: @oneline * 3;
+    margin-bottom: @oneline * 3;
+    background: #E3E3E3;
+    padding: 0;
   }
   
-  .sevensome {
-    .field-name-field-main-image {
-      float: right;
-      margin-left: 30px;
-      margin-bottom: 1.5em;
-    }
-  }
-  
-.two-sidebars #content {
-    background-color: #cdcdcd;
-    border: 1px solid #bbb;
-  }
-  
-  .twocol li {
-    width: 49%;
-    float: left;
-    margin-right: 1%;
-  }
-  .threecol li {
-    width: 32%;
-    float: left;
-    margin-right: 1.8%;
-  }
-  
-  .fourcol li {
-    width: 22.5%;
-    float: left;
-    margin-right: 3%;
-  }
-  .twocol li.last, .threecol li.last, .fourcol li.last{
-    margin-right: 0;
-    float:right;
-  }
-  #block-ae-wireframes-8, #block-ae-wireframes-11 {
-    .twocol li {
-      width: 46.6%;
-    }
-  }
-  
-  .page-wireframe {
-    #breadcrumb, .messages, #logo, #secondary-menu{
-    display:none;
-    }
-    .sidebar .block {
-    padding-left: 0;
-    padding-right: 0;
-    .wireframe-box {
-      border-right:0;
-      border-left:0;
-      border-radius: 0;
-      }
-    }
-  }
-  
-  .region-title {
-    padding-top: 1em;
-  }
-  .region-sidebar-first .region-title, .region-sidebar-second .region-title{
-    padding: 1em;
-  }
-
-  #wireframe-content_bottom {
-    padding-top: .5em;
-  }
-  
-  /*
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  sidebar and content try to be responsive
-  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  */
-  
-  .sevensome .two-sidebars #content .section {
-    margin: 0 25%;
-    padding: 1em 4%;
-    background: #fff;
-    border-left: 1px solid #e3e3e3;
-    border-right: 1px solid #e3e3e3;
-  }
-	
-  .sevensome #sidebar-first {
-    margin-right: -25%;
-    width: 25%;
-  }
-  .sevensome #sidebar-second {
-    margin-left: -25%;
-    width: 25%;
-  }
-  
-
-  .sidebar {
-    
-    .block {
-      padding: @oneline 7%;
-      margin-bottom: @oneline;
-    }
-    
-    a {
-      font-weight: bold;
-    }
-    
-    h2, h3 {
-      font-family: @serif;
-      font-style: italic;
-      font-weight: bold;
-      font-size: 100%;
-    }
-  }
-  
-  #wireframe-sidebar_a, #wireframe-sidebar_b {
-    padding-top: .7em;
-    .wireframe-box {
-      border-left: none;
-      border-right: none;
-      border-radius:0;
-      margin-right: -1em;
-      margin-left: -1em;
-    }
-  }
-	
   #bottom {
     background: #efefef;
     border-top: 1px solid #cacaca;
