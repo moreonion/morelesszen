@@ -38,6 +38,7 @@ stylesheets[screen][] = css/maintenance-page.less
 stylesheets[screen][] = css/css3.css
 
 
+
 ; JS files -------------------------------------------------------------------
 
 scripts[] = "js/narrow.js"
@@ -177,3 +178,6 @@ scripts[] = "js/immediate_active_state.js"
 ;stylesheets[screen][] = css/core/user.less
 ;stylesheets[screen][] = user-rtl.css
 ;stylesheets[screen][] = css/core/user-rtl.less
+stylesheets[screen][] = css/core/pgbar.css
+
+
