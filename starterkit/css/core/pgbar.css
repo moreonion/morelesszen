@@ -64,3 +64,16 @@
   position: absolute;
   left: 1em;
 }
+
+
+/* teaser progress bar styling */
+
+.node-teaser .pgbar-bg {
+  height: 15px;
+  box-shadow: inset 1px 1px 3px #CBCAC6;
+  -moz-box-shadow: inset 1px 1px 3px #CBCAC6;
+}
+
+.node-teaser .pgbar-current {
+  height: 15px;
+}
