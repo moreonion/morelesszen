@@ -105,11 +105,7 @@ Equation for font sizing:
 	margin-bottom: 0.6286em;	
 }
 
-.f40() {
-	font-size: 1.6em;
-	line-height: 1.8333em;
-	margin-bottom: 0.9167em;	
-}
+
 
 
 
@@ -124,7 +120,7 @@ Equation for font sizing:
 .middle_macro ()	{
   width: 80%;
   padding: 0 3%;
-  max-width: 85em;
+  max-width: 1100px;
   clear: both;
   overflow: hidden;
   margin: 0 auto;
@@ -413,16 +409,40 @@ Equation for font sizing:
 		color: #265482;
 	}
 	
-	h1 {
-		font-size: 200%;
-		line-height: 1.2em;
+	p {
+          margin-bottom: @oneline;
+        }
+	
+	h1, h1 a {
 		font-weight: normal;
 		color: #a1a1a1;
-		
+                text-decoration: none;
+                .f35;
 	}
 	
+	h2, h2 a, h2 a:hover, h2 a:focus, h2 a:visited {
+          color: #BA1D22;
+          text-decoration: none;
+          .f20;
+        }
+        
+        h2 a:hover {
+          text-decoration: underline;
+        }
+        
+        h3, h3 a, h3 a:hover, h3 a:focus, h3 a:visited {
+          color: #BA1D22;
+          text-decoration: none;
+          .f18;
+        }
+        
+        h3 a:hover {
+          text-decoration: underline;
+        }
+        
+	
 	#header {
-		background-color: #dcdcdc;
+		background-color: #E2E2E2;
 		padding: @oneline 0;
 		border-bottom: 1px solid #c2c2c2;
 	}
@@ -558,22 +578,36 @@ Equation for font sizing:
 	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	*/
 
-	input[type="submit"], #edit-submit, .button {
-		background: #aaa;
+	input[type="submit"], #edit-submit, a.button, a.button:link, a.button:visited {
+		background: none #A50911;
 		font-weight: bold;
 		display: block;
 		padding: .5em 1.5em .45em;
 		color: @mywhite;
 		text-decoration: none;
-		border: 1px solid #8C8C8C;
-		text-shadow: #000;
+		border: 1px solid #6B060B;
+                border-bottom: 3px solid #7A070D;
+		text-shadow: 1px 1px 1px #590E0F;
+                box-shadow: 0px 0px 5px inset #CC666B;
+                max-width: 350px;
 		.rounded;
 	}
 	input[type="submit"]:hover, #edit-submit:hover, .button:hover, a.button:hover,
 	input[type="submit"]:focus, #edit-submit:focus, .button:focus, a.button:focus {
-		background: repeat #8C8C8C;
-		border-color: #000;
+		background: repeat #BA1D22;
+		border-color: #6B060B;
+                color: @mywhite;
+
 	}
+        input[type="submit"]:active, #edit-submit:active, .button:active, a.button:active {
+          box-shadow:  -3px -3px 4px inset #000;
+          background-color: #7A070D;
+          -moz-box-shadow: -3px -3px 4px inset #000;
+          border-bottom: 1px solid #6B060B;
+          border-top: 1px solid #510407;
+          border-left: 1px solid #510407;
+                color: @mywhite;
+        }
 
 	input[type="text"], input[type="email"], input[type="password"], .form-text input, .form-type-password input, select, textarea {
 		background: #f0f0f0;
@@ -662,5 +696,81 @@ Equation for font sizing:
 
 	.marker, .form-required {
 	}
+	
+	
+	/* node stlyes */
+        
+        .node-full {
+          .field-name-field-main-image {
+            float: right;
+            margin-left: 30px;
+            margin-bottom: @oneline*2;
+            border: 5px solid #E2E2E2;
+          }
+          
+          .field-type-pgbar {
+            max-width: 27em;
+            background: #F8F8F8;
+            border: 1px solid #CBCAC6;
+            padding: @oneline/2 2em 0 1.5em;
+          }
+        }
+	
+	/* teaser styles */
+        
+        .node-teaser {
+          
+          position: relative; 
+          background: #F8F8F8;
+          padding-right: 40px; 
+          border: 1px solid #F0F0F0;
+           
+          .field, h2, h3 {
+            padding-left: 206px;
+          }         
+          
+          .field-name-field-main-image {
+            margin-right: 30px;
+            float: left;
+            padding-left: 0;
+            margin-top: -3.5em;
+            margin-left: 0;
+            margin-bottom: -0.5em;
+            
+            img {
+              border: 3px solid #CBCAC6;
+            }
+
+          }
+
+          
+          h2 {
+            .f15;
+            margin-top: @oneline/2;
+            margin-bottom: @oneline/2;
+          }
+          
+          
+          a.button {
+            font-weight: normal;
+            float: right;
+            margin-bottom: 10px;
+          }
+        }
+        
+        /* views list styling */
+        .item-list {
+          ul {
+            list-style: none;
+            
+            
+            li.views-row {
+              margin-left: 0;
+              margin-bottom: @oneline;
+              
+            }
+            
+          }
+        }
 	
 }

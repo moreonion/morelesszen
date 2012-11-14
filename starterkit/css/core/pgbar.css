@@ -17,6 +17,11 @@
   height: 25px;
 }
 
+.pgbar-wrapper p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+  
 .pgbar-current {
   background: none #B2D4EF;
   height: 25px; 
