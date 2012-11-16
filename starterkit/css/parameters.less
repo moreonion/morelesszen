@@ -122,7 +122,8 @@ Equation for font sizing:
   padding: 0 3%;
   max-width: 1100px;
   clear: both;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   margin: 0 auto;
   position: relative;
   display: block;
@@ -415,8 +416,9 @@ Equation for font sizing:
 	
 	h1, h1 a {
 		font-weight: normal;
-		color: #a1a1a1;
                 text-decoration: none;
+                color: #BA1D22;
+                font-weight: bold;
                 .f35;
 	}
 	
@@ -450,6 +452,51 @@ Equation for font sizing:
 	#logo {
 		float: left;
 	}
+	
+	#featured {
+          background: url('../img/ae_banner.png') repeat-x center top #4E4E4E;
+          height: 420px;
+          -moz-box-shadow: inset 0px 4px 5px #000;
+          -webkit-box-shadow: inset 0px 4px 5px #000;
+          box-shadow: inset 0px 4px 5px #000;
+          border-bottom: 1px solid #000;
+          
+          .middle {
+            overflow: visible;
+          }
+          
+          #headerwrap {
+            float: left; 
+            clear: left;
+            width: 45%;
+            background: #000;
+            padding: @oneline/3 20px;
+            margin-top: @oneline*2;
+            
+            h1 {
+              font-size: 500%;
+              color: #fff;
+              margin-bottom: 0;
+              font-weight: bold;
+              line-height: 1em;
+            }
+          }
+          
+          .block-webform {
+            -moz-box-shadow: 0px 2px 5px #000;
+            -webkit-box-shadow: 0px 2px 5px #000;
+            box-shadow: 0px 2px 5px #000;
+            border: 3px solid #ccc;
+            background: #fff;
+            padding: @oneline 1.5em @oneline/2 1.6em;
+            float: right;
+            width: 33%;
+            clear: right;
+            margin-top: -35px;
+            position: relative;
+            z-index: 5;
+          }
+        }
 	
 	.region-header {
 		float: left;
@@ -651,7 +698,7 @@ Equation for font sizing:
 	}
 
 	.form-item, .edit-actions {
-		margin-bottom: @oneline;
+		margin-bottom: @oneline/2;
 		
 		.form-item {
 			margin-bottom: 0;

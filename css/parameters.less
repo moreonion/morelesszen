@@ -120,7 +120,8 @@ Equation for font sizing:
   padding: 0 3%;
   max-width: 85em;
   clear: both;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: visible;
   margin: 0 auto;
   position: relative;
   display: block;
@@ -575,7 +576,7 @@ Equation for font sizing:
   }
 
   .form-item, .edit-actions {
-    margin-bottom: @oneline;
+    margin-bottom: @oneline/2;
     
     .form-item {
       margin-bottom: 0;
