@@ -465,13 +465,15 @@ Equation for font sizing:
             overflow: visible;
           }
           
-          #headerwrap {
+            #headerwrap {
             float: left; 
             clear: left;
-            width: 45%;
+            width: 100%;
             background: #000;
             padding: @oneline/3 20px;
             margin-top: @oneline*2;
+            width: 45%;
+
             
             h1 {
               font-size: 500%;
@@ -480,7 +482,9 @@ Equation for font sizing:
               font-weight: bold;
               line-height: 1em;
             }
+          
           }
+          
           
           .block-webform {
             -moz-box-shadow: 0px 2px 5px #000;
@@ -749,10 +753,19 @@ Equation for font sizing:
         
         .node-full {
           .field-name-field-main-image {
-            float: right;
-            margin-left: 30px;
-            margin-bottom: @oneline*2;
-            border: 5px solid #E2E2E2;
+            float: none;
+            clear: both;
+            margin: @oneline/2 0;
+            padding: 15px 0;
+            display: block;
+            background: #E2E2E2;
+            
+            img {
+              margin: 0 auto;
+              border: 5px solid #fff;
+              display: block;
+              
+            }
           }
           
           .field-type-pgbar {

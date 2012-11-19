@@ -144,7 +144,7 @@
         <?php endif; ?>
         <?php print render($title_prefix); ?>
         <?php if ($title && !$is_front): ?>
-          <h1 class="title" id="page-title"><?php print $title; ?></h1>
+        <div id="headerwrap"><h1 class="title" id="page-title"><?php print $title; ?></h1></div>
         <?php endif; ?>
         <?php print render($title_suffix); ?>
         <?php if ($tabs && !ae_base_tabs_float()): ?>
