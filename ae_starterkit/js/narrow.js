@@ -1,4 +1,4 @@
-ae_base checkNarrow(){
+function checkNarrow(){
 	var size = {
 		four: 400,
 		five: 500,
@@ -9,7 +9,7 @@ ae_base checkNarrow(){
 		eightfive: 850,
 		nine: 900
 	};
-	jQuery.each(size, ae_base(cls, size) {
+	jQuery.each(size, jQuery(cls, size) {
 		if (jQuery(window).width() >= size) {
 			jQuery('html').addClass(cls);
 		} else {

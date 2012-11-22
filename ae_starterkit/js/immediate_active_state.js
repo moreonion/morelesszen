@@ -1,5 +1,4 @@
-ae_base(document).ready(function() {
-	var $ = ae_base;
+jQuery(document).ready(function($) {
 	var nav = $('#main-menu, .menu');
 	var menuItems = $('li', nav);
 	menuItems.each(function() {
