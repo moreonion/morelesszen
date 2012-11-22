@@ -9,7 +9,7 @@ function checkNarrow(){
 		eightfive: 850,
 		nine: 900
 	};
-	jQuery.each(size, jQuery(cls, size) {
+	jQuery.each(size, function(cls, size) {
 		if (jQuery(window).width() >= size) {
 			jQuery('html').addClass(cls);
 		} else {
