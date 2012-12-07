@@ -12,6 +12,24 @@
 	display: none;
 }
 
+/* Mobile Menu */
+
+#main-menu{
+  clear:both;
+  width: 100%;
+  li {
+    clear: both;
+    width: 100%;
+  }
+}
+#mobile-menu-icon{
+  background-color: #A0A0A0;
+  border: 1px solid #8F8F8F;
+  box-shadow: 2px 2px 2px #5B5B5B inset;
+  color: #fff;
+  padding: .5em;
+}
+
 /*
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  Holy Grail Layout 
@@ -174,6 +192,21 @@
 			width: @2;
 		}
 	}
+
+	/* Menu wide */
+    #main-menu {
+      float: right;
+      clear: right;
+      width: auto;
+      li {
+        float: left;
+        clear: none;
+        width: auto;
+      }
+    }
+    #mobile-menu-icon {
+      display: none;
+    }
 }
 
 .five {

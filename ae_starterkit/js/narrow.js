@@ -20,3 +20,14 @@ function checkNarrow(){
 
 jQuery(window).resize(checkNarrow);
 jQuery(window).ready(checkNarrow);
+
+(function($) {
+Drupal.behaviors.mobile_menu = {};
+Drupal.behaviors.mobile_menu.attach = function(context) {
+$(':not(.six) #main-menu').before('<span class="button" id="mobile-menu-icon">Mobile Menu</span>');
+$('#mobile-menu-icon').click(function(){
+    $('#main-menu').slideToggle();
+  });
+
+};
+})(jQuery);
