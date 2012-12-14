@@ -44,7 +44,7 @@ $html_attributes = "lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rd
   <?php print $head; ?>
 
   <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame  -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
 
   <!--  Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
