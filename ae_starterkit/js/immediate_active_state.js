@@ -12,5 +12,13 @@ jQuery(document).ready(function($) {
       $(this).addClass('active').addClass('active-trail');
     });
   });
+
+  // clear active/active-trail if an overlay is opening
+  $(document).bind('drupalOverlayOpen', function() {
+      menuItems.each(function(){
+        $(this).removeClass('active').removeClass('active-trail');
+        $('a', this).removeClass('active').removeClass('active-trail');
+      });
+  });
 });
 
