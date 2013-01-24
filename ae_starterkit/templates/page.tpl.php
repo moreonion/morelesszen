@@ -102,7 +102,7 @@
 
     <?php if ($secondary_menu): ?>
       <nav id="secondary-menu" role="navigation">
-				<h2 class="element-invisible"><?php echo t('Secondary menu'); ?></h2>
+        <h2 class="element-invisible"><?php echo t('Secondary menu'); ?></h2>
         <?php echo render($secondary_menu); ?>
       </nav> <!-- /#secondary-menu -->
     <?php endif; ?>
@@ -110,8 +110,8 @@
       </div><!-- /.section -->
 
     </header><!-- /#header -->
-	
-	<?php if ($page['banner']): ?>
+  
+  <?php if ($page['banner']): ?>
     <div id="banner">
       <div class="section middle clearfix">
         <?php print render($page['banner']); ?>
