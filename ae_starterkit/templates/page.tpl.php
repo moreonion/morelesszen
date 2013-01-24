@@ -95,8 +95,9 @@
 
       <?php if ($main_menu): ?>
         <nav id="main-menu" role="navigation">
-					<h2 class="element-invisible"><?php echo t('Main menu'); ?></h2>
-					<?php echo render($main_menu); ?>
+          <h2 class="element-invisible"><?php echo t('Main menu'); ?></h2>
+          <?php $main_menu = menu_tree_all_data('main-menu'); ?>
+          <?php echo drupal_render(menu_tree_output($main_menu)); ?>
         </nav><!-- /#navigation -->
       <?php endif; ?>
 
