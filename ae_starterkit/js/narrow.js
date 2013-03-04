@@ -1,5 +1,4 @@
 function checkNarrow(){
-<<<<<<< HEAD
   var size = {
     tablet: 768,
     desktop: 950
