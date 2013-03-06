@@ -29,6 +29,8 @@ regions[sidebar_second] = Sidebar second
 regions[bottom] = Bottom
 regions[footer] = Footer
 
+regions[widget] = Widget
+
 ; main CSS files
 
 stylesheets[screen][] = css/boilerplate.less

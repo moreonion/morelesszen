@@ -31,7 +31,11 @@ regions[sidebar_second] = Sidebar second
 regions[bottom] = Bottom
 regions[footer] = Footer
 
+regions[widget] = Widget
 
+; these regions are hidden by default
+
+;regions_hidden[] = widget
 
 ; main CSS files
 

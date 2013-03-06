@@ -167,6 +167,10 @@ function ae_base_preprocess_page(&$vars) {
   if(!theme_get_setting('ae_base_feed_icons')) {
     $vars['feed_icons'] = '';
   }
+
+  if (ae_base_context_is_active('current_webform_embedded')) {
+    $vars['theme_hook_suggestions'][] = 'page__current_webform_embedded';
+  }
 }
 
 /**
@@ -525,3 +529,14 @@ function ae_base_field__image($variables) {
 
   return $output;
 }
+
+/**
+ * helper function: returns TRUE if context $cname is active
+ */
+function ae_base_context_is_active($cname) {
+  if (!function_exists('context_active_contexts'))
+    return FALSE;
+  return in_array($cname, array_keys(context_active_contexts()));
+}
+
+
