@@ -539,4 +539,22 @@ function ae_base_context_is_active($cname) {
   return in_array($cname, array_keys(context_active_contexts()));
 }
 
+/**
+ * Implements theme_field__field_type().
+ */
+function ae_base_field__field_heading($variables) {
+  $output = '';
 
+  // Render the items.
+  $output .= '<div class="field-items"' . $variables['content_attributes'] . '>';
+  foreach ($variables['items'] as $delta => $item) {
+    $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even');
+    $output .= '<h2 class="' . $classes . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</h2>';
+  }
+  $output .= '</div>';
+
+  // Render the top-level DIV.
+  $output = '<div class="' . $variables['classes'] . '"' . $variables['attributes'] . '>' . $output . '</div>';
+
+  return $output;
+}
