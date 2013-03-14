@@ -1,5 +1,5 @@
 (function() {
-  
+
   var el, iframe, i, script, messageHandler, element, container, options, xdomain,
   resize = window.IframeResize = {};
   id = 'iframe-4ee0adbddd0ca',
@@ -11,13 +11,13 @@
     frameBorder : 0,
     id : id
   },
-  ie = navigator.userAgent.toLowerCase().indexOf('msie') > -1,
+  ie = navigator.userAgent.toLowerCase().indexOf('msie') > -1 && /^(9.0|10.0)/.test(navigator.userAgent),
   
   // Sets the height of the iframe
   setHeight = function (height) {
     document.getElementById(id).style.height = height + 'px';
   },
-  
+
   // Handler when window.postMessage is available
   messageHandler = function (e) {
     var height, r,
@@ -39,7 +39,7 @@
       }
     }
   },
-  
+
   // Sets the default values then overrides
   setProps = function (options) {
     for (i in props) {
@@ -62,7 +62,7 @@
     iframe = document.createElement(el);
     setProps(options);
   };
-  
+
   resize.load = function (options){
     setup(options);
     if(!container) return;
