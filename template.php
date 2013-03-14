@@ -117,24 +117,24 @@ function ae_base_preprocess_html(&$vars) {
 }
 
 function _ae_base_menu_links($menu) {
-	$data = menu_tree_page_data($menu, 1);
-	if (module_exists('i18n_menu')) {
-		$data = i18n_menu_localize_tree($data);
-	}
-	return menu_tree_output($data);
+  $data = menu_tree_page_data($menu, 1);
+  if (module_exists('i18n_menu')) {
+    $data = i18n_menu_localize_tree($data);
+  }
+  return menu_tree_output($data);
 }
 
 /**
  * Implements template_preprocess_page().
  */
 function ae_base_preprocess_page(&$vars) {
-	drupal_add_js(drupal_get_path('theme', $GLOBALS['theme']) . '/js/modernizr.min.js', array('group' => -200, 'every_page' => TRUE));
-	
+  drupal_add_js(drupal_get_path('theme', $GLOBALS['theme']) . '/js/modernizr.min.js', array('group' => -200, 'every_page' => TRUE));
+
   $vars['main_menu'] =      theme_get_setting('toggle_main_menu') ?
-		_ae_base_menu_links(variable_get('menu_main_links_source', 'main-menu')) : array();
-	$vars['secondary_menu'] = theme_get_setting('toggle_secondary_menu') ?
-		_ae_base_menu_links(variable_get('secondary_menu_links_source', 'user-menu')) : array();
-	
+    _ae_base_menu_links(variable_get('menu_main_links_source', 'main-menu')) : array();
+  $vars['secondary_menu'] = theme_get_setting('toggle_secondary_menu') ?
+    _ae_base_menu_links(variable_get('secondary_menu_links_source', 'user-menu')) : array();
+
   if (isset($vars['node_title'])) {
     $vars['title'] = $vars['node_title'];
   }
