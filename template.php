@@ -170,6 +170,7 @@ function ae_base_preprocess_page(&$vars) {
 
   if (ae_base_context_is_active('current_webform_embedded')) {
     $vars['theme_hook_suggestions'][] = 'page__current_webform_embedded';
+    drupal_add_js(drupal_get_path('theme', 'ae_base') . '/js/widget.js');
   }
 }
 
