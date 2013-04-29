@@ -13,4 +13,4 @@ window.onload = function() {
 window.onresize = function() {
   messageParent();
 }
-
+window.addEventListener("DOMSubtreeModified", function(){messageParent();}, true);
