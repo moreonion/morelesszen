@@ -44,6 +44,7 @@ stylesheets[screen][] = css/css3.css
 ; JS files -------------------------------------------------------------------
 
 scripts[] = "js/narrow.js"
+scripts[] = "js/mobilemenu.js"
 scripts[] = "js/immediate_active_state.js"
 
 

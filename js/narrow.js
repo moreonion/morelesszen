@@ -1,3 +1,9 @@
+/*
+ * This file is a fallback to the narrow.js in our starterkits.
+ * The size classes (.four, .five, ...) are used by the layout.less file
+ *
+ * This file can be overriden by any derivates (starterkits).
+ */
 function checkNarrow(){
   var size = {
     four: 400,
@@ -8,6 +14,8 @@ function checkNarrow(){
     sevensome: 768,
     eightfive: 850,
     nine: 900,
+    tablet: 500,
+    desktop: 950
   };
   jQuery.each(size, function(cls, size) {
     if (jQuery(window).width() >= size) {
