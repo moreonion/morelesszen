@@ -12,8 +12,40 @@
  * happy color collection 
  * ================================================================== */
 
-@fmain: #444; /* used for main font "grey", applies to all text through boilerplate */
+
+@fmain:   #303030; /* used for main font "grey", applies to all text through boilerplate */
 @mywhite: #fff; /* white is used frequently, so mywhite should change consistently */
+@myblack: #000;
+
+/* main colors */
+@primary_color: #f27140; /* orange */
+@secondary_color: none;
+
+/* heading colors */
+@heading_color: @primary_color;
+@heading_second_color: @primary_color;
+
+/* link colors */
+@link_color: @primary_color;
+@link_hover_color: darken(@primary_color, 10%);
+@link_active_color: lighten(@primary_color, 5%);
+
+
+/* backgrounds and background colors  */
+@background: #fff; /* bright theme */
+@background_color_light: @background;
+
+/* main menu links */
+@main_menu_link_color: #515151;
+@main_menu_link_hover_color: #949494;
+@main_menu_link_active_color: #949494;
+@main_menu_item_bg_color: #f1f1f1;
+@main_menu_item_hover_bg_color: #e4f5d0;
+@main_menu_item_active_bg_color: darken(@main_menu_item_hover_bg_color, 15%);
+@main_menu_item_border_color: transparent;
+@main_menu_item_hover_border_color: darken(@main_menu_item_hover_bg_color, 4%);
+@main_menu_item_active_border_color: darken(@main_menu_item_active_bg_color,5%);
+
 
 /* ==================================================================
  * font sizes & typographic elements 
@@ -24,6 +56,8 @@
 
 @serif: Georgia, Times, "Times New Roman", serif ;
 @sans: "Helvetica Neue", Helvetica, Arial, sans;
+@sansb: @sans;
+@sansbb: @sans;
 
 @mainfont: @sans;
 @codefont: @sans;
@@ -184,19 +218,46 @@ Desired px ÷ Default (or parent) px = em size
   clip: rect(1px, 1px, 1px, 1px);
 }
 
-.rounded {
-  -khtml-border-radius: .25em;
-  -moz-border-radius: .25em;
-  -webkit-border-radius: .25em;
-  border-radius: .25em;
+.rounded (@round: .25em) {
+  -webkit-border-radius: @round;
+  -khtml-border-radius: @round;
+  -moz-border-radius: @round;
+  -o-border-radius: @round;
+  border-radius: @round;
 }
 
-.superrounded {
-  -khtml-border-radius: .5em;
-  -moz-border-radius: .5em;
-  -webkit-border-radius: .5em;
-  border-radius: .5em;
+.rounded_multiple (@round1: .25em, @round2: .25em, @round3: .25em, @round4: .25em) {
+  -webkit-border-radius: @round1 @round2 @round3 @round4;
+  -khtml-border-radius:  @round1 @round2 @round3 @round4;
+  -moz-border-radius:  @round1 @round2 @round3 @round4;
+  -o-border-radius:  @round1 @round2 @round3 @round4;
+  border-radius: @round1 @round2 @round3 @round4; 
 }
+
+.boxshadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+  -webkit-box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+
+.boxshadow_inset (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+  -webkit-box-shadow: @arguments inset;
+  -moz-box-shadow: @arguments inset;
+  box-shadow: @arguments inset;
+}
+
+.textshadow (@color: #000000, @x: 1px, @y: 1px, @blur: 0px) {
+  text-shadow: @color @x @y @blur;
+}
+
+.gradient (@place: top, @color1: @secondary_color, @color2: darken(@secondary_color, 20%) ) {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@color1), to(@color2));
+  background: -webkit-linear-gradient(@place, @color1, @color2);
+  background: -moz-linear-gradient(@place, @color1, @color2);
+  background: -ms-linear-gradient(@place, @color1, @color2);
+  background: -o-linear-gradient(@place, @color1, @color2);
+}
+
 
 /* ==================================================================
  * grid and column parameters
@@ -928,3 +989,33 @@ Desired px ÷ Default (or parent) px = em size
     }
   }
 }
+
+/* ---------- mo-dialogs -------------------------------------------- */
+
+.mo-dialogs() {
+  .mo-dialog-wrapper {
+    background: url(images/transparent_grau.png) repeat top left transparent;
+    position: fixed;
+    opacity: 0.75;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 400;
+    display: none;
+  }
+  .mo-dialog-wrapper.visible { display: block; }
+
+  .mo-dialog-content {
+    .f18;
+    background: url(images/ajax-loader.gif) no-repeat center 20px transparent;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    padding: 80px 2em 2em 1em; // 46px image size
+    border-radius: 5px;
+    margin: 25% auto 0 auto;
+    max-width: 15em;
+  }
+}
+
