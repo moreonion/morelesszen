@@ -1,7 +1,8 @@
 @import "parameters.less";
 
+/* This file uses the classes defined by narrow.js                    */
 
-/* Main Zentropy Layout Styles  */
+/* ----------  Main Zentropy Layout Styles -------------------------- */
 
 .ahem,
 #skip-link {
@@ -12,35 +13,13 @@
     display: none;
 }
 
-/* Menu mobile /* default  */
-#main-menu {
-    float: none;
-    clear: both;
-    width: 100%;
-    li {
-        float: none;
-        clear: both;
-        width: 100%;
-    }
-}
-#mobile-menu-icon {
-    display: block;
-    width: 36px;
-    height: 36px;
-    float: right;
-    clear: right;
-    text-indent: 9999px;
-    overflow: hidden;
-}
-
-/*
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- Holy Grail Layout 
- ref: http://www.alistapart.com/articles/holygrail
- LC stands for Left Column, RC for Right Column
- Obvously, this layout is for left-to-right languages. For a
- right-to-left layout, just swap all the left and rights below.
- */
+/* ==================================================================
+ * Holy Grail Layout 
+ * ref: http://www.alistapart.com/articles/holygrail
+ * LC stands for Left Column, RC for Right Column
+ * Obvously, this layout is for left-to-right languages. For a
+ * right-to-left layout, just swap all the left and rights below.
+ * ================================================================== */
 
 #page {
   width: 100%;
@@ -54,7 +33,7 @@
 
 
 .region-content {
-    clear: both;
+  clear: both;
 }
 
 
@@ -63,66 +42,67 @@
   margin-right: -100%;
 }
 
+/* ----------  sevenlayout macro ------------------------------------ */
+
 .sevenlayoutmacro() {
-    
-    
-        #content,
-        #navigation,
-        #sidebar-first,
-        #sidebar-second {
-        float: left;
-        }
 
-        #navigation {
-        width: 100%;
-        margin-right: -100%;
-        }
+  #content,
+  #navigation,
+  #sidebar-first,
+  #sidebar-second {
+    float: left;
+  }
 
-        .sidebar-first #content .section {
-        padding-left: @3 + 2;   /* LC width */
-        }
-        
-        .sidebar-first #introbox {
-        padding-left: @3 + 2;   /* LC width */
-        }
+  #navigation {
+    width: 100%;
+    margin-right: -100%;
+  }
 
-        .sidebar-second #content .section {
-        padding-right: @3 + 4;  /* RC width */
-        }
-        
+  .sidebar-first #content .section {
+    padding-left: @3 + 2;   /* LC width */
+  }
 
-        .two-sidebars #content .section {
-        padding-left: @3 + 2;   /* LC width */
-        padding-right: @3 + 2;  /* RC width */
-        }
+  .sidebar-first #introbox {
+    padding-left: @3 + 2;   /* LC width */
+  }
 
-        #sidebar-first {
-        width: @3;          /* LC width */
-        margin-right: -@3;
-        }
+  .sidebar-second #content .section {
+    padding-right: @3 + 4;  /* RC width */
+  }
 
-        #sidebar-second {
-        float: right;
-        width: @3;          /* RC width */
-        margin-left: -@3;   /* RC width */
-        }
+
+  .two-sidebars #content .section {
+    padding-left: @3 + 2;   /* LC width */
+    padding-right: @3 + 2;  /* RC width */
+  }
+
+  #sidebar-first {
+    width: @3;          /* LC width */
+    margin-right: -@3;
+  }
+
+  #sidebar-second {
+    float: right;
+    width: @3;          /* RC width */
+    margin-left: -@3;   /* RC width */
+  }
 }
 
+/* ---------- bind sevenlayout to screen widths --------------------- */
+
 @media screen and (min-width: 768px) {
-    .sevenlayoutmacro;
+  .sevenlayoutmacro;
 }
 
 .sevensome {
-    .sevenlayoutmacro;
+  .sevenlayoutmacro;
 }
 
+/* ==================================================================
+ * basic classes for layouts and reuse of layouts
+ * ================================================================== */
 
-
-/*
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- basic classes for layouts and reuse of layouts
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+/* ---------- middle macro ------------------------------------------ */
 
 .middle {
   .middle_macro;
@@ -130,108 +110,153 @@
 
 
 .eightfivemacro() {
-    
-    .middle {
-        width: 85%;
-    }
-    
+
+  .middle {
+    width: 85%;
+  }
+
 }
 
 .eightfive {
-    .eightfivemacro;
+  .eightfivemacro;
 }
 
 @media screen and (min-width: 850px) {
-    .eightfivemacro;
+  .eightfivemacro;
 }
 
 .ninemiddlemacro() {
-    
-    .middle {
-        width: 80%;
-    }
+
+  .middle {
+    width: 80%;
+  }
+
 }
 
 .nine {
-    .ninemiddlemacro;
+  .ninemiddlemacro;
 }
 
 @media screen and (min-widht: 900px) {
-    .ninemiddlemacro;
+  .ninemiddlemacro;
 }
 
+/* ---------- other basic classes ----------------------------------- */
 
-/*
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- grid and column layouts
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+// empty for now
+
+/* ==================================================================
+ * grid and column layouts
+ * ================================================================== */
 
 .full12 {
-    margin: 0 1% 0;
+  margin: 0 1% 0;
 }
 
 .col {
-    margin: 0 @gridpercent @oneline;
-    list-style: none;
-    margin-left: 0px;
-    float: left;
-    position: relative;
-    display: block;
+  margin: 0 @gridpercent @oneline;
+  list-style: none;
+  margin-left: 0px;
+  float: left;
+  position: relative;
+  display: block;
 }
 
+/* ---------- Menu mobile / default --------------------------------- */
 
+#main-menu {
+  float: none;
+  clear: both;
+  width: 100%;
+  li {
+    float: none;
+    clear: both;
+    width: 100%;
+  }
+}
+#mobile-menu-icon {
+  display: block;
+  width: 36px;
+  height: 36px;
+  float: right;
+  clear: right;
+  text-indent: 9999px;
+  overflow: hidden;
+}
 
-.tablet() {
-    
-    .twocol {
-        .col {
-            width: @2;
-        }
+/* ---------- tablet macro ------------------------------------------ */
+
+.tabletmacro() {
+
+  .twocol {
+    .col {
+      width: @2;
     }
-    
-    .threecol, .fourcol, .fivecol {
-        .col {
-            width: @2;
-        }
-    }
+  }
 
-    /* Menu wide */
-    #main-menu {
-      float: right;
-      clear: right;
+  .threecol, .fourcol, .fivecol {
+    .col {
+      width: @2;
+    }
+  }
+
+  #featured .twocol {
+    .col {
+      width: @2;
+      clear: none;
+    }
+  }
+
+  #main-menu {
+    float: right;
+    clear: right;
+    width: auto;
+    li {
+      float: left;
+      clear: none;
       width: auto;
-      li {
-        float: left;
-        clear: none;
-        width: auto;
-      }
     }
-    #mobile-menu-icon {
-      display: none;
-    }
+  }
+  #mobile-menu-icon {
+    display: none;
+  }
 }
 
+/* ---------- desktop macro ------------------------------------------ */
+
+.desktopmacro() {
+
+  #featured .twocol {
+    .col {
+      width: @2;
+      clear: none;
+    }
+  }
+}
+
+/* ==================================================================
+ * bind macros to media queries / classes
+ * ================================================================== */
+
+.tablet body {
+  .tabletmacro;
+}
 
 @media screen and (min-width: 768px) {
-    .tablet;
-    
-    #featured .twocol {
-        .col {
-            width: @2;
-            clear: none;
-        }
-    }
+
+  body {
+    .tabletmacro;
+  }
+}
+
+.desktop body {
+  .desktopmacro;
 }
 
 @media screen and (min-width: 950px) {
-    .desktop;
-    
-    #featured .twocol {
-        .col {
-            width: @2;
-            clear: none;
-        }
-    }
+
+  body {
+    .desktopmacro;
+  }
 }
 
