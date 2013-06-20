@@ -1,3 +1,8 @@
+/* ##################################################################
+ * this file is for everything that's REALLY site specific, not
+ * layout specific
+ */
+
 @import "parameters.less";
 
 
@@ -5,47 +10,96 @@
 .verticaltabs;
 .wireframes;
 
-/*
- ++++++++++++++++++++++++++++++++++++++++++++++++++
- this file is for everything that's REALLY site
- specific, not layout specific
- ++++++++++++++++++++++++++++++++++++++++++++++++++
- */
 
+/* ==================================================================
+ * basic html elements styled happily ever after
+ * ================================================================== */
 
+/* Only style generic html tags here. */
 
-
-#mobile-menu-icon{
-    border: 1px solid #8F8F8F;
-    background: url(images/icons-36-white.png) no-repeat center center #A0A0A0;
-    background-position: -862px 50%;
-    border-radius: 5px;
-    &.active {
-        box-shadow: 2px 2px 2px #5B5B5B inset;
-        color: #fff;
-    }
-}
-
-
-/*
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- basic html elements styled happily ever after 
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
-
-
-/* links and link tags */
-
-a { color: #00e; }
-a:visited { color: #551a8b; }
-a:hover { color: #06e; }
-a:focus { outline: thin dotted; }
+/* ---------- generic stuff ----------------------------------------- */
 
 
 body {
-	font-family:@sans;
+  font-family: @sans;
+  font-weight: normal;
+  overflow: auto; // ???
 }
 
+h1 {
+  .f24;
+  font-weight: normal;
+  color: @heading_color;
+  clear: left;
+  display: block;
+  word-wrap: break-word;
+  font-family: @sansb;
+}
+
+h2 {
+  .f20
+  text-transform: uppercase;
+  font-weight: normal;
+  font-family: @sansb;
+  color: darken(@heading_second_color, 5%);
+}
+
+h2 a, h2 a:link, h2 a:visited {
+  text-decoration: none;
+  color: darken(@heading_second_color, 5%);
+}
+
+h2 a:hover, h2 a:focus {
+  text-decoration: underline;
+  color: darken(@heading_second_color, 3%);
+}
+
+h3 {
+  .f18;
+  font-weight: bold;
+  color: darken(@heading_color, 5%);
+}
+
+h4 {
+  .f15;
+  font-weight: bold;
+  color: darken(@secondary_color, 5%);
+}
+
+h5 {
+  .f15;
+  font-weight: bold;
+  color: @fmain;
+}
+
+h6 {
+  .f15;
+  font-style: italic;
+  color: @fmain;
+}
+
+p, ul, ol, li {
+  margin-bottom: @oneline;
+}
+
+/* ---------- links and link tags ----------------------------------- */
+
+a, a:link, a:visited {
+  color: @link_color;
+  outline: none;
+}
+
+a:hover, a:focus {
+  color: @link_hover_color;
+  outline: none;
+  text-decoration: underline;
+}
+
+a:active {
+  outline: none;
+}
+
+/* ---------- close links on messages-------------------------------- */
 a.close, a.close:hover {
   float: right;
   font-size: 0px;
@@ -61,6 +115,355 @@ a.close, a.close:hover {
 }
 
 
+/* ---------- drupal specific hacks --------------------------------- */
+
+ul.menu {
+  list-style: none;
+
+  li {
+    list-style: none;
+    background: none;
+    margin-left: 0;
+  }
+}
+
+/* ---------- text selection ---------------------------------------- */
+
+::-moz-selection { background: @fmain; color: #fff; text-shadow: none; }
+::selection { background: @fmain; color: #fff; text-shadow: none; }
+
+/* ==================================================================
+ * basic html tablet (overrides mobile)
+ * ================================================================== */
+
+.basic_html_tablet () {
+  h1 {
+    .f45;
+  }
+  h2 {
+    .f24;
+  }
+
+}
+
+/* ==================================================================
+ * basic html desktop (overrides tablet and mobile)
+ * ================================================================== */
+
+.basic_html_desktop () {
+
+}
+
+/* ==================================================================
+ * top to bottom styling
+ * ================================================================== */
+
+/* This section has 3 parts.
+ * 1. First the default styles, i.e. the mobile styles.
+ * 2. Second the tablet styles. BUT you need to style only the *overrides*
+ *    of the mobile styles.
+ * 3. Third the desktop styles. They only override both mobile and tablet.
+ *
+ * If you want to add a style, put it in the *most* generic part!
+ *
+ * Feel free to add subheaddings! :)
+ */
+
+/* ------#### header ------------------------------------------------ */
+
+#header {
+
+  /* menu styles */
+  #mobile-menu-icon{
+    border: 1px solid #8F8F8F;
+    background: url(images/icons-36-white.png) no-repeat center center #A0A0A0;
+    background-position: -862px 50%;
+    border-radius: 5px;
+    &.active {
+      box-shadow: 2px 2px 2px #5B5B5B inset;
+      color: #fff;
+    }
+  }
+
+}
+
+/* ---------- mobile menu ------------------------------------------- */
+
+#header {
+
+  a#mobile-menu-icon {
+    background: url('images/menu_icon.png') no-repeat 2px center transparent;
+    margin-bottom: 10px;
+    margin-top: .7em;
+    text-decoration: none;
+    font-family: @sansb;
+    color: #565456;
+    font-weight:normal;
+    font-style:normal;
+    z-index: 401;
+    padding: 0.5em 0.7em 0.5em 32px;
+    display: block;
+    float: left;
+    clear: left;
+
+    &.active {
+    }
+  }
+
+  #mobile-menu-close {
+    display: none;
+    z-index: 402;
+    top: 0;
+    right: 10px;
+    position: absolute;
+    display: block;
+    text-indent: -100000px;
+    color: transparent;
+    width: 40px;
+    height: 40px;
+    background: url('images/message_x.png') no-repeat center center transparent;
+    .rounded(3px);
+  }
+
+  #mobilemenu {
+    display: none;
+    z-index: 401;
+    position: absolute;
+    width: 97%;
+    max-width: 350px;
+    margin-bottom: @oneline;
+    top: 0px;
+    left: 0%; /* js also sets this to 0% */
+    padding-top: @oneline*2;
+    padding-right: 3%;
+  }
+
+
+  #main-menu { /* main menu mobile */
+    top: 100px;
+
+    li {
+      padding: @oneline/4 0 0;
+    }
+
+    a, a:visited {
+      font-weight: normal;
+      font-family: @sansbb;
+      color: desaturate(darken(@main_menu_item_hover_bg_color, 50%),20%);
+      text-decoration: none;
+      display:block;
+      padding: .5em 5%; 
+      background-color: @main_menu_item_hover_bg_color;
+      border-color: darken(@main_menu_item_hover_bg_color,15%);
+
+    }
+
+    a:hover, a:focus, a:active {
+      background-color: @main_menu_item_hover_bg_color;
+      border-color: darken(@main_menu_item_hover_bg_color,15%);
+    }
+
+    a.active {
+      background: @main_menu_active_color;
+      color: @mywhite;
+    }
+
+    a:active {
+      background: @main_menu_item_active_bg_color;
+    }
+
+    .active-trail .menu {
+      text-transform: none;
+      a { padding-left: 2em; }
+    }
+
+    .menu .menu { /* second level of the menu */
+      display: none;
+
+      a {
+        background: @background_color_light;
+        border: 1px solid transparent;
+        border-bottom: 1px solid darken(@background_color_light, 15%);
+        text-transform: none;
+        font-family: @sans;
+        color: @fmain;
+      }
+
+      a:hover, a:focus {
+        background-color: @main_menu_item_active_bg_color_bg_color;
+      }
+
+      a.active {
+        background-color: @main_menu_item_bg_color;
+        border: 1px solid @main_menu_item_border_color;
+        color: @fmain;
+      }
+
+    } /* end of second level */
+
+  } /* end of main menu */
+}
+
+/* ------#### main -------------------------------------------------- */
+
+/* ---------- sidebar ----------------------------------------------- */
+.sidebar {
+
+}
+/* ---------- node styles ------------------------------------------- */
+
+
+/* ---------- teaser styles ----------------------------------------- */
+
+
+/* ---------- views stuff & views list styling ---------------------- */
+
+.item-list {
+  ul {
+    list-style: none;
+
+
+    li.views-row {
+      margin-left: 0;
+      margin-bottom: @oneline;
+
+    }
+
+  }
+}
+
+/* ---------- field specific styles --------------------------------- */
+
+/* ---------- node and context specific styles ---------------------- */
+
+
+/* ---------- search -------------------------------------------------*/
+/* you need to adapt the ids of the search form */
+
+#block-search-form, #search-form #edit-basic {
+  position: relative;
+  padding: 0 .5em;
+  
+  .ui-icon, .ui-icon-searchfield:after {
+    background: none transparent;
+  }
+  
+  #edit-submit, input[type="submit"] {
+    background: url('../images/search.png') no-repeat center center #E6E6E6;
+    width: 2.35em;
+    height: 2.4em;
+    padding: 0;
+    font-size: 110%;
+    text-indent: -500px;
+    color: transparent;
+    line-height: 0;
+    display: block;
+    border: 1px solid #d7d7d7;
+    border-left: 2px solid #d7d7d7;
+    position: absolute;
+    top: 0;
+    right: .4em;
+    .rounded_multible(0,5px,5px,0);
+  }
+  
+  .container-inline div, .container-inline label {
+    display: block;
+  }
+  
+  .ui-input-search {
+    padding: 0;
+    background: none transparent;
+  }
+  
+  #edit-search-block-form--2, input[type="search"] {
+    background: #fff;
+    border: 1px solid #d7d7d7;
+    padding: .5em 2.6em .5em .5em;
+    background: #f8f8f8;
+    font-size: 110%;
+    height: 2.4em;
+    .rounded(5px);
+    .boxshadow_inset(1px,2px,1px,#dddddd);
+    
+  }
+  
+  .ui-input-search {
+    .rounded(5px);
+    .boxshadow_inset(0,0,0,transparent);
+  }
+  
+  .ui-focus {
+    .boxshadow(0,0,0,transparent);
+
+  }
+  
+  #edit-search-block-form--2:focus, input[type="search"]:focus {
+    .boxshadow(0,0,0,transparent);
+  }
+}
+
+#search-form #edit-basic {
+  #edit-submit, input[type="submit"] {
+    top: 1.7em;
+    height: 3.05em;
+    width: 3.55em;
+    right: .4em;
+    font-size: 100%;
+    margin-top: .2em;
+  }
+  
+  #edit-keys {
+    height: 3.05em;
+    font-size: 100%;
+  }
+  
+}
+
+
+/* ------#### footer ------------------------------------------------ */
+
+
+/* ==================================================================
+ * top to bottom tablet (overrides mobile)
+ * ================================================================== */
+
+/* ONLY overrides go in here!
+ * If you can style generic (i.e. also for mobile) -- DO IT!
+ */
+
+.top_to_bottom_tablet () {
+
+
+} /* end top_to_bottom_tablet() */
+
+/* ==================================================================
+ * top to bottom desktop (overrides mobile and tablet)
+ * ================================================================== */
+
+/* ONLY overrides go in here!
+ * If you can style generic (i.e. also for mobile) -- DO IT!
+ */
+
+.top_to_bottom_desktop () {
+
+  #header {
+    #mobile-menu-icon {
+      display: none;
+    }
+  } /* end #header */
+
+} /* end top_to_bottom_desktop() */
+
+
+/* ==================================================================
+ * sonstiges
+ * ================================================================== */
+
+/* ---------- browser specific hacks -------------------------------- */
+/* ---------- share light ------------------------------------------- */
+
+/* ---------- webform widget ---------------------------------------- */
+
 body.embedded-webform {
   padding: 0;
   margin: 0;
@@ -70,45 +473,43 @@ body.embedded-webform {
   }
 }
 
-/*
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- drupal sepcfici hacks 
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+/* ---------- form styling ------------------------------------------ */
 
-
-ul.menu {
-	list-style: none;
-	
-	li {
-		list-style: none;
-		background: none;
-		margin-left: 0;
-	}
+input.webform-calendar {
+  width: auto;
 }
 
-.close {
-	float: right;
+
+/* ==================================================================
+ * media queries
+ * ================================================================== */
+
+/* You most likely will have to adapt the breakpoints. :) */
+/* Therefor tablet in layout.less and style.less can diverge */
+
+@media only screen and (min-width: 650px) {
+
+  .basic_html_tablet;
+  .top_to_bottom_tablet;
 }
 
-/* text selection */
+.sixfive {
 
-::-moz-selection { background: @fmain; color: #fff; text-shadow: none; }
-::selection { background: @fmain; color: #fff; text-shadow: none; }
-
-
-
-/* media queries */
-
-@media only screen and (min-width: 480px) {
-
-
+  .basic_html_tablet;
+  .top_to_bottom_tablet;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 950px) {
 
+  .basic_html_desktop;
+  .top_to_bottom_desktop;
 }
 
+.ninefive {
+
+  .basic_html_desktop;
+  .top_to_bottom_desktop;
+}
 
 @media print {
   * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } 
@@ -125,33 +526,3 @@ ul.menu {
   h2, h3 { page-break-after: avoid; }
 }
 
-/* node stlyes */
-
-
-/* teaser styles */
-
-
-/* views list styling */
-.item-list {
-    ul {
-        list-style: none;
-
-
-        li.views-row {
-            margin-left: 0;
-            margin-bottom: @oneline;
-
-        }
-
-    }
-}
-
-  input.webform-calendar {
-    width: auto;
-  }
-
-.ae-webform-widget {
-  textarea {
-    height: 20em;
-  }
-}

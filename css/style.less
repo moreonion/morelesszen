@@ -1,39 +1,32 @@
+/* ##################################################################
+ * this file is for everything that's REALLY site specific, not
+ * layout specific
+ */
+
 @import "parameters.less";
 
 
 .tabs_macro;
-.wireframes;
 .verticaltabs;
+.wireframes;
 
 
-/*
- ++++++++++++++++++++++++++++++++++++++++++++++++++
- this file is for everything that's REALLY site
- specific, not layout specific
- ++++++++++++++++++++++++++++++++++++++++++++++++++
- */
+/* ==================================================================
+ * basic html elements styled happily ever after
+ * ================================================================== */
 
 
+body {
+  font-family: @sans;
+}
 
-
-/*
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- basic html elements styled happily ever after 
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
-
-
-/* links and link tags */
+/* ---------- links and link tags ----------------------------------- */
 
 a { color: #00e; }
 a:visited { color: #551a8b; }
 a:hover { color: #06e; }
 a:focus { outline: thin dotted; }
 
-
-body {
-	font-family:@sans;
-}
 
 a.close, a.close:hover {
   float: right;
@@ -50,23 +43,22 @@ a.close, a.close:hover {
 }
 
 
-/*
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- site specific: /wireframe
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
+
+/* ---------- ae_base specific: /wireframe --------------------------- */
+
+/* These styles are for the wireframe page, located in ae_base */
 
 .page-wireframe {
-    .sidebar .block {
-      padding-left: 0;
-     padding-right: 0;
-      .wireframe-box {
-	border-right:0;
-       border-left:0;
-       border-radius: 0;
-      }
-      }
-  
+  .sidebar .block {
+    padding-left: 0;
+    padding-right: 0;
+    .wireframe-box {
+      border-right:0;
+      border-left:0;
+      border-radius: 0;
+    }
+  }
+
   .region-title {
     padding-top: 1em;
   }
@@ -80,20 +72,20 @@ a.close, a.close:hover {
   .block-ae-wireframes {
     .wireframe-box {
       background-color: #bacdb4;
-     border: 1px solid #a1b19b;
-     .rounded;
+      border: 1px solid #a1b19b;
+      .rounded;
       height: 3em;
-     margin-top: .5em;
+      margin-top: .5em;
     }
     ul{
-    list-style-type:none;
+      list-style-type:none;
     }
   }
-  
+
   #banner .wireframe-box {
     height: 6em;
   }
-  
+
   #main {
     background: #E3E3E3;
   }
@@ -104,13 +96,13 @@ a.close, a.close:hover {
     border-left: 1px solid #e3e3e3;
     border-right: 1px solid #e3e3e3;
   }
-  
+
   .sidebar {
-    
+
     a {
       font-weight: bold;
     }
-    
+
     h2, h3 {
       font-family: @serif;
       font-style: italic;
@@ -131,45 +123,38 @@ a.close, a.close:hover {
   }
 }
 #block-ae-wireframes-8 .twocol li, #block-ae-wireframes-11 .twocol li{
-    width: 100%;
-    clear: both;
+  width: 100%;
+  clear: both;
 }
 .five #block-ae-wireframes-8 .twocol li, .five #block-ae-wireframes-11 .twocol li{
-    width: 46.6%;
-    clear:none;
-   
+  width: 46.6%;
+  clear:none;
+
 }
 
-
-/*
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- drupal sepcfici hacks 
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- */
-
+/* ---------- drupal specific hacks ---------------------------------- */
 
 ul.menu {
-	list-style: none;
-	
-	li {
-		list-style: none;
-		background: none;
-		margin-left: 0;
-	}
+  list-style: none;
+
+  li {
+    list-style: none;
+    background: none;
+    margin-left: 0;
+  }
 }
 
 .close {
-	float: right;
+  float: right;
 }
 
-/* text selection */
+/* ---------- text selection ---------------------------------------- */
 
 ::-moz-selection { background: @fmain; color: #fff; text-shadow: none; }
 ::selection { background: @fmain; color: #fff; text-shadow: none; }
 
 
 
-/* media queries */
 
 @media only screen and (min-width: 480px) {
 
@@ -195,3 +180,34 @@ ul.menu {
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
+
+
+/* ==================================================================
+ * media queries
+ * ================================================================== */
+
+@media only screen and (min-width: 480px) {
+
+
+}
+
+@media only screen and (min-width: 768px) {
+
+}
+
+
+@media print {
+  * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } 
+  a, a:visited { text-decoration: underline; }
+  a[href]:after { content: " (" attr(href) ")"; }
+  abbr[title]:after { content: " (" attr(title) ")"; }
+  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; } 
+  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+  thead { display: table-header-group; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page { margin: 0.5cm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+
