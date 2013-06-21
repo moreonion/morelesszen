@@ -343,13 +343,13 @@ ul.menu {
 #block-search-form, #search-form #edit-basic {
   position: relative;
   padding: 0 .5em;
-  
+
   .ui-icon, .ui-icon-searchfield:after {
     background: none transparent;
   }
-  
+
   #edit-submit, input[type="submit"] {
-    background: url('../images/search.png') no-repeat center center #E6E6E6;
+    background: url('../images/search.png') no-repeat center center transparent;
     width: 2.35em;
     height: 2.4em;
     padding: 0;
@@ -358,45 +358,41 @@ ul.menu {
     color: transparent;
     line-height: 0;
     display: block;
-    border: 1px solid #d7d7d7;
-    border-left: 2px solid #d7d7d7;
     position: absolute;
     top: 0;
     right: .4em;
-    .rounded_multible(0,5px,5px,0);
   }
-  
+
   .container-inline div, .container-inline label {
     display: block;
   }
-  
+
   .ui-input-search {
     padding: 0;
     background: none transparent;
   }
-  
+
+  // change #id to your form id
   #edit-search-block-form--2, input[type="search"] {
     background: #fff;
-    border: 1px solid #d7d7d7;
     padding: .5em 2.6em .5em .5em;
-    background: #f8f8f8;
     font-size: 110%;
     height: 2.4em;
     .rounded(5px);
     .boxshadow_inset(1px,2px,1px,#dddddd);
-    
+
   }
-  
+
   .ui-input-search {
     .rounded(5px);
     .boxshadow_inset(0,0,0,transparent);
   }
-  
+
   .ui-focus {
     .boxshadow(0,0,0,transparent);
 
   }
-  
+
   #edit-search-block-form--2:focus, input[type="search"]:focus {
     .boxshadow(0,0,0,transparent);
   }
@@ -489,8 +485,10 @@ input.webform-calendar {
 
 @media only screen and (min-width: 650px) {
 
-  .basic_html_tablet;
-  .top_to_bottom_tablet;
+  html {
+    .basic_html_tablet;
+    .top_to_bottom_tablet;
+  }
 }
 
 .sixfive {
@@ -501,8 +499,10 @@ input.webform-calendar {
 
 @media only screen and (min-width: 950px) {
 
-  .basic_html_desktop;
-  .top_to_bottom_desktop;
+  html {
+    .basic_html_desktop;
+    .top_to_bottom_desktop;
+  }
 }
 
 .ninefive {

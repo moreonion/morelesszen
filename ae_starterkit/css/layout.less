@@ -91,7 +91,9 @@
 /* ---------- bind sevenlayout to screen widths --------------------- */
 
 @media screen and (min-width: 768px) {
-  .sevenlayoutmacro;
+  html {
+    .sevenlayoutmacro;
+  }
 }
 
 .sevensome {
@@ -154,7 +156,7 @@
 }
 
 .col {
-  margin: 0 @gridpercent @oneline;
+  margin: 0 @grid @oneline;
   list-style: none;
   margin-left: 0px;
   float: left;
@@ -238,24 +240,24 @@
  * bind macros to media queries / classes
  * ================================================================== */
 
-.tablet body {
+.tablet {
   .tabletmacro;
 }
 
 @media screen and (min-width: 768px) {
 
-  body {
+  html {
     .tabletmacro;
   }
 }
 
-.desktop body {
+.desktop {
   .desktopmacro;
 }
 
 @media screen and (min-width: 950px) {
 
-  body {
+  html {
     .desktopmacro;
   }
 }
