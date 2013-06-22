@@ -29,19 +29,22 @@ a:focus { outline: thin dotted; }
 
 
 a.close, a.close:hover {
-  float: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
   font-size: 0px;
-  text-indent: -5000px;
-  margin-right: 5px;
+  line-height: 0px;
+  text-indent: -100000px;
   color: transparent;
-  display: block;
   width: 20px;
   height: 20px;
+  display: block;
   background: url('images/message_x.png') no-repeat center center;
-  margin-left: 50px;
-  margin-bottom: 10px;
 }
-
+div.messages {
+  position: relative;
+  padding-right: 50px;
+}
 
 
 /* ---------- ae_base specific: /wireframe --------------------------- */
