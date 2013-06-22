@@ -79,9 +79,9 @@
         </div>
       </div>
     <?php endif; ?>
-    
+
     <header id="header" role="banner">
-      
+
       <div class="section middle clearfix">
 
       <?php if ($logo): ?>
@@ -95,14 +95,14 @@
 
       <?php if ($main_menu): ?>
         <nav id="main-menu" role="navigation">
-					<h2 class="element-invisible"><?php echo t('Main menu'); ?></h2>
-					<?php echo render($main_menu); ?>
+          <h2 class="element-invisible"><?php echo t('Main menu'); ?></h2>
+          <?php echo render($main_menu); ?>
         </nav><!-- /#navigation -->
       <?php endif; ?>
 
     <?php if ($secondary_menu): ?>
       <nav id="secondary-menu" role="navigation">
-				<h2 class="element-invisible"><?php echo t('Secondary menu'); ?></h2>
+        <h2 class="element-invisible"><?php echo t('Secondary menu'); ?></h2>
         <?php echo render($secondary_menu); ?>
       </nav> <!-- /#secondary-menu -->
     <?php endif; ?>
@@ -115,16 +115,16 @@
     <div id="messages"><div class="section middle clearfix">
       <?php print $messages; ?>
     </div></div> <!-- /.section, /#messages -->
-	<?php endif; ?>
-	
-	<?php if ($page['banner']): ?>
+  <?php endif; ?>
+
+  <?php if ($page['banner']): ?>
     <div id="banner">
       <div class="section middle clearfix">
         <?php print render($page['banner']); ?>
       </div>
     </div>
   <?php endif; ?>
-    
+
   <?php if ($page['featured']): ?>
     <div id="featured"><div class="section middle clearfix">
       <?php print render($page['featured']); ?>
@@ -132,12 +132,12 @@
   <?php endif; ?>
 
   <div id="main-wrapper">
-    
+
     <div id="main" class="clearfix middle">
 
       <div id="content" class="column" role="main">
         <div class="section">
-         
+
         <?php if ($breadcrumb): ?>
           <div id="breadcrumb"><?php print $breadcrumb; ?></div>
         <?php endif; ?>
@@ -180,8 +180,8 @@
 
     </div><!-- /#main -->
   </div><!-- /#main-wrapper -->
-  
-  
+
+
   <?php if ($page['bottom']): ?>
   <div id="bottom">
     <div class="section middle">
@@ -193,14 +193,14 @@
     </div><!-- /.section -->
   </div><!-- /#footer -->
   <?php endif; ?>
-  
-    
+
+
   <?php if($page['footer']): ?>
-  
+
   <footer id="footer" role="contentinfo">
-    
+
     <div class="section middle">
-    
+
       <?php if($page['footer']): ?>
       <div id="footer-wrapper" class="clearfix">
         <div class="section">
@@ -208,11 +208,11 @@
         </div><!-- /.section -->
       </div><!-- /#footer-wrapper -->
       <?php endif; ?>
-      
+
     </div><!-- /.section -->
-    
+
   </footer><!-- /#footer -->
-  
+
   <?php endif; ?>
   
   </div><!-- /#page -->

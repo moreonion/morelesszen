@@ -53,9 +53,9 @@ $html_attributes = "lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rd
   <!--[if IE 6]><![endif]-->
 
   <title><?php print $head_title; ?></title>
-  
+
   <?php print $styles; ?>
-  
+
   <?php print $scripts; ?>
 
 </head>
