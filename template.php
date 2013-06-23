@@ -515,7 +515,10 @@ function ae_base_field__image($variables) {
   // Render the items.
   $output .= '<div class="field-items"' . $variables['content_attributes'] . '>';
   foreach ($variables['items'] as $delta => $item) {
-    $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even') . ' media-type-' . $item['#bundle'];
+    $classes = 'field-item ' . ($delta % 2 ? 'odd' : 'even');
+    if (isset($item['#bundle'])) {
+      $classes .= ' media-type-' . $item['#bundle'];
+    }
     $output .= '<div class="' . $classes . '"' . $variables['item_attributes'][$delta] . '>' . drupal_render($item) . '</div>';
   }
   $output .= '</div>';
