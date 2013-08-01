@@ -5,7 +5,6 @@
 }
 
 .field-collection-container .field-items .field-item {
-  margin-bottom: 10px;
 }
 
 .field-collection-container .field-items .field-items .field-item {
@@ -13,8 +12,8 @@
 }
 
 .field-collection-view {
-  padding: 1em 0 0.3em 0;
-  margin: 0 1em 0 1em;
+  padding: 0;
+  margin: 0;
 }
 
 /* If there is no add link, don't show the final border. */
