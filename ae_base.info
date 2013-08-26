@@ -51,7 +51,7 @@ stylesheets[screen][] = css/css3.css
 scripts[] = "js/narrow.js"
 scripts[] = "js/close_messages.js"
 scripts[] = "js/immediate_active_state.js"
-
+scripts[] = "js/equalheight.js"
 
 
 ; CSS overrides --------------------------------------------------------------
