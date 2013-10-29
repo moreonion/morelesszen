@@ -1,11 +1,9 @@
 /*
  * TODOs
  * - customizable brakPointTestClass
- * - animate from left
  * - dim background (overlayed body grayed out)
  * - adapt css to structure/classes
  * - use more classes in corresponding css for fullheight, shift,
- *   left/right possibilities
  */
 (function ( $ ) {
   $.fn.mobilemenu = function( options ) {
@@ -58,6 +56,7 @@
 
       var mobileMenu = $.fn.mobilemenu.$menu;
       var $body = $('body');
+      var position = {};
 
       // % on padding will change the main-nav size --> recalc
       if (settings.adaptFullHeightOnResize) {
@@ -66,8 +65,10 @@
           setMainMenuMinHeight($body.innerHeight());
 
           if (settings.shiftBodyAside) {
-            $body.css({right: mobileMenuWidth + 'px'});
-            mobileMenu.css({right: '-' + mobileMenuWidth + 'px'});
+            position[settings.animationFromDirection] = mobileMenuWidth + 'px';
+            $body.css(position);
+            position[settings.animationFromDirection] = '-' + mobileMenuWidth + 'px';
+            mobileMenu.css(position);
           }
         }
       }
@@ -91,7 +92,8 @@
         }
 
         if (settings.shiftBodyAside) {
-          $body.css({right: '0px'});
+          position[settings.animationFromDirection] = '0px';
+          $body.css(position);
         }
 
         breakPointPassed = true;
@@ -113,6 +115,9 @@
         // fire callback
         settings.onSwitchToMobile.call();
       }
+
+      // reset position object
+      position = {};
     });
 
     // define click handler
@@ -120,12 +125,14 @@
       var mobileMenu = e.data.self;
       var mobileMenuWidth = mobileMenu.innerWidth();
       var $body = $('body');
+      var animation = {};
 
       if (mobileMenu.is(':visible')) {
         e.data.settings.beforeClose.call(e.data.self);
 
         if (settings.shiftBodyAside) {
-          $body.animate({right: '0px'}, 300, function() {
+          animation[settings.animationFromDirection] = '0px';
+          $body.animate(animation, settings.animationDuration, function() {
             mobileMenu.hide();
             $body.removeClass(e.data.settings.mobileMenuOpenClass);
 
@@ -133,13 +140,16 @@
           });
         }
         else {
-          mobileMenu.animate({right: '-' + mobileMenuWidth + 'px'}, 300, function() {
+          animation[settings.animationFromDirection] = '-' + mobileMenuWidth + 'px';
+          mobileMenu.animate(animation, settings.animationDuration, function() {
             mobileMenu.hide();
             $body.removeClass(e.data.settings.mobileMenuOpenClass);
 
             e.data.settings.afterClose.call(e.data.self);
           });
         }
+        // reset to prevent unexpected reuse of former values
+        animation = {};
       } else {
         e.data.settings.beforeOpen.call(e.data.self);
 
@@ -147,18 +157,24 @@
           setMainMenuMinHeight($body.innerHeight());
         }
         if (settings.shiftBodyAside) {
-          mobileMenu.css({right: '-' + mobileMenuWidth + 'px'}).show();
-          $body.addClass(e.data.settings.mobileMenuOpenClass).animate({right: mobileMenuWidth + 'px'}, 300, function() {
+          animation[settings.animationFromDirection] = '-' + mobileMenuWidth + 'px';
+          mobileMenu.css(animation).show();
+          animation[settings.animationFromDirection] = mobileMenuWidth + 'px';
+          $body.addClass(e.data.settings.mobileMenuOpenClass).animate(animation, settings.animationDuration, function() {
             e.data.settings.afterOpen.call(e.data.self);
           });
         }
         else {
-          mobileMenu.css({right: '-' + mobileMenuWidth + 'px'}).show();
+          animation[settings.animationFromDirection] = '-' + mobileMenuWidth + 'px';
+          mobileMenu.css(animation).show();
           $body.addClass(e.data.settings.mobileMenuOpenClass);
-          mobileMenu.animate({right: '0px'}, 300, function() {
+          animation[settings.animationFromDirection] = '0px';
+          mobileMenu.animate(animation, settings.animationDuration, function() {
             e.data.settings.afterOpen.call(e.data.self);
           });
         }
+        // reset to prevent unexpected reuse of former values
+        animation = {};
       }
 
       $(this).blur();
@@ -238,6 +254,8 @@
     mobileMenuOpenClass: 'mobilemenu-open',
     breakPointClass: 'sevensome', // TODO
     adaptFullHeightOnResize: true,
+    animationDuration: 300,
+    animationFromDirection: 'right',
     shiftBodyAside: true,
     dimBackground: false, // TODO
     collapseSubMenus: true,
