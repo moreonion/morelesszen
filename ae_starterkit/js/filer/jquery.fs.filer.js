@@ -103,7 +103,7 @@ if (jQuery) (function($) {
 					$filer: $filer,
 					$input: $input,
 					$filename: $filer.find(".filer-filename"),
-					$browse: $filer.find(".filer-browse"),
+					$browse: $filer.find(".filer-browse")
 				}, settings);
 				
 				// Bind click events
