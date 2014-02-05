@@ -42,7 +42,7 @@ regions[widget] = Widget
 stylesheets[screen][] = css/boilerplate.less
 stylesheets[screen][] = css/layout.less
 stylesheets[screen][] = css/style.less
-stylesheets[screen][] = css/maintenance-page.less
+stylesheets[screen][] = css/maintenance-page.css
 stylesheets[screen][] = css/css3.css
 
 
