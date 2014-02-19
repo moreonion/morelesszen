@@ -1,17 +1,17 @@
 (function($) {
 Drupal.behaviors.ae_starterkit = {};
 Drupal.behaviors.ae_starterkit.attach = function(context, settings) {
-  $('.webform-client-form').once('fancy-form', function() {
+  $('.webform-client-form', context).each(function() {
     // enable Picker and Selector
     // see http://www.benplum.com/formstone/
     if (typeof $.fn.selecter == 'function') {
-      $("select").selecter();
+      $("select", this).selecter();
     }
     if (typeof $.fn.picker == 'function') {
-      $("input[type=radio], input[type=checkbox]").picker();
+      $("input[type=radio], input[type=checkbox]", this).picker();
     }
   });
-  $('.webform-component-managed_file').once('fancy-form', function() {
+  $('.webform-component-managed_file', context).each(function() {
     // enable Filer
     if (typeof $.fn.filer == 'function') {
       $("input[type=file]").filer();
