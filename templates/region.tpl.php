@@ -29,7 +29,7 @@
 <?php if ($content): ?>
   <div class="<?php print $classes; ?>">
     <?php if (Request::i()->flag('ae_wireframe')): ?>
-      <div class="region-title"><?php echo ae_wireframes_get_region_name($region); ?></div>
+      <div class="region-title"><?php echo campaignion_wireframes_get_region_name($region); ?></div>
     <?php endif; ?>
     <?php print $content; ?>
   </div>
