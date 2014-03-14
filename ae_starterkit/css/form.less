@@ -1,3 +1,5 @@
+@import "parameters.less";
+
 /* ==================================================================
  * basic form styles
  * ================================================================== */
@@ -10,6 +12,11 @@ form {
 
 .form-item {
   margin-bottom: 0;
+}
+
+fieldset {
+  margin-top: @oneline;
+  margin-bottom: @oneline;
 }
 
 /* ---------- buttons ----------------------------------------------- */
@@ -43,14 +50,15 @@ input[type="submit"]:active, #edit-submit:active, .button:active, a.button:activ
 /* ---------- input ------------------------------------------------- */
 
 input[type="text"], input[type="email"],input[type="number"], input[type="password"], input[type="search"], .form-text input, .form-type-password input, textarea, select, .webform-component-select .selecter .selecter-selected {
-  font-size: 100%;
+  font-size: 120%;
   background: @mywhite;
   border: 1px solid darken(@background, 10%);
-  padding: .3em;
   font-family: @sans;
   font-weight: normal;
   color: @fmain;
   margin-bottom: .5em;
+  padding: .5em 2.5%;
+  width: 95%; // = 100% - padding (left + right)
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
@@ -60,14 +68,11 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
   color: @fmain;
 }
 
-input {
-  width: 95%;
-}
-
 /* ---------- textarea --------------------------------------------- */
 
 textarea {
-  width: 94%;
+  width: 100%;
+  padding-right: .5em; // scrollbar
 }
 
 .grippie {
@@ -93,7 +98,8 @@ input[type="checkbox"] {
 /* ---------- select ------------------------------------------------ */
 
 select {
-  width: 98%;
+  width: 100%;
+  padding-right: .5em; // dropdown arrow
 }
 
 .webform-component-select {
@@ -111,6 +117,11 @@ label {
   display: block;
   margin-bottom: 0;
   color: lighten(@fmain, 20%);
+}
+
+legend {
+  font-weight: bold;
+  color: @primary_color;
 }
 
 .marker, .form-required {
