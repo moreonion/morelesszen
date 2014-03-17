@@ -28,7 +28,7 @@
 ?>
 <?php if ($content): ?>
   <div class="<?php print $classes; ?>">
-    <?php if (Request::i()->flag('ae_wireframe')): ?>
+    <?php if (isset($GLOBALS['campaignion_wireframe_mode'])): ?>
       <div class="region-title"><?php echo campaignion_wireframes_get_region_name($region); ?></div>
     <?php endif; ?>
     <?php print $content; ?>
