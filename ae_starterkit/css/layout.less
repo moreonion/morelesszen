@@ -158,21 +158,8 @@
 // empty for now
 
 /* ==================================================================
- * grid and column layouts
+ * mobile menu default styles
  * ================================================================== */
-
-.full12 {
-  margin: 0 1% 0;
-}
-
-.col {
-  margin: 0 @grid @oneline;
-  list-style: none;
-  margin-left: 0px;
-  float: left;
-  position: relative;
-  display: block;
-}
 
 /* ---------- Menu mobile / default --------------------------------- */
 
@@ -200,25 +187,6 @@
 
 .tabletmacro() {
 
-  .twocol {
-    .col {
-      width: @2;
-    }
-  }
-
-  .threecol, .fourcol, .fivecol {
-    .col {
-      width: @2;
-    }
-  }
-
-  #featured .twocol {
-    .col {
-      width: @2;
-      clear: none;
-    }
-  }
-
   #main-menu {
     float: right;
     clear: right;
@@ -238,12 +206,6 @@
 
 .desktopmacro() {
 
-  #featured .twocol {
-    .col {
-      width: @2;
-      clear: none;
-    }
-  }
 }
 
 /* ==================================================================
