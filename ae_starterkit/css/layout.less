@@ -87,6 +87,15 @@
     width: @3;          /* RC width */
     margin-left: -@3;   /* RC width */
   }
+
+  /* equal height columns */
+  #main {
+    overflow: hidden;
+  }
+  #content, #sidebar-first, #sidebar-second {
+    padding-bottom: @oneline*1001;
+    margin-bottom: -@oneline*1000;
+  }
 }
 
 /* ---------- bind sevenlayout to screen widths --------------------- */
