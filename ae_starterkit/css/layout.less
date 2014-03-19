@@ -1,7 +1,4 @@
-@import "parameters.less";
-@import "grid.less";
-
-/* This file uses the classes defined by narrow.js                    */
+/* ########## layout.less ########################################### */
 
 /* ----------  Main Zentropy Layout Styles -------------------------- */
 
@@ -11,7 +8,7 @@
 }
 
 .js .js-hidden {
-    display: none;
+  display: none;
 }
 
 /* ==================================================================
@@ -27,25 +24,22 @@
   margin: 0;
 }
 
-
 #navigation h2 {
   margin: 0;
 }
 
-
 .region-content {
   clear: both;
 }
-
 
 #content {
   width: 100%;
   margin-right: -100%;
 }
 
-/* ----------  sevenlayout macro ------------------------------------ */
+/* ---------- desktop layout --------------------------------------- */
 
-.sevenlayoutmacro() {
+@media @desktop {
 
   #content,
   #navigation,
@@ -92,23 +86,13 @@
   #main {
     overflow: hidden;
   }
+
   #content, #sidebar-first, #sidebar-second {
     padding-bottom: @oneline*1001;
     margin-bottom: -@oneline*1000;
   }
 }
 
-/* ---------- bind sevenlayout to screen widths --------------------- */
-
-@media screen and (min-width: 768px) {
-  html {
-    .sevenlayoutmacro;
-  }
-}
-
-.sevensome {
-  .sevenlayoutmacro;
-}
 
 /* ==================================================================
  * basic classes for layouts and reuse of layouts
@@ -117,49 +101,23 @@
 /* ---------- middle macro ------------------------------------------ */
 
 .middle {
-  .middle_macro;
+  width: 80%;
+  padding: 0 3%;
+  max-width: @max-width;
+  clear: both;
+  overflow-x: hidden;
+  overflow-y: visible;
+  margin: 0 auto;
+  position: relative;
+  display: block;
 }
 
-
-.eightfivemacro() {
-
+@media @desktop {
   .middle {
     width: 85%;
   }
-
 }
 
-.eightfive {
-  .eightfivemacro;
-}
-
-@media screen and (min-width: 850px) {
-  .eightfivemacro;
-}
-
-.ninemiddlemacro() {
-
-  .middle {
-    width: 80%;
-  }
-
-}
-
-.nine {
-  .ninemiddlemacro;
-}
-
-@media screen and (min-widht: 900px) {
-  .ninemiddlemacro;
-}
-
-/* ---------- other basic classes ----------------------------------- */
-
-// empty for now
-
-/* ==================================================================
- * mobile menu default styles
- * ================================================================== */
 
 /* ---------- Menu mobile / default --------------------------------- */
 
@@ -183,9 +141,7 @@
   overflow: hidden;
 }
 
-/* ---------- tablet macro ------------------------------------------ */
-
-.tabletmacro() {
+@media @desktop {
 
   #main-menu {
     float: right;
@@ -199,38 +155,6 @@
   }
   #mobile-menu-icon {
     display: none;
-  }
-}
-
-/* ---------- desktop macro ------------------------------------------ */
-
-.desktopmacro() {
-
-}
-
-/* ==================================================================
- * bind macros to media queries / classes
- * ================================================================== */
-
-.tablet {
-  .tabletmacro;
-}
-
-@media screen and (min-width: 768px) {
-
-  html {
-    .tabletmacro;
-  }
-}
-
-.desktop {
-  .desktopmacro;
-}
-
-@media screen and (min-width: 950px) {
-
-  html {
-    .desktopmacro;
   }
 }
 

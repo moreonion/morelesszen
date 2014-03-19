@@ -1,9 +1,14 @@
-/* ##################################################################
+/* ########## style.less ############################################
+ *
  * this file is for everything that's REALLY site specific, not
  * layout specific
  */
 
 @import "parameters.less";
+@import "boilerplate.less";
+@import "grid.less";
+@import "layout.less";
+@import "form.less";
 
 
 .tabs_macro;
@@ -257,7 +262,7 @@ div.messages {
     }
 
     a.active {
-      background: @main_menu_active_color;
+      background: @main_menu_link_active_color;
       color: @mywhite;
     }
 
@@ -283,7 +288,7 @@ div.messages {
       }
 
       a:hover, a:focus {
-        background-color: @main_menu_item_active_bg_color_bg_color;
+        background-color: @main_menu_item_active_bg_color;
       }
 
       a.active {

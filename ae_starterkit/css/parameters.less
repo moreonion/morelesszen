@@ -1,5 +1,5 @@
-/* ############################################################################
- * parameters.less
+/* ########## parameters.less ####################################### 
+ *
  * This file defines variables used in boilerplate, layout.less, style.less and
  * possibly other files too. It has to be imported in these files.
  *
@@ -9,9 +9,37 @@
  */
 
 /* ==================================================================
- * happy color collection 
+ * Grid & Breakpoints
  * ================================================================== */
 
+/* ---------- basic grid -------------------------------------------- */
+
+/* This is the widest that middle or a grid-container will go */
+@max-width: 1200px;
+
+/* This value controls how much padding each grid-x unit recieves on the left/right. */
+@gutter-half: 10px;
+
+/* ---------- breakpoints ------------------------------------------- */
+
+// if you change the breakpoints, make sure to change them in js too!
+
+@tablet-breakpoint: 520px;
+@desktop-breakpoint: 780px;
+@big-breakpoint: 1150px;
+@huge-breakpoint: 1600px;
+
+/* ---------- media query variables from breakpoints ---------------- */
+
+@tablet: ~"screen and (min-width: @{tablet-breakpoint})";
+@desktop: ~"screen and (min-width: @{desktop-breakpoint})";
+@big: ~"screen and (min-width: @{big-breakpoint})";
+@huge: ~"screen and (min-width: @{huge-breakpoint})";
+
+
+/* ==================================================================
+ * happy color collection 
+ * ================================================================== */
 
 @fmain:   #303030; /* used for main font "grey", applies to all text through boilerplate */
 @mywhite: #fff; /* white is used frequently, so mywhite should change consistently */
@@ -198,19 +226,6 @@ Desired px ÷ Default (or parent) px = em size
 /* ==================================================================
  * classes and @ for random reuse
  * ================================================================== */
-
-.middle_macro ()  {
-  width: 80%;
-  padding: 0 3%;
-  max-width: 1100px;
-  clear: both;
-  overflow-x: hidden;
-  overflow-y: visible;
-  margin: 0 auto;
-  position: relative;
-  display: block;
-}
-
 
 .element-invisible {
   position: absolute !important;
