@@ -13,7 +13,7 @@
 
 .tabs_macro;
 .verticaltabs;
-.wireframes;
+//.wireframes;
 
 
 /* ==================================================================
@@ -134,21 +134,20 @@ div.messages {
  * basic html tablet (overrides mobile)
  * ================================================================== */
 
-.basic_html_tablet () {
+@media @tablet {
   h1 {
     .f45;
   }
   h2 {
     .f24;
   }
-
 }
 
 /* ==================================================================
  * basic html desktop (overrides tablet and mobile)
  * ================================================================== */
 
-.basic_html_desktop () {
+@media @desktop {
 
 }
 
@@ -363,10 +362,9 @@ div.messages {
  * If you can style generic (i.e. also for mobile) -- DO IT!
  */
 
-.top_to_bottom_tablet () {
+@media @tablet {
 
-
-} /* end top_to_bottom_tablet() */
+}
 
 /* ==================================================================
  * top to bottom desktop (overrides mobile and tablet)
@@ -376,7 +374,7 @@ div.messages {
  * If you can style generic (i.e. also for mobile) -- DO IT!
  */
 
-.top_to_bottom_desktop () {
+@media @desktop {
 
   #header {
     #mobile-menu-icon {
@@ -458,7 +456,7 @@ div.messages {
       float: right;
     }
   }
-} /* end top_to_bottom_desktop() */
+}
 
 
 /* ==================================================================
@@ -515,36 +513,7 @@ input.webform-calendar {
  * media queries
  * ================================================================== */
 
-/* You most likely will have to adapt the breakpoints. :) */
-/* Therefor tablet in layout.less and style.less can diverge */
-
-@media only screen and (min-width: 650px) {
-
-  html {
-    .basic_html_tablet;
-    .top_to_bottom_tablet;
-  }
-}
-
-.sixfive {
-
-  .basic_html_tablet;
-  .top_to_bottom_tablet;
-}
-
-@media only screen and (min-width: 950px) {
-
-  html {
-    .basic_html_desktop;
-    .top_to_bottom_desktop;
-  }
-}
-
-.ninefive {
-
-  .basic_html_desktop;
-  .top_to_bottom_desktop;
-}
+/* ---------- additional media queries ------------------------------ */
 
 @media print {
   * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } 
