@@ -128,8 +128,6 @@ function _ae_base_menu_links($menu) {
  * Implements template_preprocess_page().
  */
 function ae_base_preprocess_page(&$vars) {
-  drupal_add_js(drupal_get_path('theme', $GLOBALS['theme']) . '/js/modernizr.min.js', array('group' => -200, 'every_page' => TRUE));
-
   $vars['main_menu'] =      theme_get_setting('toggle_main_menu') ?
     _ae_base_menu_links(variable_get('menu_main_links_source', 'main-menu')) : array();
   $vars['secondary_menu'] = theme_get_setting('toggle_secondary_menu') ?
