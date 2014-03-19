@@ -35,7 +35,7 @@ regions[widget] = Widget
 
 stylesheets[screen][] = css/style.less
 stylesheets[screen][] = css/maintenance-page.less
-stylesheets[screen][] = css/css3.css
+stylesheets[screen][] = layout.less
 stylesheets[screen][] = js/picker/jquery.fs.picker.css
 stylesheets[screen][] = js/selecter/jquery.fs.selecter.css
 stylesheets[screen][] = js/filer/jquery.fs.filer.css
