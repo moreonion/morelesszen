@@ -1,5 +1,17 @@
-@import "parameters.less";
+/**
+ * Parameter
+ */
 
+@sans: "Helvetica Neue", Helvetica, Arial, sans;
+@serif: Georgia, Times, "Times New Roman", serif ;
+
+.rounded (@round: .25em) {
+  -webkit-border-radius: @round;
+  -khtml-border-radius: @round;
+  -moz-border-radius: @round;
+  -o-border-radius: @round;
+  border-radius: @round;
+}
 
 /**
  * Reset CSS
@@ -43,11 +55,11 @@ audio:not([controls]) { display: none; }
  * 3. Prevent iOS text size adjust on device orientation change, without disabling user zoom: h5bp.com/g
  */
 
-html { font-size: @fontsize; overflow-y: scroll; -webkit-text-size-adjust: @fontsize; -ms-text-size-adjust: @fontsize; }
+html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 
-body { margin: 0; font-size: @fontsize; line-height: @oneline; }
+body { margin: 0; font-size: 100%; line-height: 1.5em; }
 
-body, button, input, select, textarea { font-family: @mainfont; color: @fmain; }
+body, button, input, select, textarea { font-family: @sans; color: #303030; }
 
 
 
@@ -67,18 +79,18 @@ abbr[title] { border-bottom: 1px dotted; }
 
 b, strong { font-weight: bold; }
 
-blockquote { margin: @oneline 0; }
+blockquote { margin: 1.5em 0; }
 
 dfn { font-style: italic; }
 
-hr { display: block; height: 1px; border: 0; margin: @oneline 0; padding: 0; }
+hr { display: block; height: 1px; border: 0; margin: 1.5em 0; padding: 0; }
 
-ins { background: @mywhite; color: @fmain; text-decoration: none; }
+ins { background: #fff; color: #303030; text-decoration: none; }
 
-mark { background: @mywhite; color: @fmain; font-style: italic; font-weight: bold; }
+mark { background: #fff; color: #303030; font-style: italic; font-weight: bold; }
 
 /* Redeclare monospace font family: h5bp.com/j */
-pre, code, kbd, samp { font-family: @codefont; _font-family: @codefont; font-size: @fontsize; }
+pre, code, kbd, samp { font-family: @sans; _font-family: @sans; font-size: 100%; }
 
 /* Improve readability of pre-formatted text in all browsers */
 pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
@@ -86,10 +98,10 @@ pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
 q { quotes: none; }
 q:before, q:after { content: ""; content: none; }
 
-small { .small; }
+small { font-size: 75%; line-height: 1.5em * 0.75; }
 
 /* Position subscript and superscript content without affecting line-height: h5bp.com/k */
-sub, sup { .small; line-height: 0; position: relative; vertical-align: baseline; }
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
 sup { top: -0.5em; }
 sub { bottom: -0.25em; }
 
@@ -98,7 +110,7 @@ sub { bottom: -0.25em; }
    Lists
    ========================================================================== */
 
-ul, ol { margin: @oneline 0; padding: 0; }
+ul, ol { margin: 1.5em 0; padding: 0; }
 dd { margin: 0; }
 nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0; }
 
@@ -198,7 +210,7 @@ textarea { overflow: auto; vertical-align: top; resize: vertical; }
 
 /* Colors for form validity */
 input:valid, textarea:valid {  }
-input:invalid, textarea:invalid { background-color: @mywhite; }
+input:invalid, textarea:invalid { background-color: #fff; }
 
 
 /* =============================================================================

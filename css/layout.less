@@ -1,6 +1,4 @@
-@import "parameters.less";
-
-/* This file uses the classes defined by narrow.js                    */
+/* ########## layout.less ########################################### */
 
 /* ----------  Main Zentropy Layout Styles -------------------------- */
 
@@ -9,6 +7,9 @@
   display: none;
 }
 
+.js .js-hidden {
+  display: none;
+}
 
 /* ==================================================================
  * Holy Grail Layout 
@@ -23,16 +24,13 @@
   margin: 0;
 }
 
-
 #navigation h2 {
   margin: 0;
 }
 
-
 .region-content {
   clear: both;
 }
-
 
 #content {
   width: 100%;
@@ -41,7 +39,7 @@
 
 /* ----------  sevenlayout macro ------------------------------------ */
 
-.sevenlayoutmacro() {
+@media screen and (min-width: 768px) {
 
   #content,
   #navigation,
@@ -56,44 +54,34 @@
   }
 
   .sidebar-first #content .section {
-    padding-left: @3 + 2;   /* LC width */
+    padding-left: 33.33%;   /* LC width */
   }
 
   .sidebar-first #introbox {
-    padding-left: @3 + 2;   /* LC width */
+    padding-left: 33.33%;   /* LC width */
   }
 
   .sidebar-second #content .section {
-    padding-right: @3 + 4;  /* RC width */
+    padding-right: 35.33%;  /* RC width */
   }
 
-
   .two-sidebars #content .section {
-    padding-left: @3 + 2;   /* LC width */
-    padding-right: @3 + 2;  /* RC width */
+    padding-left: 33.33%;   /* LC width */
+    padding-right: 33.33%;  /* RC width */
   }
 
   #sidebar-first {
-    width: @3;          /* LC width */
-    margin-right: -@3;
+    width: 31.33%;          /* LC width */
+    margin-right: -31.33%;
   }
 
   #sidebar-second {
     float: right;
-    width: @3;          /* RC width */
-    margin-left: -@3;   /* RC width */
+    width: 31.33%;          /* RC width */
+    margin-left: -31.33%;   /* RC width */
   }
 }
 
-/* ---------- bind sevenlayout to screen widths --------------------- */
-
-@media screen and (min-width: 768px) {
-  .sevenlayoutmacro;
-}
-
-.sevensome {
-  .sevenlayoutmacro;
-}
 
 /* ==================================================================
  * basic classes for layouts and reuse of layouts
@@ -102,41 +90,17 @@
 /* ---------- middle macro ------------------------------------------ */
 
 .middle {
-  .middle_macro;
+  width: 80%;
+  padding: 0 3%;
+  max-width: 85em;
+  clear: both;
+  overflow-x: hidden;
+  overflow-y: visible;
+  margin: 0 auto;
+  position: relative;
+  display: block;
 }
 
-
-.eightfivemacro() {
-
-  .middle {
-    width: 85%;
-  }
-
-}
-
-.eightfive {
-  .eightfivemacro;
-}
-
-@media screen and (min-width: 850px) {
-  .eightfivemacro;
-}
-
-.ninemiddlemacro() {
-
-  .middle {
-    width: 80%;
-  }
-
-}
-
-.nine {
-  .ninemiddlemacro;
-}
-
-@media screen and (min-widht: 900px) {
-  .ninemiddlemacro;
-}
 
 /* ---------- other basic classes ----------------------------------- */
 
@@ -151,7 +115,7 @@
 }
 
 .col {
-  margin: 0 2% @oneline 0;
+  margin: 0 2% 1.5em 0;
   list-style: none;
   float: left;
   position: relative;
@@ -169,13 +133,13 @@
 
   .twocol {
     .col {
-      width: @2;
+      width: 48%;
     }
   }
 
   .threecol, .fourcol, .fivecol {
     .col {
-      width: @2;
+      width: 48%;
     }
   }
 
@@ -190,25 +154,25 @@
 .sevengridmacro() {
   .twocol{
     .col {
-      width: @2+1;
+      width: 49%;
     }
   }
 
   .threecol {
     .col {
-      width: @3+.5;
+      width: 36.33%;
     }
   }
 
   .fourcol {
     .col {
-      width: @4+.5;
+      width: 28%;
     }
   }
 
   .sixcol {
     .col {
-      width: @6;
+      width: 14.66%;
     }
   }
 }
@@ -217,16 +181,8 @@
  * bind macros to media queries / classes
  * ================================================================== */
 
-.five {
-  .fivegridmacro;
-}
-
 @media screen and (min-widht: 500px) {
   .fivegridmacro;
-}
-
-.sevensome body {
-  .sevengridmacro;
 }
 
 @media screen and (min-width: 700px) {
@@ -250,7 +206,7 @@
 
   #featured .twocol {
     .col {
-      width: @2;
+      width: 48%;
       clear: none;
     }
   }
