@@ -43,6 +43,7 @@ stylesheets[screen][] = css/maintenance-page.css
 
 ; JS files -------------------------------------------------------------------
 
+scripts[] = "js/matchmedia_polyfill.js"
 scripts[] = "js/close_messages.js"
 scripts[] = "js/equalheight.js"
 scripts[] = "js/immediate_active_state.js"

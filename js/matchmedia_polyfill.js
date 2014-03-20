@@ -1,10 +1,29 @@
 /*
- * (c) 2013 more onion
+ * (c) 2014 more onion
+ *
+ * this polyfill enables you to use window.matchMedia(q).matches
+ * with IE 7 and IE 8 -- it resembles the media query behaviour
+ * and enables you to test for min-width and max-width
+ *
+ * be sure not to load any other polyfills before this one :)
+ *
+ * depends on Respond.js for some querying and regexp
+ * depends on Modernizr for media query test
+ * make sure to load Respond.js and Modernizr before this file
+ *
+ * credits: quite a lot of code taken from Respond.js
  */
 (function(w) {
   "use strict";
-  if (typeof w.respond !== undefined) {
-    w.matchMedia = w.matchMedia || function ( q ) {
+  // @TODO better test for Respond
+  // only try to polyfill if we have Respond.js and no media query support
+  // in this case the respondjs polyfill for matchMedia falls too short
+  //
+  // therefor we override any existing window.matchMedia as it could only be
+  // a polyfill
+  if (typeof w.respond !== "undefined" &&
+      typeof M !== "undefined" && !M.mq('only all')) {
+    w.matchMedia = function ( q ) {
       var eachq,
         eql,
         thisq,
@@ -68,4 +87,4 @@
       };
     }
   }
-})(this);
+})(this, Modernizr);
