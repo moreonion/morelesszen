@@ -83,8 +83,13 @@
  * font sizes & typographic elements 
  * ================================================================== */
 
-@oneline: 1.5em; /* = 24 px on 100% font size */
+/* ---------- baseline grid ----------------------------------------- */
+
 @fontsize: 100%;
+@basefontsize: 16;
+@baselineheight: 24;
+// default 1.5em = 24px on 100% font size (16px)
+@oneline: (@baselineheight/@basefontsize)*1em;
 
 @serif: Georgia, Times, "Times New Roman", serif ;
 @sans: "Helvetica Neue", Helvetica, Arial, sans;
@@ -99,133 +104,24 @@
   line-height: @oneline * .75;
 }
 
-/* Font sizes: 16px base font with 24px line-height
-------------------------------------------------
-       font-size / line-height / margin-top
-------------------------------------------------
-40px = 2.5em     / 1.2         / 0.6em
-32px = 2em       / 1.5         / 0.75em
-24px = 1.5em     / 1           / 1em
-20px = 1.25em    / 1.2         / 1.2em
-16px = 1em       / 1.5         / 1.5em
-14px = 0.875em   / 1.7143      / 1.7143em
-13px = 0.8125em  / 1.8462      / 1.8462em
-12px = 0.75em    / 2           / 2em
-10px = 0.625em   / 2.4         / 2.4em
+/* ---------- font sizes -------------------------------------------- */
 
-Equation for font sizing:
-Desired px ÷ Default (or parent) px = em size
-------------------------------------------------*/
+// see https://github.com/tyssen/Less-Baseline-Grid-Generator
 
-
-/* ---------- vertical rhythm --------------------------------------- */
-
-/* using http://drewish.com/tools/vertical-rhythm */
-
-.f12() {
-  font-size: 0.8em;
-  line-height: 1.8333em;
-  margin-bottom: 1.8333em;
+// function to calculate font-size, line-height and margin-bottom
+// according to the baseline grid
+// expects
+.f(@fontsize: @basefontsize, @lineheight: @baselineheight) {
+  // multiplier determines the closest multiplier needed to
+  // get the next multiple of @baselineheight
+  @multiplier: ceil(1/(@lineheight/@fontsize));
+  // font-size: the argument (px) expressed in em, related to @basefontsize
+  font-size: (@fontsize/@basefontsize)*1em;
+  // line-height: the closest multiple of @baselineheight, expressed in em
+  line-height: ((@baselineheight*@multiplier)/@fontsize)*1em;
+  // margin-bottom: always the @baselineheight expressed in em
+  margin-bottom: (@baselineheight/@fontsize)*1em;
 }
-
-.f13() {
-  font-size: 0.8667em;
-  line-height: 1.6923em;
-  margin-bottom: 1.6923em;
-}
-
-.f15() {
-  font-size: 1em;
-  line-height: @oneline;
-  margin-bottom: @oneline;
-}
-
-.f18() {
-  font-size: 1.2em;
-  line-height: 1.2222em;
-  margin-bottom: 1.2222em;
-}
-
-.f20() {
-  font-size: 1.3333em;
-  line-height: 1.1em;
-  margin-bottom: 1.1em;
-}
-
-.f24() {
-  font-size: 1.6em;
-  line-height: 1.8333em;
-  margin-bottom: 0.9167em;
-}
-
-.f30() {
-  font-size: 2em;
-  line-height: @oneline*2;
-  margin-bottom: @oneline*2;
-}
-
-.f35() {
-  font-size: 2.3333em;
-  line-height: 1.2571em;
-  margin-bottom: 0.6286em;
-}
-
-.f40() {
-  font-size: 2.6667em;
-  line-height: 1.8333em;
-  margin-bottom: 0.9167em;
-}
-
-.f45() {
-  font-size: 2.8125em;
-  line-height: 1.0667em;
-  margin-bottom: 0.5333em;
-}
-
-.f50() {
-  font-size: 3.125em;
-  line-height: 1.44em;
-  margin-bottom: 0.48em;
-}
-
-.f55() {
-  font-size: 3.4375em;
-  line-height: 1.3091em;
-  margin-bottom: 0.4364em;
-  
-}
-
-.f60() {
-  font-size: 3.75em;
-  line-height: 1.2em;
-  margin-bottom: 0.4em;
-}
-
-.f65() {
-  font-size: 4.0625em;
-  line-height: 1.1077em;
-  margin-bottom: 0.3692em;
-}
-
-.f70() {
-  font-size: 4.375em;
-  line-height: 1.0286em;
-  margin-top: 0.3429em;
-}
-
-.f75() {
-  font-size: 4.6875em;
-  line-height: 1.28em;
-  margin-bottom: 0.32em;
-  
-}
-
-.f80() {
-  font-size: 5em;
-  line-height: 1.2em;
-  margin-bottom: .3em;
-}
-
 
 /* ==================================================================
  * classes and @ for random reuse
