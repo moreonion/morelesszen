@@ -1,6 +1,6 @@
 (function($) {
-Drupal.behaviors.ae_starterkit = {};
-Drupal.behaviors.ae_starterkit.attach = function(context, settings) {
+Drupal.behaviors.morelesszen_starterkit = {};
+Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
   $('.webform-client-form', context).each(function() {
     // enable Picker and Selector
     // see http://www.benplum.com/formstone/

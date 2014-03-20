@@ -42,7 +42,7 @@ scripts[] = "js/narrow.js"
 scripts[] = "js/mobilemenu.js"
 scripts[] = "js/immediate_active_state.js"
 scripts[] = "js/country-dropdown.js"
-scripts[] = "js/ae_starterkit.js"
+scripts[] = "js/morelesszen_starterkit.js"
 
 ; module overrides -----------------------------------------------------------
 ; uncomment the lines related to the .css-files you wish to override
