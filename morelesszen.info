@@ -43,11 +43,11 @@ stylesheets[screen][] = css/maintenance-page.css
 
 ; JS files -------------------------------------------------------------------
 
-scripts[] = "js/narrow.js"
 scripts[] = "js/close_messages.js"
-scripts[] = "js/immediate_active_state.js"
 scripts[] = "js/equalheight.js"
-
+scripts[] = "js/immediate_active_state.js"
+scripts[] = "js/mobilemenu.js"
+scripts[] = "js/country_dropdown.js"
 
 ; CSS overrides --------------------------------------------------------------
 ; uncomment the two lines related to one .css-file to override the core style

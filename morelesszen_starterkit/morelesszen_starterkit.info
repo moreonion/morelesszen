@@ -38,11 +38,17 @@ stylesheets[screen][] = css/maintenance-page.less
 
 ; JS files -------------------------------------------------------------------
 
-scripts[] = "js/narrow.js"
-scripts[] = "js/mobilemenu.js"
-scripts[] = "js/immediate_active_state.js"
-scripts[] = "js/country-dropdown.js"
 scripts[] = "js/morelesszen_starterkit.js"
+
+; JS files from base theme ---------------------------------------------------
+; uncomment and override if needed
+; override with empty file if you wanna "disable" the file
+
+;scripts[] = "js/close_messages.js"
+;scripts[] = "js/equalheight.js"
+;scripts[] = "js/immediate_active_state.js"
+;scripts[] = "js/mobilemenu.js"
+;scripts[] = "js/country_dropdown.js"
 
 ; module overrides -----------------------------------------------------------
 ; uncomment the lines related to the .css-files you wish to override
