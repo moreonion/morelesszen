@@ -1,23 +1,6 @@
 (function($) {
 Drupal.behaviors.morelesszen_starterkit = {};
 Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
-  $('.webform-client-form', context).each(function() {
-    // enable Picker and Selector
-    // see http://www.benplum.com/formstone/
-    if (typeof $.fn.selecter == 'function') {
-      $("select", this).selecter();
-    }
-    if (typeof $.fn.picker == 'function') {
-      $("input[type=radio], input[type=checkbox]", this).picker();
-    }
-  });
-  $('.webform-component-managed_file', context).each(function() {
-    // enable Filer
-    if (typeof $.fn.filer == 'function') {
-      $("input[type=file]").filer();
-    }
-  });
-
   // scroll to top of form + padding if we are below it
   // or if we are more than the toleratedOffset above it
   if ('ajax' in settings) {
