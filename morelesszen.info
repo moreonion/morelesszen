@@ -1,12 +1,10 @@
 ; Theme Info -----------------------------------------------------------------
 ; required information about the theme
 
-name = AE Base
-description = Basetheme of the Advocacy Engine
+name = MoreLessZen 
+description = Basetheme for Campagnion themes
 screenshot = screenshot.png
 core = 7.x
-package = advocacy_engine
-
 
 
 ; Regions --------------------------------------------------------------------

@@ -6,7 +6,7 @@
  */
 
 // Auto-rebuild the theme registry during theme development.
-if (theme_get_setting('ae_base_clear_registry')) {
+if (theme_get_setting('morelesszen_clear_registry')) {
   // Rebuild .info data.
   system_rebuild_theme_data();
   // Rebuild theme registry.
@@ -18,7 +18,7 @@ if (theme_get_setting('ae_base_clear_registry')) {
  *
  * Changes the default meta content-type tag to the shorter HTML5 version
  */
-function ae_base_html_head_alter(&$head_elements) {
+function morelesszen_html_head_alter(&$head_elements) {
   $head_elements['system_meta_content_type']['#attributes'] = array(
     'charset' => 'utf-8'
   );
@@ -29,24 +29,24 @@ function ae_base_html_head_alter(&$head_elements) {
  *
  * Changes the search form to use the HTML5 "search" input attribute
  */
-function ae_base_preprocess_search_block_form(&$vars) {
+function morelesszen_preprocess_search_block_form(&$vars) {
   $vars['search_form'] = str_replace('type="text"', 'type="search"', $vars['search_form']);
 }
 
 /**
  * Implements template_preprocess().
  */
-function ae_base_preprocess(&$vars, $hook) {
-  $vars['ae_base_path'] = base_path() . path_to_theme();
+function morelesszen_preprocess(&$vars, $hook) {
+  $vars['morelesszen_path'] = base_path() . path_to_theme();
 }
 
 /**
  * Implements template_preprocess_html().
  */
-function ae_base_preprocess_html(&$vars) {
+function morelesszen_preprocess_html(&$vars) {
   
-  $vars['doctype'] = _ae_base_doctype();
-  $vars['rdf'] = _ae_base_rdf($vars);
+  $vars['doctype'] = _morelesszen_doctype();
+  $vars['rdf'] = _morelesszen_rdf($vars);
 
   // Since menu is rendered in preprocess_page we need to detect it here to add body classes
   $has_main_menu = theme_get_setting('toggle_main_menu');
@@ -91,10 +91,10 @@ function ae_base_preprocess_html(&$vars) {
     $page_name = array_shift($temp);
 
     if (isset($page_name)) {
-      $vars['classes_array'][] = ae_base_id_safe('page-' . $page_name);
+      $vars['classes_array'][] = morelesszen_id_safe('page-' . $page_name);
     }
 
-    $vars['classes_array'][] = ae_base_id_safe('section-' . $section);
+    $vars['classes_array'][] = morelesszen_id_safe('section-' . $section);
 
     // add template suggestions
     $vars['theme_hook_suggestions'][] = "page__section__" . $section;
@@ -116,7 +116,7 @@ function ae_base_preprocess_html(&$vars) {
   }
 }
 
-function _ae_base_menu_links($menu) {
+function _morelesszen_menu_links($menu) {
   $data = menu_tree_page_data($menu, 1);
   if (module_exists('i18n_menu')) {
     $data = i18n_menu_localize_tree($data);
@@ -127,11 +127,11 @@ function _ae_base_menu_links($menu) {
 /**
  * Implements template_preprocess_page().
  */
-function ae_base_preprocess_page(&$vars) {
+function morelesszen_preprocess_page(&$vars) {
   $vars['main_menu'] =      theme_get_setting('toggle_main_menu') ?
-    _ae_base_menu_links(variable_get('menu_main_links_source', 'main-menu')) : array();
+    _morelesszen_menu_links(variable_get('menu_main_links_source', 'main-menu')) : array();
   $vars['secondary_menu'] = theme_get_setting('toggle_secondary_menu') ?
-    _ae_base_menu_links(variable_get('secondary_menu_links_source', 'user-menu')) : array();
+    _morelesszen_menu_links(variable_get('secondary_menu_links_source', 'user-menu')) : array();
 
   if (isset($vars['node_title'])) {
     $vars['title'] = $vars['node_title'];
@@ -162,7 +162,7 @@ function ae_base_preprocess_page(&$vars) {
     $vars['title_suffix']['add_or_remove_shortcut']['#weight'] = -100;
   }
   
-  if(!theme_get_setting('ae_base_feed_icons')) {
+  if(!theme_get_setting('morelesszen_feed_icons')) {
     $vars['feed_icons'] = '';
   }
 }
@@ -170,19 +170,19 @@ function ae_base_preprocess_page(&$vars) {
 /**
  * Implements template_preprocess_maintenance_page().
  */
-function ae_base_preprocess_maintenance_page(&$vars) {
+function morelesszen_preprocess_maintenance_page(&$vars) {
   // Manually include these as they're not available outside template_preprocess_page().
   $vars['rdf_namespaces'] = drupal_get_rdf_namespaces();
   $vars['grddl_profile'] = 'http://www.w3.org/1999/xhtml/vocab';
 
-  $vars['doctype'] = _ae_base_doctype();
-  $vars['rdf'] = _ae_base_rdf($vars);
+  $vars['doctype'] = _morelesszen_doctype();
+  $vars['rdf'] = _morelesszen_rdf($vars);
 
   if (!$vars['db_is_active']) {
     unset($vars['site_name']);
   }
 
-  drupal_add_css(drupal_get_path('theme', 'ae_base') . '/css/maintenance-page.css');
+  drupal_add_css(drupal_get_path('theme', 'morelesszen') . '/css/maintenance-page.css');
 }
 
 /**
@@ -190,7 +190,7 @@ function ae_base_preprocess_maintenance_page(&$vars) {
  *
  * Adds extra classes to node container for advanced theming
  */
-function ae_base_preprocess_node(&$vars) {
+function morelesszen_preprocess_node(&$vars) {
   // Striping class
   $vars['classes_array'][] = 'node-' . $vars['zebra'];
 
@@ -228,7 +228,7 @@ function ae_base_preprocess_node(&$vars) {
 /**
  * Implements template_preprocess_block().
  */
-function ae_base_preprocess_block(&$vars, $hook) {
+function morelesszen_preprocess_block(&$vars, $hook) {
   // Add a striping class.
   $vars['classes_array'][] = 'block-' . $vars['zebra'];
 
@@ -241,14 +241,14 @@ function ae_base_preprocess_block(&$vars, $hook) {
 /**
  * Implements theme_menu_tree().
  */
-function ae_base_menu_tree($vars) {
+function morelesszen_menu_tree($vars) {
   return '<ul class="menu clearfix">' . $vars['tree'] . '</ul>';
 }
 
 /**
  * Implements theme_field__field_type().
  */
-function ae_base_field__taxonomy_term_reference($vars) {
+function morelesszen_field__taxonomy_term_reference($vars) {
   $output = '';
 
   // Render the label, if it's not hidden.
@@ -272,17 +272,17 @@ function ae_base_field__taxonomy_term_reference($vars) {
 /**
  *  Return a themed breadcrumb trail
  */
-function ae_base_breadcrumb($vars) {
+function morelesszen_breadcrumb($vars) {
   
   $breadcrumb = isset($vars['breadcrumb']) ? $vars['breadcrumb'] : array();
   
-  if (theme_get_setting('ae_base_breadcrumb_hideonlyfront')) {
+  if (theme_get_setting('morelesszen_breadcrumb_hideonlyfront')) {
     $condition = count($breadcrumb) > 1;
   } else {
     $condition = !empty($breadcrumb);
   }
   
-  if(theme_get_setting('ae_base_breadcrumb_showtitle')) {
+  if(theme_get_setting('morelesszen_breadcrumb_showtitle')) {
     $title = drupal_get_title();
     if(!empty($title)) {
       $condition = true;
@@ -290,7 +290,7 @@ function ae_base_breadcrumb($vars) {
     }
   }
   
-  $separator = theme_get_setting('ae_base_breadcrumb_separator');
+  $separator = theme_get_setting('morelesszen_breadcrumb_separator');
 
   if (!$separator) {
     $separator = '»';
@@ -306,13 +306,13 @@ function ae_base_breadcrumb($vars) {
  *
  * @return bool
  */
-function ae_base_ga_enabled() {
-  if (!theme_get_setting('ae_base_ga_enable')) {
+function morelesszen_ga_enabled() {
+  if (!theme_get_setting('morelesszen_ga_enable')) {
     return FALSE;
   }
 
   global $user;
-  $roles_orig = theme_get_setting('ae_base_ga_trackroles');
+  $roles_orig = theme_get_setting('morelesszen_ga_trackroles');
 
   // theme_get_setting() doesn't allow specifying default values so provide one here
   if (!is_array($roles_orig)) {
@@ -333,9 +333,9 @@ function ae_base_ga_enabled() {
  *
  * @return bool
  */
-function ae_base_tabs_float() {
-  $float = (bool) theme_get_setting('ae_base_tabs_float');
-  $float_node = (bool) theme_get_setting('ae_base_tabs_node');
+function morelesszen_tabs_float() {
+  $float = (bool) theme_get_setting('morelesszen_tabs_float');
+  $float_node = (bool) theme_get_setting('morelesszen_tabs_node');
   $is_node = (arg(0) === 'node' && is_numeric(arg(1)));
 
   if ($float) {
@@ -362,7 +362,7 @@ function ae_base_tabs_float() {
  * 	  The converted string
  */
 
-function ae_base_id_safe($string) {
+function morelesszen_id_safe($string) {
   // Strip accents
   $accents = '/&([A-Za-z]{1,2})(tilde|grave|acute|circ|cedil|uml|lig);/';
   $string = preg_replace($accents, '$1', htmlentities($string));
@@ -378,7 +378,7 @@ function ae_base_id_safe($string) {
 /**
  * Generate doctype for templates
  */
-function _ae_base_doctype() {
+function _morelesszen_doctype() {
   return (module_exists('rdf')) ? '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML+RDFa 1.1//EN"' . "\n" . '"http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">' : '<!DOCTYPE html>' . "\n";
 }
 
@@ -391,7 +391,7 @@ function _ae_base_doctype() {
  *
  * @param array $vars
  */
-function _ae_base_rdf($vars) {
+function _morelesszen_rdf($vars) {
   $rdf = new stdClass();
 
   if (module_exists('rdf')) {
@@ -419,7 +419,7 @@ function _ae_base_rdf($vars) {
  *
  * @ingroup themeable
  */
-function ae_base_menu_link(array $vars) {
+function morelesszen_menu_link(array $vars) {
   $element = $vars['element'];
   $sub_menu = '';
 
@@ -429,7 +429,7 @@ function ae_base_menu_link(array $vars) {
 
   $output = l($element['#title'], $element['#href'], $element['#localized_options']);
   // Adding a class depending on the TITLE of the link (not constant)
-  $element['#attributes']['class'][] = ae_base_id_safe(strip_tags($element['#title']));
+  $element['#attributes']['class'][] = morelesszen_id_safe(strip_tags($element['#title']));
   // Adding a class depending on the ID of the link (constant)
   $element['#attributes']['class'][] = 'mid-' . $element['#original_link']['mlid'];
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
@@ -438,7 +438,7 @@ function ae_base_menu_link(array $vars) {
 /**
  * Override or insert variables into theme_menu_local_task().
  */
-function ae_base_preprocess_menu_local_task(&$vars) {
+function morelesszen_preprocess_menu_local_task(&$vars) {
   $link = & $vars['element']['#link'];
 
   // If the link does not contain HTML already, check_plain() it now.
@@ -454,7 +454,7 @@ function ae_base_preprocess_menu_local_task(&$vars) {
 /**
  *  Duplicate of theme_menu_local_tasks() but adds clearfix to tabs.
  */
-function ae_base_menu_local_tasks(&$vars) {
+function morelesszen_menu_local_tasks(&$vars) {
   $output = '';
 
   if (!empty($vars['primary'])) {
@@ -481,7 +481,7 @@ function ae_base_menu_local_tasks(&$vars) {
  * the "active" and "active-trail" class assigned to them. This assumes they are
  * using theme('menu_link') for the menu rendering to html.
  */
-function ae_base_preprocess_menu_link(&$variables) {
+function morelesszen_preprocess_menu_link(&$variables) {
 	if (!function_exists('context_active_contexts'))
 		return;
   if( ($contexts = context_active_contexts()) ){
@@ -502,7 +502,7 @@ function ae_base_preprocess_menu_link(&$variables) {
  * Implements template_preprocess_field() for main pic/vid
  */
  
-function ae_base_field__image($variables) {
+function morelesszen_field__image($variables) {
   $output = '';
 
   // Render the label, if it's not hidden.
@@ -530,7 +530,7 @@ function ae_base_field__image($variables) {
 /**
  * helper function: returns TRUE if context $cname is active
  */
-function ae_base_context_is_active($cname) {
+function morelesszen_context_is_active($cname) {
   if (!function_exists('context_active_contexts'))
     return FALSE;
   return in_array($cname, array_keys(context_active_contexts()));
@@ -539,7 +539,7 @@ function ae_base_context_is_active($cname) {
 /**
  * Implements theme_field__field_type().
  */
-function ae_base_field__field_heading($variables) {
+function morelesszen_field__field_heading($variables) {
   $output = '';
 
   // Render the items.

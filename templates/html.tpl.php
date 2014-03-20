@@ -66,16 +66,16 @@ $html_attributes = "lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rd
   <?php print $page_bottom; ?>
 
   <!--[if lt IE 7 ]>
-    <script src="<?php print $ae_base_path;?>/js/libs/dd_belatedpng.min.js"></script>
+    <script src="<?php print $morelesszen_path;?>/js/libs/dd_belatedpng.min.js"></script>
     <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
   <![endif]-->
 
-  <?php if (ae_base_ga_enabled()): ?>
+  <?php if (morelesszen_ga_enabled()): ?>
   <!-- Google Analytics : mathiasbynens.be/notes/async-analytics-snippet -->
   <script type="text/javascript">
     <!--//--><![CDATA[//><!--
-    var _gaq=[['_setAccount','<?php print theme_get_setting('ae_base_ga_trackingcode');?>'],['_trackPageview']];
-    <?php if (theme_get_setting('ae_base_ga_anonimize')): ?>
+    var _gaq=[['_setAccount','<?php print theme_get_setting('morelesszen_ga_trackingcode');?>'],['_trackPageview']];
+    <?php if (theme_get_setting('morelesszen_ga_anonimize')): ?>
       _gaq.push (['_gat._anonymizeIp']);
     <?php endif; ?>
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;

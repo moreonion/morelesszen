@@ -146,7 +146,7 @@
           <h1 class="title" id="page-title"><?php print $title; ?></h1>
         <?php endif; ?>
         <?php print render($title_suffix); ?>
-        <?php if ($tabs && !ae_base_tabs_float()): ?>
+        <?php if ($tabs && !morelesszen_tabs_float()): ?>
           <div class="tabs"><?php print render($tabs); ?></div>
         <?php endif; ?>
         <?php print render($page['help']); ?>
@@ -218,6 +218,6 @@
   </div><!-- /#page -->
 </div><!-- /#page-wrapper -->
 
-<?php if($tabs && ae_base_tabs_float()): ?>
+<?php if($tabs && morelesszen_tabs_float()): ?>
   <div id="floating-tabs"><?php print render($tabs); ?></div>
 <?php endif; ?>

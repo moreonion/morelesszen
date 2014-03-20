@@ -7,7 +7,7 @@
  *
  * @see template_preprocess()
  * @see template_preprocess_maintenance_page()
- * @see ae_base_process_maintenance_page()
+ * @see morelesszen_process_maintenance_page()
  */
 $html_attributes = "lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rdf->version}{$rdf->namespaces}";
 ?>
@@ -34,7 +34,7 @@ $html_attributes = "lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rd
   <?php print $styles; ?>
 
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
-  <link rel="stylesheet" media="handheld" href="<?php print $ae_base_path;?>/css/handheld.css">  -->
+  <link rel="stylesheet" media="handheld" href="<?php print $morelesszen_path;?>/css/handheld.css">  -->
 
   <?php print $scripts; ?>
 
@@ -94,12 +94,12 @@ $html_attributes = "lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rd
 
   <?php print $page_bottom; ?>
 
-  <?php if (ae_base_ga_enabled()) :?>
+  <?php if (morelesszen_ga_enabled()) :?>
   <!-- Google Analytics : mathiasbynens.be/notes/async-analytics-snippet -->
   <script type="text/javascript">
     <!--//--><![CDATA[//><!--
     var _gaq=[['_setAccount','<?php echo theme_get_setting('ga_trackingcode');?>'],['_trackPageview']];
-    <?php if (theme_get_settings('ae_base_ga_anonimize')): ?>
+    <?php if (theme_get_settings('morelesszen_ga_anonimize')): ?>
       _gaq.push (['_gat._anonymizeIp']);
     <?php endif; ?>
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;

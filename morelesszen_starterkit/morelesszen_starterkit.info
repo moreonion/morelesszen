@@ -1,11 +1,11 @@
 ; Theme Info -----------------------------------------------------------------
 ; required information about the theme
 
-name = AE_Base Starterkit
-description = Starterkit for the ae_base theme
+name = Starterkit
+description = Starterkit for the MoreLessZen theme
 ;screenshot = screenshot.jpg
 core = 7.x
-base theme = ae_base
+base theme = morelesszen
 
 
 ; Regions --------------------------------------------------------------------
