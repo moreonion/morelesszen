@@ -36,10 +36,6 @@ regions[widget] = Widget
 stylesheets[screen][] = css/style.less
 stylesheets[screen][] = css/maintenance-page.less
 stylesheets[screen][] = layout.less
-stylesheets[screen][] = js/picker/jquery.fs.picker.css
-stylesheets[screen][] = js/selecter/jquery.fs.selecter.css
-stylesheets[screen][] = js/filer/jquery.fs.filer.css
-
 
 ; JS files -------------------------------------------------------------------
 
@@ -48,11 +44,13 @@ scripts[] = "js/mobilemenu.js"
 scripts[] = "js/immediate_active_state.js"
 scripts[] = "js/country-dropdown.js"
 scripts[] = "js/ae_starterkit.js"
-scripts[] = "js/selecter/jquery.fs.selecter.js"
-scripts[] = "js/picker/jquery.fs.picker.js"
-scripts[] = "js/filer/jquery.fs.filer.js"
 
+; module overrides -----------------------------------------------------------
+; uncomment the lines related to the .css-files you wish to override
 
+;stylesheets[screen][] = css/formstone/jquery.fs.picker.css
+;stylesheets[screen][] = css/formstone/jquery.fs.selecter.css
+;stylesheets[screen][] = css/formstone/jquery.fs.filer.css
 
 ; CSS overrides --------------------------------------------------------------
 ; uncomment the two lines related to one .css-file to override the core style
