@@ -114,6 +114,11 @@ function morelesszen_preprocess_html(&$vars) {
       }
     }
   }
+
+  if (theme_get_setting('morelesszen_formstone') && function_exists('formstone_enhance_forms')) {
+    formstone_enhance_forms();
+  }
+
 }
 
 function _morelesszen_menu_links($menu) {

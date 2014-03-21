@@ -72,6 +72,19 @@ function morelesszen_form_system_theme_settings_alter(&$form, &$form_state) {
   );
 
   /**
+   * Fancy form settings
+   */
+  $form['morelesszen_webform'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Webform'),
+  );
+  $form['morelesszen_webform']['morelesszen_formstone'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable fancy forms (Formstone)'),
+    '#default_value' => theme_get_setting('morelesszen_formstone'),
+  );
+
+  /**
    * Google Analytics settings
    */
   $roles_all = user_roles();

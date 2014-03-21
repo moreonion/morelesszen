@@ -7,7 +7,6 @@ description = Starterkit for the MoreLessZen theme
 core = 7.x
 base theme = morelesszen
 
-
 ; Regions --------------------------------------------------------------------
 ; these content regions are available for block placement
 ; some are special hidden regions: page_top, page_bottom, and help
