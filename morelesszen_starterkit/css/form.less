@@ -51,7 +51,7 @@ input[type="submit"]:active, #edit-submit:active, .button:active, a.button:activ
 
 input[type="text"], input[type="email"],input[type="number"], input[type="password"], input[type="search"], .form-text input, .form-type-password input, textarea, select, .webform-component-select .selecter .selecter-selected {
   font-size: 120%;
-  background: @mywhite;
+  background-color: @mywhite;
   border: 1px solid darken(@background, 10%);
   font-family: @sans;
   font-weight: normal;
@@ -95,6 +95,10 @@ input[type="checkbox"] {
   display: inline;
 }
 
+.picker .picker-label {
+  float: none;
+}
+
 /* ---------- select ------------------------------------------------ */
 
 select {
@@ -106,6 +110,12 @@ select {
   position: relative;
 }
 
+.selecter {
+  max-width: 100%;
+  .selecter-selected, .selecter-item {
+    width: auto;
+  }
+}
 
 /* ---------- label, legend, description --------------------------- */
 
