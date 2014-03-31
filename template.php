@@ -538,7 +538,16 @@ function morelesszen_field__image($variables) {
 function morelesszen_context_is_active($cname) {
   if (!function_exists('context_active_contexts'))
     return FALSE;
-  return in_array($cname, array_keys(context_active_contexts()));
+  $contexts = context_active_contexts();
+  if (isset($contexts[$cname])) {
+    return TRUE;
+  }
+  foreach ($contexts as $context) {
+    if ($context->name == $cname) {
+      return TRUE;
+    }
+  }
+  return FALSE;
 }
 
 /**
