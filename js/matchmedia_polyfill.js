@@ -87,4 +87,4 @@
       };
     }
   }
-})(this, Modernizr);
+})(this);
