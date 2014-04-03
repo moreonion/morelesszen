@@ -6,6 +6,9 @@ description = Basetheme for Campagnion themes
 screenshot = screenshot.png
 core = 7.x
 
+; theme default settings
+settings[morelesszen_formstone] = 1
+settings[morelesszen_breadcrumb_hideonlyfron] = 1
 
 ; Regions --------------------------------------------------------------------
 ; these content regions are available for block placement
