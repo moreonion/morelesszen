@@ -50,13 +50,16 @@
       $icon.show();
       $close.show();
       $body.addClass(settings.mobileMenuClass);
+      settings.onSwitchToMobile.call($menu, settings, mql);
     }
     // gets called when switched to desktop
     var switchToDesktop = function(mql) {
       $menu.show();
       $icon.hide();
       $close.hide();
-      $body.removeClass(settings.mobileMenuClass);
+      $body.removeClass(settings.mobileMenuClass)
+           .removeClass(settings.mobileMenuOpenClass);
+      settings.onSwitchToDesktop.call($menu, settings, mql);
     }
 
     var setMenu = function (mql) {
@@ -67,20 +70,15 @@
       }
     }
 
-    // add breakpoint listener and do inital call
-    mobileQuery.addListener(function(mql) {
-      setMenu(mql);
-    });
-    setMenu(mobileQuery);
-
     var clickHandler = function (e) {
       var width = $menu.innerWidth();
       var animation = {};
 
       if ($menu.is(':visible')) {
+        console.log('vis');
         settings.beforeClose.call($menu, settings);
 
-        //if (settings.shiftBodyAside) {
+        if (settings.shiftBodyAside) {
         //  animation[settings.animationFromDirection] = '0px';
         //  $body.animate(animation, settings.animationDuration, function() {
         //    $menu.hide();
@@ -88,8 +86,7 @@
 
         //    settings.afterClose.call($menu, settings);
         //  });
-        //}
-        //else {
+        } else {
           animation[settings.animationFromDirection] = '-' + width + 'px';
           $menu.animate(animation, settings.animationDuration, function() {
             $menu.hide();
@@ -97,24 +94,25 @@
 
             settings.afterClose.call(self, settings);
           });
-        // }
+        }
         // reset to prevent unexpected reuse of former values
         animation = {};
       } else {
+        console.log('no vis');
         settings.beforeOpen.call($menu, settings);
 
-        if (settings.adaptFullHeightOnResize) {
-          setMainMenuMinHeight($body.innerHeight());
-        }
-        //if (settings.shiftBodyAside) {
+        //if (settings.adaptFullHeightOnResize) {
+        //  setMainMenuMinHeight($body.innerHeight());
+        //}
+        if (settings.shiftBodyAside) {
         //  animation[settings.animationFromDirection] = '-' + width + 'px';
         //  $menu.css(animation).show();
         //  animation[settings.animationFromDirection] = width + 'px';
         //  $body.addClass(settings.mobileMenuOpenClass).animate(animation, settings.animationDuration, function() {
         //    settings.afterOpen.call($menu, settings);
         //  });
-        //}
-        // else {
+        } else {
+          console.log('no shift');
           animation[settings.animationFromDirection] = '-' + width + 'px';
           $menu.css(animation).show();
           $body.addClass(settings.mobileMenuOpenClass);
@@ -122,7 +120,7 @@
           $menu.animate(animation, settings.animationDuration, function() {
             settings.afterOpen.call($menu, settings);
           });
-        // }
+        }
         // reset to prevent unexpected reuse of former values
         animation = {};
       }
@@ -140,6 +138,16 @@
       $close.on('click.mobilemenu', clickHandler);
     }
 
+    // add breakpoint listener and do inital call
+    mobileQuery.addListener(function(mql) {
+      setMenu(mql);
+    });
+    setMenu(mobileQuery);
+
+    // init callback
+    settings.init.call($menu, settings);
+
+    // be a nice jQuery plugin and return myself
     return this;
   }
 
@@ -147,7 +155,6 @@
   $.fn.mobilemenu.defaults = {
     // These are the defaults.
     breakpoint: 780,
-    breakpointTest: function () {},
     createIcon: true,
     iconText: 'Menu',
     iconContainer: '',
@@ -161,12 +168,12 @@
     mobileMenuClass: 'gone-mobile',
     mobileMenuEnabledClass: 'with-mobile-menu',
     mobileMenuOpenClass: 'mobile-menu-open',
-    adaptFullHeightOnResize: false,
+    adaptFullHeightOnResize: false, // TODO
     animationDuration: 300,
-    animationFromDirection: 'right',
-    shiftBodyAside: true,
+    animationFromDirection: 'left',
+    shiftBodyAside: false, // TODO
     dimBackground: false, // TODO
-    collapseSubMenus: true,
+    collapseSubMenus: true, // TODO
     collapsibleSubMenus: true, // TODO
     init: function() {},
     beforeOpen: function() {},

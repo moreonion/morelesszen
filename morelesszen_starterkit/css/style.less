@@ -267,14 +267,27 @@ div.messages {
     }
   }
 
+  a#mobile-menu-close {
+    display: none;
+  }
+}
+.mobile-menu-open #header {
   #main-menu {
+    position: absolute;
+    top: 0;
+    background: #ddd;
+    margin: 0 -8.6%; // account for .middle wrapper
+                     // inner: 80% + 6% padding related to outer: 10% padding of container
+                     // 10/(1/0.86) = 8.6
     padding: 40px 3% 1em 3%;
+    width: 94%;
+    z-index: 401;
     .menu {
-      width: 94%;
+      width: 100%;
     }
 
     a#mobile-menu-close {
-      display: none;
+      display: block;
       z-index: 402;
       top: 0;
       right: 10px;
@@ -287,19 +300,6 @@ div.messages {
       background: url('images/message_x.png') no-repeat center center transparent;
     }
 
-  }
-}
-.mobile-menu-open #header {
-  #main-menu {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #ddd;
-    margin: 0 -10%; // account for .middle wrapper
-
-    a#mobile-menu-close {
-      display: block;
-    }
   }
 }
 
