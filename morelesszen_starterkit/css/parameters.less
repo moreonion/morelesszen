@@ -174,6 +174,12 @@
   background: -o-linear-gradient(@place, @color1, @color2);
 }
 
+.boxsizing (@box: border-box) {
+  -webkit-box-sizing: @box;
+  -moz-box-sizing: @box;
+  box-sizing: @box;
+}
+
 
 /* ==================================================================
  * layout toggles & system stuff 
