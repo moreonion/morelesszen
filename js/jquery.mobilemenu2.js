@@ -18,6 +18,7 @@
         $closeContainer = $(settings.closeContainer),
         $dim = $(settings.dimElement),
         width = $menu.innerWidth(),
+        throttled,
         $icon,
         $close;
 
@@ -78,6 +79,12 @@
       }
     }
 
+    var setMenuMinHeight = function (pixel) {
+      var paddingTop = parseInt($menu.css('padding-top'), 10);
+      var paddingBottom = parseInt($menu.css('padding-bottom'), 10);
+      $menu.css({minHeight: (pixel - paddingTop - paddingBottom) + 'px', maxHeight: (pixel - paddingTop - paddingBottom) + 'px', overflow: 'auto'});
+    }
+
     // menu events
     var beforeOpen = function () {
       if (settings.dimBackground) {
@@ -104,18 +111,17 @@
     }
     var menuOpen = function () {
       var animation = {};
-      //if (settings.adaptFullHeightOnResize) {
-      //  setMainMenuMinHeight($body.innerHeight());
-      //}
+      if (settings.adaptFullHeightOnResize) {
+        setMenuMinHeight($body.innerHeight());
+      }
+
+      animation[settings.animationFromDirection] = '-' + width + 'px';
+      $menu.css(animation).show();
+
       if (settings.shiftBodyAside) {
-        animation[settings.animationFromDirection] = '-' + width + 'px';
-        $menu.css(animation).show();
         animation[settings.animationFromDirection] = width + 'px';
         $body.addClass(settings.mobileMenuOpenClass).animate(animation, settings.animationDuration, afterOpen);
       } else {
-        animation[settings.animationFromDirection] = '-' + width + 'px';
-        $menu.css(animation).show();
-        $body.addClass(settings.mobileMenuOpenClass);
         animation[settings.animationFromDirection] = '0px';
         $menu.animate(animation, settings.animationDuration, afterOpen);
       }
@@ -132,10 +138,45 @@
         animation[settings.animationFromDirection] = '-' + width + 'px';
         $menu.animate(animation, settings.animationDuration, afterClose);
       }
+
       $dim.hide();
 
       // reset to prevent unexpected reuse of former values
       animation = {};
+    };
+
+    // throttled resize handler
+    var resizeHandler = function () {
+      if (throttled) {
+        return;
+      }
+
+      throttled = true;
+
+      setTimeout(function() {
+        throttled = false;
+      }, settings.interval);
+
+      // throttled from here on
+
+      // update width
+      width = $('#main-menu').innerWidth();
+
+      var position = [];
+
+      // % on padding will change the main-nav size --> recalc
+      if (settings.adaptFullHeightOnResize) {
+        if ($body.hasClass(settings.mobileMenuOpenClass)) {
+          setMenuMinHeight($body.innerHeight());
+
+          if (settings.shiftBodyAside) {
+            position[settings.animationFromDirection] = width + 'px';
+            $body.css(position);
+            position[settings.animationFromDirection] = '-' + width + 'px';
+            $menu.css(position);
+          }
+        }
+      }
     };
 
     var clickHandler = function (e) {
@@ -168,6 +209,9 @@
     });
     setMenu(mobileQuery);
 
+    // resize handler
+    $(window).on('resize.mobilemenu', resizeHandler);
+
     // init callback
     settings.init.call($menu, settings);
 
@@ -199,6 +243,7 @@
     createDim: false, // TODO
     dimBackground: true,
     dimElement: '',
+    interval: 100,
     collapseSubMenus: true, // TODO
     collapsibleSubMenus: true, // TODO
     init: function() {},

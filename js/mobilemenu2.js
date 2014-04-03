@@ -6,9 +6,10 @@ Drupal.behaviors.mobilemenu.attach = function(context, settings) {
     return;
   } else {
     $('#main-menu', context).mobilemenu({
-      animationFromDirection: 'right',
+      animationFromDirection: 'left',
       dimElement: '.campaignion-dialog-wrapper',
       shiftBodyAside: true,
+      adaptFullHeightOnResize: true,
       beforeOpen: function (settings) {
         // test before call
         console.log(this);
