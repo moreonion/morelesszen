@@ -170,60 +170,13 @@ div.messages {
 #header {
 }
 
-/* ---------- mobile menu ------------------------------------------- */
+/* ---------- mobile menu (generic) --------------------------------- */
 
+// header without mobilemenu.js
 #header {
 
-  a#mobile-menu-icon {
-    background: url('images/mobile-menu-icon.png') no-repeat 2px center transparent;
-    margin-bottom: 10px;
-    margin-top: .7em;
-    text-decoration: none;
-    font-family: @sansb;
-    color: #565456;
-    font-weight:normal;
-    font-style:normal;
-    z-index: 401;
-    padding: 0.5em 0.7em 0.5em 32px;
-    display: block;
-    float: left;
-    clear: left;
-
-    &.active {
-    }
-  }
-
-  #mobile-menu-close {
-    display: none;
-    z-index: 402;
-    top: 0;
-    right: 10px;
-    position: absolute;
-    display: block;
-    text-indent: -100000px;
-    color: transparent;
-    width: 40px;
-    height: 40px;
-    background: url('images/message_x.png') no-repeat center center transparent;
-    .rounded(3px);
-  }
-
-  #mobile-menu {
-    display: none;
-    z-index: 401;
-    position: absolute;
-    width: 97%;
-    max-width: 350px;
-    margin-bottom: @oneline;
-    top: 0px;
-    left: 0%; /* js also sets this to 0% */
-    padding-top: @oneline*2;
-    padding-right: 3%;
-  }
-
-
   #main-menu { /* main menu mobile */
-    top: 100px;
+    position: relative;
 
     li {
       padding: @oneline/4 0 0;
@@ -285,6 +238,69 @@ div.messages {
     } /* end of second level */
 
   } /* end of main menu */
+}
+
+/* ---------- mobile menu (with js) --------------------------------- */
+// header with mobilemenu.js enabled
+// extends styles from above
+.with-mobile-menu #header {
+
+  .middle {
+    overflow: visible;
+  }
+
+  #mobile-menu-icon {
+    width: 40px;
+    height: 40px;
+    background: url('images/mobile-menu-icon.png') no-repeat 2px center transparent;
+    text-decoration: none;
+    font-family: @sansb;
+    color: #565456;
+    font-weight:normal;
+    font-style:normal;
+    z-index: 401;
+    display: block;
+    float: right;
+    clear: right;
+
+    &.active {
+    }
+  }
+
+  #main-menu {
+    padding: 40px 3% 1em 3%;
+    .menu {
+      width: 94%;
+    }
+
+    a#mobile-menu-close {
+      display: none;
+      z-index: 402;
+      top: 0;
+      right: 10px;
+      position: absolute;
+      display: block;
+      text-indent: -100000px;
+      color: transparent;
+      width: 40px;
+      height: 40px;
+      background: url('images/message_x.png') no-repeat center center transparent;
+    }
+
+  }
+}
+.mobile-menu-open #header {
+  #main-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ddd;
+    margin: 0 -10%; // account for .middle wrapper
+
+    a#mobile-menu-close {
+      display: block;
+    }
+  }
 }
 
 /* ------#### main -------------------------------------------------- */
@@ -362,11 +378,9 @@ div.messages {
 
 @media @desktop {
 
-  #header {
-    #mobile-menu-icon {
-      display: none;
-    }
-  } /* end #header */
+  #mobile-menu-icon {
+    display: none;
+  }
 
   #mobile-menu-close {
     display: none;
@@ -376,19 +390,6 @@ div.messages {
 
     #logo {
       float: left;
-    }   
-
-    #mobilemenu {
-      width: 100%;
-      clear: none;
-      display: block;
-      float: left;
-      position: static;
-      background: none transparent;
-      border: 0px solid transparent;
-      margin-bottom: 0;   
-      padding-top: 0;
-      padding-right: 0;
     }
 
     #main-menu { /* #main menu desktop */
