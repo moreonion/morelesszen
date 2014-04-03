@@ -1,10 +1,8 @@
 /*
  * TODOs
- * - customizable brakPointTestClass
- * - dim background (overlayed body grayed out)
- * - adapt css to structure/classes
  * - use more classes in corresponding css for fullheight, shift,
  * - get before events right: Promises/Deferreds
+ * - matchmedia addlistener polyfill
  */
 (function ( $ ) {
   'use strict';
@@ -117,10 +115,11 @@
 
       animation[settings.animationFromDirection] = '-' + width + 'px';
       $menu.css(animation).show();
+      $body.addClass(settings.mobileMenuOpenClass);
 
       if (settings.shiftBodyAside) {
         animation[settings.animationFromDirection] = width + 'px';
-        $body.addClass(settings.mobileMenuOpenClass).animate(animation, settings.animationDuration, afterOpen);
+        $body.animate(animation, settings.animationDuration, afterOpen);
       } else {
         animation[settings.animationFromDirection] = '0px';
         $menu.animate(animation, settings.animationDuration, afterOpen);

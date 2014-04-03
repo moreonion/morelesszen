@@ -8,8 +8,8 @@ Drupal.behaviors.mobilemenu.attach = function(context, settings) {
     $('#main-menu', context).mobilemenu({
       animationFromDirection: 'left',
       dimElement: '.campaignion-dialog-wrapper',
-      shiftBodyAside: true,
-      adaptFullHeightOnResize: true,
+      shiftBodyAside: false,
+      adaptFullHeightOnResize: false,
       beforeOpen: function (settings) {
         // test before call
         console.log(this);
