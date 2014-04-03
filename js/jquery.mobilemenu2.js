@@ -4,6 +4,7 @@
  * - dim background (overlayed body grayed out)
  * - adapt css to structure/classes
  * - use more classes in corresponding css for fullheight, shift,
+ * - get before events right: Promises/Deferreds
  */
 (function ( $ ) {
   'use strict';
@@ -15,6 +16,8 @@
         $body = $('body'),
         $iconContainer = $(settings.iconContainer),
         $closeContainer = $(settings.closeContainer),
+        $dim = $(settings.dimElement),
+        width = $menu.innerWidth(),
         $icon,
         $close;
 
@@ -50,6 +53,8 @@
       $icon.show();
       $close.show();
       $body.addClass(settings.mobileMenuClass);
+
+      // callback
       settings.onSwitchToMobile.call($menu, settings, mql);
     }
     // gets called when switched to desktop
@@ -57,8 +62,11 @@
       $menu.show();
       $icon.hide();
       $close.hide();
-      $body.removeClass(settings.mobileMenuClass)
-           .removeClass(settings.mobileMenuOpenClass);
+      $body.removeClass(settings.mobileMenuClass);
+      // close any open mobile menu
+      menuClose();
+
+      // callback
       settings.onSwitchToDesktop.call($menu, settings, mql);
     }
 
@@ -70,59 +78,75 @@
       }
     }
 
-    var clickHandler = function (e) {
-      var width = $menu.innerWidth();
+    // menu events
+    var beforeOpen = function () {
+      if (settings.dimBackground) {
+        $dim.show();
+      }
+
+      settings.beforeOpen.call($menu, settings);
+    }
+    var afterOpen = function () {
+      settings.afterOpen.call($menu, settings);
+    }
+    var beforeClose = function () {
+      settings.beforeClose.call($menu, settings);
+    }
+    var afterClose = function () {
+      $menu.hide();
+      $body.removeClass(settings.mobileMenuOpenClass);
+
+      if (settings.dimBackground) {
+        $dim.hide();
+      }
+
+      settings.afterClose.call($menu, settings);
+    }
+    var menuOpen = function () {
       var animation = {};
+      //if (settings.adaptFullHeightOnResize) {
+      //  setMainMenuMinHeight($body.innerHeight());
+      //}
+      if (settings.shiftBodyAside) {
+        animation[settings.animationFromDirection] = '-' + width + 'px';
+        $menu.css(animation).show();
+        animation[settings.animationFromDirection] = width + 'px';
+        $body.addClass(settings.mobileMenuOpenClass).animate(animation, settings.animationDuration, afterOpen);
+      } else {
+        animation[settings.animationFromDirection] = '-' + width + 'px';
+        $menu.css(animation).show();
+        $body.addClass(settings.mobileMenuOpenClass);
+        animation[settings.animationFromDirection] = '0px';
+        $menu.animate(animation, settings.animationDuration, afterOpen);
+      }
+
+      // reset to prevent unexpected reuse of former values
+      animation = {};
+    };
+    var menuClose = function () {
+      var animation = {};
+      if (settings.shiftBodyAside) {
+        animation[settings.animationFromDirection] = '0px';
+        $body.animate(animation, settings.animationDuration, afterClose);
+      } else {
+        animation[settings.animationFromDirection] = '-' + width + 'px';
+        $menu.animate(animation, settings.animationDuration, afterClose);
+      }
+      $dim.hide();
+
+      // reset to prevent unexpected reuse of former values
+      animation = {};
+    };
+
+    var clickHandler = function (e) {
+      width = $('#main-menu').innerWidth();
 
       if ($menu.is(':visible')) {
-        console.log('vis');
-        settings.beforeClose.call($menu, settings);
-
-        if (settings.shiftBodyAside) {
-        //  animation[settings.animationFromDirection] = '0px';
-        //  $body.animate(animation, settings.animationDuration, function() {
-        //    $menu.hide();
-        //    $body.removeClass(settings.mobileMenuOpenClass);
-
-        //    settings.afterClose.call($menu, settings);
-        //  });
-        } else {
-          animation[settings.animationFromDirection] = '-' + width + 'px';
-          $menu.animate(animation, settings.animationDuration, function() {
-            $menu.hide();
-            $body.removeClass(settings.mobileMenuOpenClass);
-
-            settings.afterClose.call(self, settings);
-          });
-        }
-        // reset to prevent unexpected reuse of former values
-        animation = {};
+        beforeClose();
+        menuClose();
       } else {
-        console.log('no vis');
-        settings.beforeOpen.call($menu, settings);
-
-        //if (settings.adaptFullHeightOnResize) {
-        //  setMainMenuMinHeight($body.innerHeight());
-        //}
-        if (settings.shiftBodyAside) {
-        //  animation[settings.animationFromDirection] = '-' + width + 'px';
-        //  $menu.css(animation).show();
-        //  animation[settings.animationFromDirection] = width + 'px';
-        //  $body.addClass(settings.mobileMenuOpenClass).animate(animation, settings.animationDuration, function() {
-        //    settings.afterOpen.call($menu, settings);
-        //  });
-        } else {
-          console.log('no shift');
-          animation[settings.animationFromDirection] = '-' + width + 'px';
-          $menu.css(animation).show();
-          $body.addClass(settings.mobileMenuOpenClass);
-          animation[settings.animationFromDirection] = '0px';
-          $menu.animate(animation, settings.animationDuration, function() {
-            settings.afterOpen.call($menu, settings);
-          });
-        }
-        // reset to prevent unexpected reuse of former values
-        animation = {};
+        beforeOpen();
+        menuOpen();
       }
 
       $(this).blur();
@@ -171,8 +195,10 @@
     adaptFullHeightOnResize: false, // TODO
     animationDuration: 300,
     animationFromDirection: 'left',
-    shiftBodyAside: false, // TODO
-    dimBackground: false, // TODO
+    shiftBodyAside: false,
+    createDim: false, // TODO
+    dimBackground: true,
+    dimElement: '',
     collapseSubMenus: true, // TODO
     collapsibleSubMenus: true, // TODO
     init: function() {},
