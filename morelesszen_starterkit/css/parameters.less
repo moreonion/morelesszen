@@ -73,11 +73,11 @@
 @main_menu_link_hover_color: #949494;
 @main_menu_link_active_color: #949494;
 @main_menu_item_bg_color: #f1f1f1;
-@main_menu_item_hover_bg_color: #e4f5d0;
-@main_menu_item_active_bg_color: darken(@main_menu_item_hover_bg_color, 15%);
+@main_menu_item_hover_bg_color: @main_menu_item_bg_color;
+@main_menu_item_active_bg_color: darken(@main_menu_item_bg_color, 15%);
 @main_menu_item_border_color: transparent;
-@main_menu_item_hover_border_color: darken(@main_menu_item_hover_bg_color, 4%);
-@main_menu_item_active_border_color: darken(@main_menu_item_active_bg_color,5%);
+@main_menu_item_hover_border_color: darken(@main_menu_item_bg_color, 4%);
+@main_menu_item_active_border_color: darken(@main_menu_item_bg_color,5%);
 
 
 /* ==================================================================
