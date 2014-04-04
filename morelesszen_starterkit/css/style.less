@@ -23,12 +23,26 @@
 
 /* ---------- generic stuff ----------------------------------------- */
 
-
 body {
   font-family: @sans;
   font-weight: normal;
   overflow: auto; // ???
 }
+
+p, ul, ol, li {
+  margin-bottom: @oneline;
+}
+
+li {
+  list-style-position: inside;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- headings ---------------------------------------------- */
 
 h1 {
   .f(24);
@@ -80,10 +94,6 @@ h6 {
   .f(15);
   font-style: italic;
   color: @fmain;
-}
-
-p, ul, ol, li {
-  margin-bottom: @oneline;
 }
 
 /* ---------- links and link tags ----------------------------------- */
