@@ -113,7 +113,7 @@ a:active {
   outline: none;
 }
 
-/* ---------- close links on messages-------------------------------- */
+/* ---------- messages ---------------------------------------------- */
 
 a.close, a.close:hover {
   position: absolute;
@@ -131,7 +131,19 @@ a.close, a.close:hover {
 
 div.messages {
   position: relative;
-  padding-right: 50px;
+  margin: @oneline 0;
+  padding: @oneline/2 1.5em;
+  padding-right: 3em;
+  background-image: none;
+
+  li {
+    list-style-position: outside;
+    margin-bottom: @oneline/2;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 
 /* ---------- text selection ---------------------------------------- */
