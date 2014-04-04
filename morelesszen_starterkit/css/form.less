@@ -23,6 +23,7 @@ fieldset {
 
 input[type="submit"], #edit-submit, a.button, .button  {
   background: @primary_color repeat-x top;
+  font-size: 120%;
   font-weight: bold;
   display: block;
   padding: .5em 1.5em .45em;
@@ -186,77 +187,53 @@ legend {
  * search form styles
  * ================================================================== */
 
-/* you need to adapt the ids of the search form */
-
-#block-search-form, #search-form #edit-basic {
+#search-block-form, #search-form {
   position: relative;
-  padding: 0 .5em;
+  margin-right: 2.4em; // width of #edit-submit
 
-  .ui-icon, .ui-icon-searchfield:after {
-    background: none transparent;
+  .container-inline div, .container-inline label {
+    display: block;
   }
+}
 
+#search-form {
+  #edit-basic {
+    position: relative;
+  }
+  #edit-advanced {
+    margin-bottom: @oneline*2;
+  }
+}
+
+#search-block-form, #search-form #edit-basic {
+
+  /* textfield for entering the search term */
+  input[type="search"], input[type="text"] {
+    background: #fff;
+    font-size: 120%; // needs to correspond with submit-button font-size!
+    height: 2.4em; // needs to correspond with submit-button height!
+    .boxshadow_inset(1px,2px,1px,#dddddd);
+
+    &:focus {
+      .boxshadow(0,0,0,transparent);
+    }
+  }
+  
+  /* button to start the search */
   #edit-submit, input[type="submit"] {
-    background: url('../images/search.png') no-repeat center center transparent;
-    width: 2.35em;
-    height: 2.4em;
+    background: url('images/search.png') no-repeat center center #E6E6E6;
     padding: 0;
-    font-size: 110%;
+    width: 2.4em;
+    height: 2.4em; // needs to correspond with text-input height!
+    font-size: 120%; // needs to correspond with text-input font-size!
     text-indent: -500px;
     color: transparent;
     line-height: 0;
     display: block;
     position: absolute;
-    top: 0;
-    right: .4em;
-  }
-
-  .container-inline div, .container-inline label {
-    display: block;
-  }
-
-  .ui-input-search {
-    padding: 0;
-    background: none transparent;
-  }
-
-  // change #id to your form id
-  #edit-search-block-form--2, input[type="search"] {
-    background: #fff;
-    padding: .5em 2.6em .5em .5em;
-    font-size: 110%;
-    height: 2.4em;
-    .rounded(5px);
-    .boxshadow_inset(1px,2px,1px,#dddddd);
-  }
-
-  .ui-input-search {
-    .rounded(5px);
-    .boxshadow_inset(0,0,0,transparent);
-  }
-
-  .ui-focus {
-    .boxshadow(0,0,0,transparent);
-  }
-
-  #edit-search-block-form--2:focus, input[type="search"]:focus {
-    .boxshadow(0,0,0,transparent);
+    bottom: 0;
+    left: 100%;
+    border: none;
+    .rounded(0);
   }
 }
-
-#search-form #edit-basic {
-  #edit-submit, input[type="submit"] {
-    top: 1.7em;
-    height: 3.05em;
-    width: 3.55em;
-    right: .4em;
-    font-size: 100%;
-    margin-top: .2em;
-  }
-  
-  #edit-keys {
-    height: 3.05em;
-    font-size: 100%;
-  }
-}
-
