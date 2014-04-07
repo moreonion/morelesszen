@@ -32,8 +32,8 @@ regions[widget] = Widget
 
 ; main CSS files
 
+stylesheets[screen][] = css/maintenance-page.css
 stylesheets[screen][] = css/style.less
-stylesheets[screen][] = css/maintenance-page.less
 
 ; JS files -------------------------------------------------------------------
 
