@@ -37,7 +37,7 @@ Drupal.behaviors.mobilemenu.attach = function(context, settings) {
     $('#main-menu', context).mobilemenu({
       dimElement: '.campaignion-dialog-wrapper',
       shiftBodyAside: false,
-      adaptFullHeightOnResize: false,
+      adaptFullHeightOnResize: false
     });
   }
 };

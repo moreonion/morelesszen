@@ -1,7 +1,6 @@
 /*
  * TODOs
  * - use more classes in corresponding css for fullheight, shift,
- * - get before events right: Promises/Deferreds
  * - matchmedia addlistener polyfill
  * - shiftAside cross browser
  */
@@ -99,6 +98,7 @@
       // close any open mobile menu
       if ($body.hasClass(settings.mobileMenuOpenClass)) {
         // @TODO menuClose animation cannot deal with "jump" in layout
+        // so no animation --> remains sync
         // menuClose();
         afterClose();
         if (settings.shiftBodyAside) {
@@ -276,11 +276,12 @@
     mobileQuery.addListener(function(mql) {
       setMenu(mql);
     });
-    initMenu(mobileQuery);
 
     // resize handler
     $(window).on('resize.mobilemenu', resizeHandler);
 
+    // initialize
+    initMenu(mobileQuery);
     // init callback
     settings.init.call($menu, settings);
 
