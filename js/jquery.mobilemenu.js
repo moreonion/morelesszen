@@ -1,7 +1,6 @@
 /*
  * TODOs
  * - use more classes in corresponding css for fullheight, shift,
- * - matchmedia addlistener polyfill
  * - shiftAside cross browser
  */
 (function ( $ ) {

@@ -35,20 +35,21 @@ regions[widget] = Widget
 stylesheets[screen][] = css/maintenance-page.css
 stylesheets[screen][] = css/style.less
 
-; JS files -------------------------------------------------------------------
-
-scripts[] = "js/morelesszen_starterkit.js"
-
 ; JS files from base theme ---------------------------------------------------
 ; uncomment and override if needed
 ; override with empty file if you wanna "disable" the file
 
 ;scripts[] = "js/matchmedia_polyfill.js"
+;scripts[] = "js/matchmedia.addListener.js"
 ;scripts[] = "js/close_messages.js"
 ;scripts[] = "js/equalheight.js"
 ;scripts[] = "js/immediate_active_state.js"
-;scripts[] = "js/mobilemenu.js"
+;scripts[] = "js/jquery.mobilemenu.js"
 ;scripts[] = "js/country_dropdown.js"
+
+; JS files -------------------------------------------------------------------
+
+scripts[] = "js/morelesszen_starterkit.js"
 
 ; module overrides -----------------------------------------------------------
 ; uncomment the lines related to the .css-files you wish to override
