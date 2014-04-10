@@ -31,10 +31,13 @@ Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
 (function($) {
 Drupal.behaviors.mobilemenu = {};
 Drupal.behaviors.mobilemenu.attach = function(context, settings) {
-  $('#main-menu', context).mobilemenu({
-    dimElement: '.campaignion-dialog-wrapper',
-    shiftBodyAside: false,
-    adaptFullHeightOnResize: false
-  });
+  if ($.fn.mobilemenu) {
+    $('#main-menu', context).mobilemenu({
+      dimElement: '.campaignion-dialog-wrapper',
+      shiftBodyAside: false,
+      adaptFullHeightOnResize: false
+    });
+  }
 };
 })(jQuery);
+
