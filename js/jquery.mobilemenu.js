@@ -247,15 +247,25 @@
       }
     }
 
-    var clickHandler = function (e) {
-      width = $('#main-menu').innerWidth();
+    var menuHandler = function (e, action) {
+      // width = $('#main-menu').innerWidth();
 
-      if ($menu.is(':visible')) {
-        beforeClose();
-        menuClose();
+      if (action) {
+        if (action === 'open' && !$menu.is(':visible')) {
+          beforeOpen();
+          menuOpen();
+        } else if (action === 'close' && $menu.is(':visible')) {
+          beforeClose();
+          menuClose();
+        }
       } else {
-        beforeOpen();
-        menuOpen();
+        if ($menu.is(':visible')) {
+          beforeClose();
+          menuClose();
+        } else {
+          beforeOpen();
+          menuOpen();
+        }
       }
 
       $(this).blur();
@@ -263,12 +273,21 @@
       return false;
     }
 
+    // use Hammer.js if available
+    if (typeof window.Hammer !== 'undefined') {
+      Hammer(document).on('swiperight', function(e) {
+        menuHandler(e, 'open');
+      });
+      Hammer(document).on('swipeleft', function(e) {
+        menuHandler(e, 'close');
+      });
+    }
     // bind click handler 
     if ($icon.length > 0) {
-      $icon.on('click.mobilemenu', clickHandler);
+      $icon.on('click.mobilemenu', menuHandler);
     }
     if ($close.length > 0) {
-      $close.on('click.mobilemenu', clickHandler);
+      $close.on('click.mobilemenu', menuHandler);
     }
 
     // add breakpoint listener and do inital call
