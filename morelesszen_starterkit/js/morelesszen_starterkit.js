@@ -31,14 +31,10 @@ Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
 (function($) {
 Drupal.behaviors.mobilemenu = {};
 Drupal.behaviors.mobilemenu.attach = function(context, settings) {
-  if ($('html').hasClass('lt-ie9')) {
-    return;
-  } else {
-    $('#main-menu', context).mobilemenu({
-      dimElement: '.campaignion-dialog-wrapper',
-      shiftBodyAside: false,
-      adaptFullHeightOnResize: false
-    });
-  }
+  $('#main-menu', context).mobilemenu({
+    dimElement: '.campaignion-dialog-wrapper',
+    shiftBodyAside: false,
+    adaptFullHeightOnResize: false
+  });
 };
 })(jQuery);
