@@ -1,4 +1,5 @@
 /*! matchMedia() polyfill addListener/removeListener extension. Author & copyright (c) 2012: Scott Jehl. Dual MIT/BSD license */
+/* changed by Alex Berger, 2014, to use it also for IE8 */
 (function( w ){
 	"use strict";
 	// Bail out for browsers that have addListener support
@@ -40,16 +41,15 @@
 			index       = 0;
 
 		mql.addListener = function(listener) {
-			// Changes would not occur to css media type so return now (Affects IE <= 8)
-			if (!hasMediaQueries) {
-				return;
-			}
-
-			// Set up 'resize' listener for browsers that support CSS3 media queries (Not for IE <= 8)
+			// Set up 'resize' listener
 			// There should only ever be 1 resize listener running for performance
 			if (!isListening) {
 				isListening = true;
-				w.addEventListener('resize', handleChange, true);
+				if (!w.addEventListener) {
+					w.attachEvent('onresize', handleChange);
+				} else {
+					w.addEventListener('resize', handleChange, true);
+				}
 			}
 
 			// Push object only if it has not been pushed already
