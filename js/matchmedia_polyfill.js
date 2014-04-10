@@ -22,7 +22,7 @@
   // therefor we override any existing window.matchMedia as it could only be
   // a polyfill
   if (typeof w.respond !== "undefined" &&
-      typeof M !== "undefined" && !M.mq('only all')) {
+      typeof Modernizr !== "undefined" && !Modernizr.mq('only all')) {
     w.matchMedia = function ( q ) {
       var eachq,
         eql,
