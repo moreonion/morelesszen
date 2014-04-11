@@ -3,12 +3,14 @@
  * - use more classes in corresponding css for fullheight, shift,
  * - shiftAside cross browser
  */
-(function ( $ ) {
+(function ( $, M ) {
   'use strict';
   $.fn.mobilemenu = function( options ) {
 
     var settings = $.extend({}, $.fn.mobilemenu.defaults, options );
     var mobileQuery = window.matchMedia('(min-width: ' + (settings.breakpoint - 1) + 'px)');
+    var hasModernizr = typeof M !== 'undefined',
+        hasHammer = typeof Hammer !== 'undefined';
     var $menu = $(this),
         $body = $('body'),
         $iconContainer = $(settings.iconContainer),
@@ -21,6 +23,12 @@
         $close;
 
     $body.addClass(settings.mobileMenuEnabledClass);
+
+    // ignore shiftBodyAside on browser which do not support CSS3
+    // transformations
+    if (hasModernizr && !M.csstransforms) {
+      settings.shiftBodyAside = false;
+    }
 
     // generate buttons or use elements/containers from settings
     // default: before icon to menu, append close to menu
@@ -273,8 +281,9 @@
       return false;
     }
 
-    // use Hammer.js if available
-    if (typeof window.Hammer !== 'undefined') {
+    // use Hammer.js if available and we are running on a touch
+    // capable device
+    if (hasHammer && hasModernizr && M.touch) {
       Hammer(document).on('swiperight', function(e) {
         menuHandler(e, 'open');
       });
@@ -342,4 +351,4 @@
     onSwitchToMobile: function() {},
     onSwitchToDesktop: function() {}
   }
-}( jQuery ));
+}( jQuery, Modernizr ));
