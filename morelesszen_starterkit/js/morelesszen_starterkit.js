@@ -34,7 +34,7 @@ Drupal.behaviors.mobilemenu.attach = function(context, settings) {
   if ($.fn.mobilemenu) {
     $('#main-menu', context).mobilemenu({
       dimElement: '.campaignion-dialog-wrapper',
-      shiftBodyAside: false,
+      shiftBodyAside: true,
       adaptFullHeightOnResize: false
     });
   }

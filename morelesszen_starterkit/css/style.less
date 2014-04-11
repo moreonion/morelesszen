@@ -194,83 +194,85 @@ div.messages {
 
 /* ---------- mobile menu (generic) --------------------------------- */
 
-// header without mobilemenu.js
-#header {
+// menu without mobilemenu.js
+#main-menu { /* main menu mobile */
+  position: relative;
 
-  #main-menu { /* main menu mobile */
-    position: relative;
+  li {
+    padding: @oneline/4 0 0;
+  }
 
-    li {
-      padding: @oneline/4 0 0;
+  a, a:visited {
+    font-weight: normal;
+    font-family: @sansbb;
+    color: desaturate(darken(@main_menu_item_hover_bg_color, 50%),20%);
+    text-decoration: none;
+    display:block;
+    padding: .5em 5%; 
+    background-color: @main_menu_item_hover_bg_color;
+    border-color: darken(@main_menu_item_hover_bg_color,15%);
+
+  }
+
+  a:hover, a:focus, a:active {
+    background-color: @main_menu_item_hover_bg_color;
+    border-color: darken(@main_menu_item_hover_bg_color,15%);
+  }
+
+  a.active {
+    background: @main_menu_link_active_color;
+    color: @mywhite;
+  }
+
+  a:active {
+    background: @main_menu_item_active_bg_color;
+  }
+
+  .active-trail .menu {
+    text-transform: none;
+  }
+
+  .menu .menu { /* second level of the menu */
+    display: none;
+
+    a {
+      background: @background_color_light;
+      border: 1px solid transparent;
+      border-bottom: 1px solid darken(@background_color_light, 15%);
+      text-transform: none;
+      font-family: @sans;
+      color: @fmain;
     }
 
-    a, a:visited {
-      font-weight: normal;
-      font-family: @sansbb;
-      color: desaturate(darken(@main_menu_item_hover_bg_color, 50%),20%);
-      text-decoration: none;
-      display:block;
-      padding: .5em 5%; 
-      background-color: @main_menu_item_hover_bg_color;
-      border-color: darken(@main_menu_item_hover_bg_color,15%);
-
-    }
-
-    a:hover, a:focus, a:active {
-      background-color: @main_menu_item_hover_bg_color;
-      border-color: darken(@main_menu_item_hover_bg_color,15%);
+    a:hover, a:focus {
+      background-color: @main_menu_item_active_bg_color;
     }
 
     a.active {
-      background: @main_menu_link_active_color;
-      color: @mywhite;
+      background-color: @main_menu_item_bg_color;
+      border: 1px solid @main_menu_item_border_color;
+      color: @fmain;
     }
 
-    a:active {
-      background: @main_menu_item_active_bg_color;
-    }
+  } /* end of second level */
 
-    .active-trail .menu {
-      text-transform: none;
-    }
+} /* end of main menu */
 
-    .menu .menu { /* second level of the menu */
-      display: none;
-
-      a {
-        background: @background_color_light;
-        border: 1px solid transparent;
-        border-bottom: 1px solid darken(@background_color_light, 15%);
-        text-transform: none;
-        font-family: @sans;
-        color: @fmain;
-      }
-
-      a:hover, a:focus {
-        background-color: @main_menu_item_active_bg_color;
-      }
-
-      a.active {
-        background-color: @main_menu_item_bg_color;
-        border: 1px solid @main_menu_item_border_color;
-        color: @fmain;
-      }
-
-    } /* end of second level */
-
-  } /* end of main menu */
-}
 
 /* ---------- mobile menu (with js) --------------------------------- */
 // header with mobilemenu.js enabled
 // extends styles from above
-.with-mobile-menu #header {
+.with-mobile-menu {
 
-  .middle {
+  #header .middle {
     overflow: visible;
   }
 
   #mobile-menu-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
     width: 40px;
     height: 40px;
     background: url('images/mobile-menu-icon.png') no-repeat 2px center transparent;
@@ -280,42 +282,40 @@ div.messages {
     font-weight:normal;
     font-style:normal;
     z-index: 401;
-    display: block;
-    float: right;
-    clear: right;
 
     &.active {
     }
   }
 
   #main-menu {
-    padding: 1em 3% 1em 3%;
-    width: 94%;
-    max-width: 300px;
+    padding: 1em @mobile_menu_padding 1em @mobile_menu_padding;
+    // width: 94%;
+    max-width: @mobile_menu_width;
     z-index: 401;
     .menu {
       width: 100%;
     }
-  }
 
-  a#mobile-menu-close {
-    display: none;
+    a#mobile-menu-close {
+      display: block;
+    }
+
   }
 }
-.mobile-menu-open #header {
+
+.gone-mobile {
   #main-menu {
-    padding: 40px 3% 1em 3%;
     position: absolute;
+    padding: 40px @mobile_menu_padding 1em @mobile_menu_padding;
     top: 0;
+    display: block;
     background: #ddd;
-    margin: 0 -8.6%; // account for .middle wrapper
-                     // inner: 80% + 6% padding related to outer: 10% padding of container
-                     // 10/(1/0.86) = 8.6
+
     a#mobile-menu-close {
       display: block;
       z-index: 402;
       top: 10px;
-      right: 3%;
+      right: 15px;
       position: absolute;
       display: block;
       text-indent: -100000px;
@@ -325,7 +325,31 @@ div.messages {
       background: url('images/message_x.png') no-repeat center center transparent;
       padding: 0;
     }
+  }
 
+}
+
+.mobile-menu-open {
+  #main-menu {
+    // margin: 0 -8.6%; // account for .middle wrapper
+                     // inner: 80% + 6% padding related to outer: 10% padding of container
+                     // 10/(1/0.86) = 8.6
+  }
+}
+
+
+.csstransforms body.with-mobile-menu {
+  -webkit-transform: translateX(0px);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  #main-menu {
+    -webkit-transform: translateX(-300px);
+  }
+}
+.csstransforms body.mobile-menu-shift-aside-left {
+  -webkit-transform: translateX(300px);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  #main-menu {
+    -webkit-transform: translateX(-300px);
   }
 }
 
@@ -404,71 +428,78 @@ div.messages {
 
 @media @desktop {
 
-  #mobile-menu-icon {
-    display: none;
-  }
-
-  #mobile-menu-close {
-    display: none;
-  }
-
   #header {
 
     #logo {
       float: left;
     }
 
-    #main-menu { /* #main menu desktop */
-      margin-left: 0;
-      padding-top: .7em;
-      float: left;
-      border: 0px solid transparent;
-      max-width: 100%;
-      background: none transparent;
-      margin-bottom: 0;
-      padding: 0;
-      display: block;
-      position: static;
-      margin-top: .6em;
-
-      li {
-        display: inline;
-        float: left;
-        margin-right: .2em;
-        padding: 0;
-
-        a, a:visited {
-          text-transform: none;
-          font-family: @sans;
-          padding: .7em .8em;
-          font-weight: normal;
-          border: 1px solid transparent;
-          text-decoration: none;
-          color: @main_menu_link_color;
-          font-size: 100%;
-          display: block;
-          background-color: transparent;
-        }
-
-        a:hover, a:focus {
-          background-color: @main_menu_item_hover_bg_color;
-          border-color: darken(@main_menu_item_hover_bg_color,15%);
-        }
-
-        a.active, a.active-trail, a:active {
-          background-color: @main_menu_item_bg_color;
-          border: 1px solid @main_menu_item_border_color;
-        }
-
-      } /* end list */
-
-    } /* end #main-menu */
-
-
     #header_search {
       float: right;
     }
   }
+
+  .with-mobile-menu {
+    #mobile-menu-icon {
+      display: none;
+    }
+
+    #main-menu a#mobile-menu-close {
+      display: none;
+    }
+  }
+
+  .csstransforms body.with-mobile-menu #main-menu {
+    -webkit-transform: translateX(0px);
+    -webkit-transition: -webkit-transform 0s;
+  }
+
+  #header #main-menu { /* #main menu desktop */
+    margin-left: 0;
+    padding-top: .7em;
+    float: left;
+    border: 0px solid transparent;
+    max-width: 100%;
+    background: none transparent;
+    margin-bottom: 0;
+    padding: 0;
+    display: block;
+    position: static;
+    margin-top: .6em;
+
+    li {
+      display: inline;
+      float: left;
+      margin-right: .2em;
+      padding: 0;
+
+      a, a:visited {
+        text-transform: none;
+        font-family: @sans;
+        padding: .7em .8em;
+        font-weight: normal;
+        border: 1px solid transparent;
+        text-decoration: none;
+        color: @main_menu_link_color;
+        font-size: 100%;
+        display: block;
+        background-color: transparent;
+      }
+
+      a:hover, a:focus {
+        background-color: @main_menu_item_hover_bg_color;
+        border-color: darken(@main_menu_item_hover_bg_color,15%);
+      }
+
+      a.active, a.active-trail, a:active {
+        background-color: @main_menu_item_bg_color;
+        border: 1px solid @main_menu_item_border_color;
+      }
+
+    } /* end list */
+
+  } /* end #main-menu */
+
 }
 
 
