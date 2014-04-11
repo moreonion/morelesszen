@@ -119,6 +119,9 @@ function morelesszen_preprocess_html(&$vars) {
     formstone_enhance_forms();
   }
 
+  if (theme_get_setting('morelesszen_hammerjs')) {
+    drupal_add_js(path_to_theme() . '/js/hammer.js', array('scope' => 'gtie8'));
+  }
 }
 
 function _morelesszen_menu_links($menu) {

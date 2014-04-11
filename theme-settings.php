@@ -72,16 +72,21 @@ function morelesszen_form_system_theme_settings_alter(&$form, &$form_state) {
   );
 
   /**
-   * Fancy form settings
+   * Fancy stuff
    */
-  $form['morelesszen_webform'] = array(
+  $form['morelesszen_fancy'] = array(
     '#type' => 'fieldset',
-    '#title' => t('Webform'),
+    '#title' => t('Theme fancies'),
   );
-  $form['morelesszen_webform']['morelesszen_formstone'] = array(
+  $form['morelesszen_fancy']['morelesszen_formstone'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable fancy forms (Formstone)'),
     '#default_value' => theme_get_setting('morelesszen_formstone'),
+  );
+  $form['morelesszen_fancy']['morelesszen_hammerjs'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable mobile gestures (Hammer.js)'),
+    '#default_value' => theme_get_setting('morelesszen_hammerjs'),
   );
 
   /**

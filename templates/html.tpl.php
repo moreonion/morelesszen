@@ -58,6 +58,10 @@ $html_attributes = "lang=\"{$language->language}\" dir=\"{$language->dir}\" {$rd
 
   <?php print $scripts; ?>
 
+  <!--[if (gt IE 8)|!(IE)]><!-->
+  <?php print drupal_get_js('gtie8'); ?>
+  <!--<![endif]-->
+
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
 
