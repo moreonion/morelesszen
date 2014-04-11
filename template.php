@@ -490,8 +490,8 @@ function morelesszen_menu_local_tasks(&$vars) {
  * using theme('menu_link') for the menu rendering to html.
  */
 function morelesszen_preprocess_menu_link(&$variables) {
-	if (!function_exists('context_active_contexts'))
-		return;
+  if (!function_exists('context_active_contexts'))
+    return;
   if( ($contexts = context_active_contexts()) ){
     foreach($contexts as $context){
       if((isset($context->reactions['menu']))){
