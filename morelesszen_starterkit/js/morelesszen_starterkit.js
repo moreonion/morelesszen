@@ -35,6 +35,7 @@ Drupal.behaviors.mobilemenu.attach = function(context, settings) {
     $('#main-menu', context).mobilemenu({
       dimElement: '.campaignion-dialog-wrapper',
       shiftBodyAside: true,
+      animationFromDirection: 'left',
       adaptFullHeightOnResize: false
     });
   }

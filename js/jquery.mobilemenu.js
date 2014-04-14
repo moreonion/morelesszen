@@ -18,7 +18,6 @@
         $iconContainer = $(settings.iconContainer),
         $closeContainer = $(settings.closeContainer),
         $dim = $(settings.dimElement),
-        width = $menu.innerWidth(),
         onFallback = false,
         throttled,
         $icon,
@@ -29,6 +28,8 @@
     if (!settings.collapsibleMenu) {
       $menu.after($menuPlaceholder);
       $body.addClass(settings.mobileMenuSlidingClass);
+      // when no collapsibleMenu, we are sliding
+      $body.addClass(settings.mobileMenuDirectionClassPrefix + settings.animationFromDirection)
     }
 
     $body.addClass(settings.mobileMenuEnabledClass);
@@ -39,11 +40,7 @@
       settings.shiftBodyAside = false;
       settings.needTransformsFallback = true;
       onFallback = true;
-    }
-
-    // when no collapsibleMenu, we are sliding
-    if (!settings.collapsibleMenu) {
-      $body.addClass(settings.mobileMenuDirectionClassPrefix + settings.animationFromDirection)
+      $body.addClass(settings.mobileMenuFallbackClass);
     }
 
     // generate buttons or use elements/containers from settings
@@ -205,7 +202,10 @@
       $body.addClass(settings.mobileMenuOpenClass);
 
       if (!onFallback) {
-        $body.addClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
+        if (settings.shiftBodyAside) {
+          $body.addClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
+        }
+        afterOpen();
       } else {
         var animation = {};
         animation[settings.animationFromDirection] = '0px';
@@ -214,8 +214,6 @@
         animation = {};
       }
 
-      afterOpen();
-
       if (settings.adaptFullHeightOnResize) {
         setMenuMinHeight($body.innerHeight());
       }
@@ -223,10 +221,12 @@
 
     var menuClose = function () {
       if (!onFallback) {
-        $body.removeClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
+        if (settings.shiftBodyAside) {
+          $body.removeClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
+        }
       } else {
         var animation = {};
-        animation[settings.animationFromDirection] = '-' + width + 'px';
+        animation[settings.animationFromDirection] = '-' + settings.width + 'px';
         $menu.animate(animation, settings.animationDuration, afterClose);
 
         // reset to prevent unexpected reuse of former values
@@ -252,10 +252,7 @@
 
       // throttled from here on
 
-      // update width for mobile
       if (!mobileQuery.matches && $body.hasClass(settings.mobileMenuOpenClass)) {
-        width = $('#main-menu').innerWidth();
-
         var position = [];
 
         // % on padding will change the main-menu size --> recalc
@@ -264,19 +261,15 @@
         }
 
         // if (settings.shiftBodyAside) {
-        //   position[settings.animationFromDirection] = width + 'px';
+        //   position[settings.animationFromDirection] = settings.width + 'px';
         //   $body.css(position);
-        //   position[settings.animationFromDirection] = '-' + width + 'px';
+        //   position[settings.animationFromDirection] = '-' + settings.width + 'px';
         //   $menu.css(position);
         // }
       }
     }
 
     var menuHandler = function (e, action) {
-      if (onFallback) {
-        width = $('#main-menu').innerWidth();
-      }
-
       if (action) {
         if (action === 'open' && !$body.hasClass(settings.mobileMenuOpenClass)) {
           beforeOpen();
@@ -327,7 +320,7 @@
     $(window).on('resize.mobilemenu', resizeHandler);
 
     // initialize
-    initMenu(mobileQuery);
+    setTimeout(function() { initMenu(mobileQuery); }, 1);
     // init callback
     settings.init.call($menu, settings);
 
@@ -339,6 +332,7 @@
   $.fn.mobilemenu.defaults = {
     // These are the defaults.
     breakpoint: 780,
+    width: 300,
     createIcon: true,
     iconText: 'Menu',
     iconContainer: '',
@@ -355,6 +349,7 @@
     mobileMenuShiftAsideClassPrefix: 'mobile-menu-shift-aside-',
     mobileMenuDirectionClassPrefix: 'mobile-menu-from-',
     mobileMenuSlidingClass: 'mobile-menu-sliding',
+    mobileMenuFallbackClass: 'mobile-menu-fallback',
     adaptFullHeightOnResize: false, // TODO
     animationDuration: 300,
     animationFromDirection: 'left',

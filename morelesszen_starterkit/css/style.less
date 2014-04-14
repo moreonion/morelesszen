@@ -303,6 +303,13 @@ div.messages {
   }
 }
 
+.mobile-menu-fallback {
+  #main-menu {
+    display: none;
+    left: -300px;
+  }
+}
+
 .gone-mobile {
   #main-menu {
     position: absolute;
@@ -338,6 +345,8 @@ div.messages {
 }
 
 .csstransforms {
+  overflow-x: hidden;
+
   body.with-mobile-menu {
     -webkit-transform: translateX(0px);
     -moz-transform: translateX(0px);
@@ -464,8 +473,8 @@ div.messages {
  */
 
 @media screen and (min-width: (@mobile_menu_width + 2*@mobile_menu_padding)) {
-  #main-menu {
-    padding: 1em @mobile_menu_padding;
+  .with-mobile-menu #main-menu {
+    padding: 40px @mobile_menu_padding 1em @mobile_menu_padding;
   }
 }
 
