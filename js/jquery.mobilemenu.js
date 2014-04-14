@@ -19,8 +19,8 @@
         $closeContainer = $(settings.closeContainer),
         $dim = $(settings.dimElement),
         width = $menu.innerWidth(),
+        onFallback = false,
         throttled,
-        sliding,
         $icon,
         $close;
     // placeholder used to determine original position of moveable $menu
@@ -35,9 +35,10 @@
 
     // ignore shiftBodyAside on browser which do not support CSS3
     // transformations
-    if (hasModernizr && !M.csstransforms) {
+    if (!hasModernizr || !M.csstransforms) {
       settings.shiftBodyAside = false;
       settings.needTransformsFallback = true;
+      onFallback = true;
     }
 
     // when no collapsibleMenu, we are sliding
@@ -113,6 +114,7 @@
       // callback
       settings.onSwitchToMobile.call($menu, settings, mql);
     }
+
     // gets called when switched to desktop
     var switchToDesktop = function(mql) {
       // $icon.hide();
@@ -125,24 +127,20 @@
       if ($body.hasClass(settings.mobileMenuOpenClass)) {
         // @TODO menuClose animation cannot deal with "jump" in layout
         // so no animation --> remains sync
-        menuClose();
-        //afterClose();
-        if (settings.shiftBodyAside) {
-          // $body.addClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
-          // $body.css(settings.animationFromDirection, '');
+        if (!onFallback) {
+          menuClose();
+        } else {
+          $body.css(settings.animationFromDirection, '');
+          afterClose();
         }
         if (settings.adaptFullHeightOnResize) {
           setMenuMinHeight(0);
-        } 
+        }
       }
 
       if (settings.collapsibleSubMenus) {
         $('ul ul', $menu).hide();
       }
-
-      // $menu.css({display: '', overflow: '', minHeight: '', maxHeight: ''});
-      // $menu.css(settings.animationFromDirection, '');
-      // $body.css(settings.animationFromDirection, '');
 
       // callback
       settings.onSwitchToDesktop.call($menu, settings, mql);
@@ -198,53 +196,43 @@
         $dim.hide();
       }
 
-      sliding = false;
-
       settings.afterClose.call($menu, settings);
     }
     var menuOpen = function () {
-      // var animation = {};
+      $body.addClass(settings.mobileMenuOpenClass);
+
+      if (!onFallback) {
+        $body.addClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
+      } else {
+        var animation = {};
+        animation[settings.animationFromDirection] = '0px';
+        $menu.animate(animation, settings.animationDuration, afterOpen);
+        // reset to prevent unexpected reuse of former values
+        animation = {};
+      }
+
+      afterOpen();
+
       if (settings.adaptFullHeightOnResize) {
         setMenuMinHeight($body.innerHeight());
       }
-
-      // animation[settings.animationFromDirection] = '-' + width + 'px';
-      // $menu.css(animation).show();
-      $body.addClass(settings.mobileMenuOpenClass);
-
-      if (settings.shiftBodyAside) {
-        $body.addClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
-        afterOpen();
-        // animation[settings.animationFromDirection] = width + 'px';
-        // $body.animate(animation, settings.animationDuration, afterOpen);
-      } else {
-        // animation[settings.animationFromDirection] = '0px';
-        // $menu.animate(animation, settings.animationDuration, afterOpen);
-        afterOpen();
-      }
-
-      // reset to prevent unexpected reuse of former values
-      // animation = {};
     };
+
     var menuClose = function () {
-      // var animation = {};
-      if (settings.shiftBodyAside) {
+      if (!onFallback) {
         $body.removeClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
-        afterClose();
-        // sliding = true;
-        // animation[settings.animationFromDirection] = '0px';
-        // $body.animate(animation, settings.animationDuration, afterClose);
       } else {
-        // sliding = true;
-        // animation[settings.animationFromDirection] = '-' + width + 'px';
-        // $menu.animate(animation, settings.animationDuration, afterClose);
-        afterClose();
+        var animation = {};
+        animation[settings.animationFromDirection] = '-' + width + 'px';
+        $menu.animate(animation, settings.animationDuration, afterClose);
+
+        // reset to prevent unexpected reuse of former values
+        animation = {};
       }
+
+      afterClose();
 
       $dim.hide();
-
-      // reset to prevent unexpected reuse of former values
-      // animation = {};
     };
 
     // throttled resize handler
@@ -262,7 +250,7 @@
       // throttled from here on
 
       // update width for mobile
-      if (!mobileQuery.matches && $body.hasClass(settings.mobileMenuOpenClass) && !sliding) {
+      if (!mobileQuery.matches && $body.hasClass(settings.mobileMenuOpenClass)) {
         width = $('#main-menu').innerWidth();
 
         var position = [];
@@ -282,7 +270,9 @@
     }
 
     var menuHandler = function (e, action) {
-      // width = $('#main-menu').innerWidth();
+      if (onFallback) {
+        width = $('#main-menu').innerWidth();
+      }
 
       if (action) {
         if (action === 'open' && !$body.hasClass(settings.mobileMenuOpenClass)) {
