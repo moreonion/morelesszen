@@ -38,6 +38,17 @@ regions[widget] = Widget
 
 ;regions_hidden[] = widget
 
+; Libraries
+
+stylesheets[] = "js/hammer.js"
+stylesheets[] = "js/jquery.fs.selecter.js"
+stylesheets[] = "js/jquery.fs.picker.js"
+stylesheets[] = "js/jquery.fs.filer.js"
+
+scripts[screen][] = "css/jquery.fs.selecter.css"
+scripts[screen][] = "css/jquery.fs.picker.css"
+scripts[screen][] = "css/jquery.fs.filer.css"
+
 ; main CSS files
 
 stylesheets[screen][] = css/style.less

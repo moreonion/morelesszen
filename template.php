@@ -115,13 +115,6 @@ function morelesszen_preprocess_html(&$vars) {
     }
   }
 
-  if (theme_get_setting('morelesszen_formstone')) {
-    _morelesszen_formstone_enhance_forms();
-  }
-
-  if (theme_get_setting('morelesszen_hammerjs')) {
-    drupal_add_js(path_to_theme() . '/js/hammer.js', array('scope' => 'gtie8'));
-  }
 }
 
 function _morelesszen_menu_links($menu) {
@@ -573,16 +566,3 @@ function morelesszen_field__field_heading($variables) {
   return $output;
 }
 
-/**
- * helper function to add Formstone to theme
- */
-function _morelesszen_formstone_enhance_forms() {
-  foreach (array('picker', 'selecter', 'filer') as $component) {
-    drupal_add_js(path_to_theme() . '/js/jquery.fs.' . $component . '.js', array(
-      'group' => JS_DEFAULT
-    ));
-    drupal_add_css(path_to_theme() . '/css/jquery.fs.' . $component . '.css', array(
-      'group' => CSS_DEFAULT
-    ));
-  }
-}
