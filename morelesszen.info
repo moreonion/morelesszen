@@ -6,10 +6,6 @@ description = Basetheme for Campagnion themes
 screenshot = screenshot.png
 core = 7.x
 
-; theme default settings
-settings[morelesszen_formstone] = 1
-settings[morelesszen_breadcrumb_hideonlyfron] = 1
-
 ; Regions --------------------------------------------------------------------
 ; these content regions are available for block placement
 ; some are special hidden regions: page_top, page_bottom, and help
@@ -40,14 +36,15 @@ regions[widget] = Widget
 
 ; Libraries
 
-stylesheets[] = "js/hammer.js"
-stylesheets[] = "js/jquery.fs.selecter.js"
-stylesheets[] = "js/jquery.fs.picker.js"
-stylesheets[] = "js/jquery.fs.filer.js"
+scripts[] = "js/hammer.js"
+scripts[] = "js/jquery.fs.selecter.js"
+scripts[] = "js/jquery.fs.picker.js"
+scripts[] = "js/jquery.fs.filer.js"
+scripts[] = "js/formstone.js"
 
-scripts[screen][] = "css/jquery.fs.selecter.css"
-scripts[screen][] = "css/jquery.fs.picker.css"
-scripts[screen][] = "css/jquery.fs.filer.css"
+stylesheets[screen][] = "css/jquery.fs.selecter.css"
+stylesheets[screen][] = "css/jquery.fs.picker.css"
+stylesheets[screen][] = "css/jquery.fs.filer.css"
 
 ; main CSS files
 
