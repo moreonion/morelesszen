@@ -105,7 +105,10 @@
       // $icon.show();
       // $close.show();
       $body.addClass(settings.mobileMenuClass);
-      $menu.prependTo($body);
+
+      if (!settings.collapsibleMenu) {
+        $menu.prependTo($body);
+      }
 
       if (settings.collapsibleSubMenus) {
         $('ul ul', $menu).css('display', '');
