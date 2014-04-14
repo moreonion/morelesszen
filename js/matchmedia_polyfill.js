@@ -22,8 +22,8 @@
   // therefor we override any existing window.matchMedia as it could only be
   // a polyfill
   if (typeof w.respond !== "undefined" &&
-      typeof Modernizr !== "undefined" && !Modernizr.mq('only all')) {
-    w.matchMedia = function ( q ) {
+      typeof Modernizr !== "undefined" && (!Modernizr.mq('only all') || typeof window.matchMedia === "undefined")) {
+    window.matchMedia = function ( q ) {
       var eachq,
         eql,
         thisq,
@@ -38,8 +38,8 @@
       for( var j = 0; j < eql; j++ ){
         thisq = eachq[ j ];
 
-        if( respond.unsupportedmq ( thisq ) ) {
-          continue;
+        if(respond.mediaQueriesSupported) {
+          return;
         }
 
         mediastyles.push( {
