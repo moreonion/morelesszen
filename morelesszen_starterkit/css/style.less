@@ -337,31 +337,44 @@ div.messages {
   }
 }
 
+.csstransforms {
+  body.with-mobile-menu {
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+  body.with-mobile-menu,
+  body.with-mobile-menu #main-menu {
+    -webkit-transition: -webkit-transform 0.3s ease;
+    -moz-transition: -moz-transform 0.3s ease;
+    transition: transform 0.3s ease;
+  }
+  body.mobile-menu-from-left {
+    #main-menu {
+      left: 0;
+      -webkit-transform: translateX(-300px);
+      -moz-transform: translateX(-300px);
+      transform: translateX(-300px);
+    }
+  }
+  body.mobile-menu-from-right {
+    #main-menu {
+      right: 0;
+      -webkit-transform: translateX(300px);
+      -moz-transform: translateX(300px);
+      transform: translateX(300px);
+    }
+  }
 
-.csstransforms body.with-mobile-menu {
-  -webkit-transform: translateX(0px);
-  -moz-transform: translateX(0px);
-  transform: translateX(0px);
-  -webkit-transition: -webkit-transform 0.3s ease;
-  -moz-transition: -moz-transform 0.3s ease;
-  transition: transform 0.3s ease;
-}
-.csstransforms body.with-mobile-menu.mobile-menu-from-left {
-  #main-menu {
-    left: 0;
-    -webkit-transform: translateX(-300px);
-    -moz-transform: translateX(-300px);
-    transform: translateX(-300px);
+  body.mobile-menu-open {
+    #main-menu {
+      -webkit-transform: translateX(0px);
+      -moz-transform: translateX(0px);
+      transform: translateX(0px);
+    }
   }
 }
-.csstransforms body.with-mobile-menu.mobile-menu-from-right {
-  #main-menu {
-    right: 0;
-    -webkit-transform: translateX(300px);
-    -moz-transform: translateX(300px);
-    transform: translateX(300px);
-  }
-}
+
 .csstransforms body.mobile-menu-shift-aside-left {
   -webkit-transform: translateX(300px);
   -moz-transform: translateX(300px);
@@ -487,7 +500,11 @@ div.messages {
 
   .csstransforms body.with-mobile-menu #main-menu {
     -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    transform: translateX(0px);
     -webkit-transition: -webkit-transform 0s;
+    -moz-transition: -moz-transform 0s;
+    transition: transform 0s;
   }
 
   #header #main-menu { /* #main menu desktop */
