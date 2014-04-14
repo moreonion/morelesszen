@@ -25,7 +25,11 @@
         $close;
     // placeholder used to determine original position of moveable $menu
     var $menuPlaceholder = $('<span id="mobile-menu-placeholder"></span>');
-    $menu.after($menuPlaceholder);
+    // move $menu, when we slide it (i.e. not when collapsible)
+    if (!settings.collapsibleMenu) {
+      $menu.after($menuPlaceholder);
+      $body.addClass(settings.mobileMenuSlidingClass);
+    }
 
     $body.addClass(settings.mobileMenuEnabledClass);
 
@@ -33,6 +37,12 @@
     // transformations
     if (hasModernizr && !M.csstransforms) {
       settings.shiftBodyAside = false;
+      settings.needTransformsFallback = true;
+    }
+
+    // when no collapsibleMenu, we are sliding
+    if (!settings.collapsibleMenu) {
+      $body.addClass(settings.mobileMenuDirectionClassPrefix + settings.animationFromDirection)
     }
 
     // generate buttons or use elements/containers from settings
@@ -107,7 +117,9 @@
     var switchToDesktop = function(mql) {
       // $icon.hide();
       // $close.hide();
-      $menuPlaceholder.before($menu);
+      if (!settings.collapsibeMenu) {
+        $menuPlaceholder.before($menu);
+      }
       $body.removeClass(settings.mobileMenuClass);
       // close any open mobile menu
       if ($body.hasClass(settings.mobileMenuOpenClass)) {
@@ -116,7 +128,7 @@
         menuClose();
         //afterClose();
         if (settings.shiftBodyAside) {
-          // $body.addClass('mobile-menu-shift-aside-' + settings.animationFromDirection);
+          // $body.addClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
           // $body.css(settings.animationFromDirection, '');
         }
         if (settings.adaptFullHeightOnResize) {
@@ -201,7 +213,7 @@
       $body.addClass(settings.mobileMenuOpenClass);
 
       if (settings.shiftBodyAside) {
-        $body.addClass('mobile-menu-shift-aside-' + settings.animationFromDirection);
+        $body.addClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
         afterOpen();
         // animation[settings.animationFromDirection] = width + 'px';
         // $body.animate(animation, settings.animationDuration, afterOpen);
@@ -217,7 +229,7 @@
     var menuClose = function () {
       // var animation = {};
       if (settings.shiftBodyAside) {
-        $body.removeClass('mobile-menu-shift-aside-' + settings.animationFromDirection);
+        $body.removeClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
         afterClose();
         // sliding = true;
         // animation[settings.animationFromDirection] = '0px';
@@ -347,16 +359,21 @@
     mobileMenuClass: 'gone-mobile',
     mobileMenuEnabledClass: 'with-mobile-menu',
     mobileMenuOpenClass: 'mobile-menu-open',
+    mobileMenuShiftAsideClassPrefix: 'mobile-menu-shift-aside-',
+    mobileMenuDirectionClassPrefix: 'mobile-menu-from-',
+    mobileMenuSlidingClass: 'mobile-menu-sliding',
     adaptFullHeightOnResize: false, // TODO
     animationDuration: 300,
     animationFromDirection: 'left',
     shiftBodyAside: false,
+    collapsibleMenu: false, // TODO
     createDim: false, // TODO
     dimBackground: true,
     dimElement: '',
     interval: 100,
     collapseSubMenus: true,
     collapsibleSubMenus: true, // TODO
+    needTransformsFallback: false,
     init: function() {},
     beforeOpen: function() {},
     beforeClose: function() {},
