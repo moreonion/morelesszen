@@ -288,10 +288,10 @@ div.messages {
   }
 
   #main-menu {
-    padding: 1em @mobile_menu_padding 1em @mobile_menu_padding;
-    // width: 94%;
+    padding: 1em 3%;
+    width: 94%;
     max-width: @mobile_menu_width;
-    z-index: 401;
+    z-index: 402;
     .menu {
       width: 100%;
     }
@@ -306,7 +306,7 @@ div.messages {
 .gone-mobile {
   #main-menu {
     position: absolute;
-    padding: 40px @mobile_menu_padding 1em @mobile_menu_padding;
+    padding-top: 40px;
     top: 0;
     display: block;
     background: #ddd;
@@ -463,6 +463,12 @@ div.messages {
  * If you can style generic (i.e. also for mobile) -- DO IT!
  */
 
+@media screen and (min-width: (@mobile_menu_width + 2*@mobile_menu_padding)) {
+  #main-menu {
+    padding: 1em @mobile_menu_padding;
+  }
+}
+
 @media @tablet {
 
 }
@@ -519,6 +525,7 @@ div.messages {
     display: block;
     position: static;
     margin-top: .6em;
+    width: auto;
 
     li {
       display: inline;
