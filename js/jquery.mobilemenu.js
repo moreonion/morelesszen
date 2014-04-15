@@ -25,6 +25,12 @@
     // placeholder used to determine original position of moveable $menu
     var $menuPlaceholder = $('<span id="mobile-menu-placeholder"></span>');
     // move $menu, when we slide it (i.e. not when collapsible)
+
+    var sessionStorage = window.sessionStorage || {
+      setItem: function (a,b) {},
+      getItem: function (a) {}
+    };
+
     if (!settings.collapsibleMenu) {
       $menu.after($menuPlaceholder);
       $body.addClass(settings.mobileMenuSlidingClass);
@@ -41,6 +47,12 @@
       settings.needTransformsFallback = true;
       onFallback = true;
       $body.addClass(settings.mobileMenuFallbackClass);
+    }
+
+    if (settings.fixedMenu) {
+      settings.dimBackground = false;
+      settings.shiftBodyAside = false;
+      $body.addClass(settings.mobileMenuFixedClass);
     }
 
     // generate buttons or use elements/containers from settings
@@ -124,7 +136,7 @@
       }
       $body.removeClass(settings.mobileMenuClass);
       // close any open mobile menu
-      if ($body.hasClass(settings.mobileMenuOpenClass)) {
+      if ($body.hasClass(settings.mobileMenuOpenClass) && !settings.fixedMenu) {
         // @TODO menuClose animation cannot deal with "jump" in layout
         // so no animation --> remains sync
         if (!onFallback) {
@@ -155,6 +167,11 @@
     }
 
     var initMenu = function (mql) {
+      if (settings.fixedMenu && settings.rememberOpenMenu) {
+        if (sessionStorage.getItem('menu-open') === '1') {
+          $body.addClass(settings.mobileMenuOpenClass);
+        }
+      }
       if (mql.matches) {
         // $icon.hide();
         // $close.hide();
@@ -191,6 +208,9 @@
       //   $menu.hide();
       // }
       $body.removeClass(settings.mobileMenuOpenClass);
+      if (settings.fixedMenu) {
+        sessionStorage.setItem('menu-open', '0');
+      }
 
       if (settings.dimBackground) {
         $dim.hide();
@@ -200,6 +220,9 @@
     }
     var menuOpen = function () {
       $body.addClass(settings.mobileMenuOpenClass);
+      if (settings.fixedMenu) {
+        sessionStorage.setItem('menu-open', '1');
+      }
 
       if (!onFallback) {
         if (settings.shiftBodyAside) {
@@ -350,11 +373,14 @@
     mobileMenuDirectionClassPrefix: 'mobile-menu-from-',
     mobileMenuSlidingClass: 'mobile-menu-sliding',
     mobileMenuFallbackClass: 'mobile-menu-fallback',
+    mobileMenuFixedClass: 'mobile-menu-fixed',
     adaptFullHeightOnResize: false, // TODO
     animationDuration: 300,
     animationFromDirection: 'left',
     shiftBodyAside: false,
     collapsibleMenu: false, // TODO
+    fixedMenu: false,
+    rememberOpenMenu: false,
     createDim: false, // TODO
     dimBackground: true,
     dimElement: '',
