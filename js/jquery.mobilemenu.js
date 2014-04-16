@@ -19,6 +19,8 @@
         $closeContainer = $(settings.closeContainer),
         $dim = $(settings.dimElement),
         onFallback = false,
+        onMobile = false,
+        moveMenu = false,
         throttled,
         $icon,
         $close;
@@ -31,14 +33,21 @@
       getItem: function (a) {}
     };
 
-    if (!settings.collapsibleMenu) {
+    moveMenu  = !settings.collapsibleMenu;
+
+    if (moveMenu) {
       $menu.after($menuPlaceholder);
+    }
+    if (!settings.collapsibleMenu) {
       $body.addClass(settings.mobileMenuSlidingClass);
       // when no collapsibleMenu, we are sliding
-      $body.addClass(settings.mobileMenuDirectionClassPrefix + settings.animationFromDirection)
     }
 
     $body.addClass(settings.mobileMenuEnabledClass);
+
+    if (settings.fixedMenu) {
+      $body.addClass(settings.mobileMenuFixedClass);
+    }
 
     // ignore shiftBodyAside on browser which do not support CSS3
     // transformations
@@ -47,12 +56,6 @@
       settings.needTransformsFallback = true;
       onFallback = true;
       $body.addClass(settings.mobileMenuFallbackClass);
-    }
-
-    if (settings.fixedMenu) {
-      settings.dimBackground = false;
-      settings.shiftBodyAside = false;
-      $body.addClass(settings.mobileMenuFixedClass);
     }
 
     // generate buttons or use elements/containers from settings
@@ -113,9 +116,12 @@
       // $menu.hide();
       // $icon.show();
       // $close.show();
+
+      cleanClasses();
+
       $body.addClass(settings.mobileMenuClass);
 
-      if (!settings.collapsibleMenu) {
+      if (moveMenu) {
         $menu.prependTo($body);
       }
 
@@ -131,10 +137,16 @@
     var switchToDesktop = function(mql) {
       // $icon.hide();
       // $close.hide();
-      if (!settings.collapsibeMenu) {
+
+      cleanClasses();
+
+      if (moveMenu && !settings.fixedMenu) {
         $menuPlaceholder.before($menu);
+      } else if (settings.fixedMenu) {
+        $menu.prependTo($body);
+        $body.addClass(settings.mobileMenuFixedOpenClass);
       }
-      $body.removeClass(settings.mobileMenuClass);
+
       // close any open mobile menu
       if ($body.hasClass(settings.mobileMenuOpenClass) && !settings.fixedMenu) {
         // @TODO menuClose animation cannot deal with "jump" in layout
@@ -144,9 +156,6 @@
         } else {
           $body.css(settings.animationFromDirection, '');
           afterClose();
-        }
-        if (settings.adaptFullHeightOnResize) {
-          setMenuMinHeight(0);
         }
       }
 
@@ -158,33 +167,39 @@
       settings.onSwitchToDesktop.call($menu, settings, mql);
     }
 
+    var cleanClasses = function () {
+      $body.removeClass(settings.mobileMenuClass)
+           .removeClass(settings.mobileMenuOpenClass)
+           .removeClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection)
+           .removeClass(settings.mobileMenuDirectionClassPrefix + settings.animationFromDirection)
+           .removeClass(settings.mobileMenuFixedOpenClass);
+    }
+
     var setMenu = function (mql) {
       if (mql.matches) {
+        onMobile = false;
         switchToDesktop(mql);
       } else {
+        onMobile = true;
         switchToMobile(mql);
       }
     }
 
     var initMenu = function (mql) {
+
+      cleanClasses();
+
       if (settings.fixedMenu && settings.rememberOpenMenu) {
         if (sessionStorage.getItem('menu-open') === '1') {
           $body.addClass(settings.mobileMenuOpenClass);
         }
       }
       if (mql.matches) {
-        // $icon.hide();
-        // $close.hide();
-        $body.removeClass(settings.mobileMenuClass);
+        //$body.removeClass(settings.mobileMenuClass);
+        switchToDesktop(mql);
       } else {
         switchToMobile(mql);
       }
-    }
-
-    var setMenuMinHeight = function (pixel) {
-      var paddingTop = parseInt($menu.css('padding-top'), 10);
-      var paddingBottom = parseInt($menu.css('padding-bottom'), 10);
-      $menu.css({minHeight: (pixel - paddingTop - paddingBottom) + 'px', maxHeight: (pixel - paddingTop - paddingBottom) + 'px', overflow: 'auto'});
     }
 
     // menu events
@@ -219,13 +234,21 @@
       settings.afterClose.call($menu, settings);
     }
     var menuOpen = function () {
-      $body.addClass(settings.mobileMenuOpenClass);
+
+      cleanClasses();
+
+      if (mobileQuery.matches && settings.fixedMenu) {
+        $body.addClass(settings.mobileMenuFixedOpenClass);
+      } else {
+        $body.addClass(settings.mobileMenuOpenClass);
+      }
+
       if (settings.fixedMenu) {
         sessionStorage.setItem('menu-open', '1');
       }
 
       if (!onFallback) {
-        if (settings.shiftBodyAside) {
+        if (onMobile && settings.shiftBodyAside) {
           $body.addClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection);
         }
         afterOpen();
@@ -235,10 +258,6 @@
         $menu.animate(animation, settings.animationDuration, afterOpen);
         // reset to prevent unexpected reuse of former values
         animation = {};
-      }
-
-      if (settings.adaptFullHeightOnResize) {
-        setMenuMinHeight($body.innerHeight());
       }
     };
 
@@ -254,6 +273,10 @@
 
         // reset to prevent unexpected reuse of former values
         animation = {};
+      }
+
+      if (settings.fixedMenu) {
+        $body.removeClass(settings.mobileMenuFixedOpenClass);
       }
 
       afterClose();
@@ -278,11 +301,6 @@
       if (!mobileQuery.matches && $body.hasClass(settings.mobileMenuOpenClass)) {
         var position = [];
 
-        // % on padding will change the main-menu size --> recalc
-        if (settings.adaptFullHeightOnResize) {
-          setMenuMinHeight($body.innerHeight());
-        }
-
         // if (settings.shiftBodyAside) {
         //   position[settings.animationFromDirection] = settings.width + 'px';
         //   $body.css(position);
@@ -294,15 +312,20 @@
 
     var menuHandler = function (e, action) {
       if (action) {
-        if (action === 'open' && !$body.hasClass(settings.mobileMenuOpenClass)) {
+        if (action === 'open' && 
+            !($body.hasClass(settings.mobileMenuOpenClass) ||
+              $body.hasClass(settings.mobileMenuFixedOpenClass))) {
           beforeOpen();
           menuOpen();
-        } else if (action === 'close' && $body.hasClass(settings.mobileMenuOpenClass)) {
+        } else if (action === 'close' &&
+                   ($body.hasClass(settings.mobileMenuOpenClass) ||
+                    $body.hasClass(settings.mobileMenuFixedOpenClass))) {
           beforeClose();
           menuClose();
         }
       } else {
-        if ($body.hasClass(settings.mobileMenuOpenClass)) {
+        if ($body.hasClass(settings.mobileMenuOpenClass) ||
+            $body.hasClass(settings.mobileMenuFixedOpenClass)) {
           beforeClose();
           menuClose();
         } else {
@@ -374,7 +397,7 @@
     mobileMenuSlidingClass: 'mobile-menu-sliding',
     mobileMenuFallbackClass: 'mobile-menu-fallback',
     mobileMenuFixedClass: 'mobile-menu-fixed',
-    adaptFullHeightOnResize: false, // TODO
+    mobileMenuFixedOpenClass: 'mobile-menu-fixed-open',
     animationDuration: 300,
     animationFromDirection: 'left',
     shiftBodyAside: false,
@@ -382,7 +405,7 @@
     fixedMenu: false,
     rememberOpenMenu: false,
     createDim: false, // TODO
-    dimBackground: true,
+    dimBackground: false,
     dimElement: '',
     interval: 100,
     collapseSubMenus: true,
