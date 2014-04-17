@@ -11,7 +11,7 @@
 
     var settings = $.extend({}, $.fn.mobilemenu.defaults, options );
     var mobileQuery = window.matchMedia('(min-width: ' + (settings.breakpoint - 1) + 'px)');
-    var hasModernizr = typeof M !== 'undefined',
+    var hasModernizr = !!M,
         hasHammer = typeof Hammer !== 'undefined';
     var $menu = $(this),
         $body = $('body'),
@@ -419,4 +419,4 @@
     onSwitchToMobile: function() {},
     onSwitchToDesktop: function() {}
   }
-}( jQuery, Modernizr ));
+}( jQuery, typeof Modernizr !== 'undefined' ? Modernizr : false ));
