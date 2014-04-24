@@ -30,6 +30,12 @@
       getItem: function (a) {}
     };
 
+    // return early if we are empty, ie. the calling selector matched no
+    // element
+    if ($menu.length < 1) {
+      return this;
+    }
+
     // move $menu, when we slide it (i.e. not when collapsible)
     // override with moveMenu if moveMenu is defined
     moveMenu = !settings.collapsible;
