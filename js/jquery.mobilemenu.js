@@ -10,7 +10,7 @@
   $.fn.mobilemenu = function( options ) {
 
     var settings = $.extend({}, $.fn.mobilemenu.defaults, options );
-    var mobileQuery = window.matchMedia('(min-width: ' + (settings.breakpoint - 1) + 'px)');
+    var mobileQuery = window.matchMedia('(min-width: ' + settings.breakpoint + 'px)');
     var hasModernizr = !!M,
         hasHammer = typeof Hammer !== 'undefined';
     var $menu = $(this),
