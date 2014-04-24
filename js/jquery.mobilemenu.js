@@ -24,20 +24,28 @@
         throttled,
         $icon,
         $close;
-    // placeholder used to determine original position of moveable $menu
-    var $menuPlaceholder = $('<span id="mobile-menu-placeholder"></span>');
-    // move $menu, when we slide it (i.e. not when collapsible)
 
     var sessionStorage = window.sessionStorage || {
       setItem: function (a,b) {},
       getItem: function (a) {}
     };
 
-    moveMenu  = !settings.collapsibleMenu;
-
-    if (moveMenu) {
-      $menu.after($menuPlaceholder);
+    // move $menu, when we slide it (i.e. not when collapsible)
+    // override with moveMenu if moveMenu is defined
+    moveMenu = !settings.collapsible;
+    if (settings.moveMenu !== undefined) {
+      moveMenu = settings.moveMenu;
     }
+
+    // placeholder used to determine original position of moveable $menu
+    var $menuPlaceholder = $('.mobile-menu-placeholder');
+    if ($menuPlaceholder.length < 1) {
+      $menuPlaceholder = $('<span id="mobile-menu-placeholder"></span>');
+      if (moveMenu) {
+        $menu.after($menuPlaceholder);
+      }
+    }
+
     if (!settings.collapsibleMenu) {
       $body.addClass(settings.mobileMenuSlidingClass);
       // when no collapsibleMenu, we are sliding
@@ -402,6 +410,7 @@
     animationFromDirection: 'left',
     shiftBodyAside: false,
     collapsibleMenu: false, // TODO
+    moveMenu: undefined,
     fixedMenu: false,
     rememberOpenMenu: false,
     createDim: false, // TODO
