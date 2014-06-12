@@ -132,7 +132,7 @@ function morelesszen_preprocess_page(&$vars) {
   $vars['main_menu'] =      theme_get_setting('toggle_main_menu') ?
     _morelesszen_menu_links(variable_get('menu_main_links_source', 'main-menu')) : array();
   $vars['secondary_menu'] = theme_get_setting('toggle_secondary_menu') ?
-    _morelesszen_menu_links(variable_get('secondary_menu_links_source', 'user-menu')) : array();
+    _morelesszen_menu_links(variable_get('menu_secondary_links_source', 'user-menu')) : array();
 
   if (isset($vars['node_title'])) {
     $vars['title'] = $vars['node_title'];
