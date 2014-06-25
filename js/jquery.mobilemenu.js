@@ -153,6 +153,7 @@
       // $close.hide();
 
       cleanClasses();
+      $body.removeClass(settings.mobileMenuClass);
 
       if (moveMenu && !settings.fixedMenu) {
         $menuPlaceholder.before($menu);
@@ -182,8 +183,7 @@
     }
 
     var cleanClasses = function () {
-      $body.removeClass(settings.mobileMenuClass)
-           .removeClass(settings.mobileMenuOpenClass)
+      $body.removeClass(settings.mobileMenuOpenClass)
            .removeClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection)
            .removeClass(settings.mobileMenuDirectionClassPrefix + settings.animationFromDirection)
            .removeClass(settings.mobileMenuFixedOpenClass);
