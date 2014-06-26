@@ -36,6 +36,9 @@
       return this;
     }
 
+    // add class on mobile menu as we cannot be sure about it's id
+    $menu.addClass('mobile-menu-element');
+
     // move $menu, when we slide it (i.e. not when collapsible)
     // override with moveMenu if moveMenu is defined
     moveMenu = !settings.collapsible;
@@ -99,7 +102,7 @@
     // if the link clicked has a ul.menu sibling (i.e. a submenu)
     // we want to show the submenu
     if (settings.collapsibleSubMenus) {
-      $('html').on('click', '.mobile-menu-open #main-menu li a', function(e) {
+      $('html').on('click', '.mobile-menu-open .mobile-menu-element li a', function(e) {
         var $a =$(this);
         var $li = $a.closest('li');
 
