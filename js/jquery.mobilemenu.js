@@ -181,6 +181,11 @@
         $('ul ul', $menu).hide();
       }
 
+      // hide background overlay again
+      if (settings.dimBackground) {
+        $dim.hide();
+      }
+
       // callback
       settings.onSwitchToDesktop.call($menu, settings, mql);
     }
