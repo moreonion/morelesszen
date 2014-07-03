@@ -232,7 +232,7 @@
 			html += '" tabindex="' + opts.tabIndex + '">';
 			if (!opts.multiple) {
 				html += '<span class="selecter-selected' + ((opts.label !== "") ? ' placeholder' : '') + '">';
-				html += $('<span></span').text( _trim(((opts.label !== "") ? opts.label : $originalOption.text()), opts.trim) ).html();
+				html += $('<span></span>').text( _trim(((opts.label !== "") ? opts.label : $originalOption.text()), opts.trim) ).html();
 				html += '</span>';
 			}
 			html += '<div class="selecter-options">';
