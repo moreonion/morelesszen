@@ -58,7 +58,6 @@ scripts[] = "js/close_messages.js"
 scripts[] = "js/equalheight.js"
 scripts[] = "js/immediate_active_state.js"
 scripts[] = "js/jquery.mobilemenu.js"
-scripts[] = "js/country_dropdown.js"
 
 ; CSS overrides --------------------------------------------------------------
 ; uncomment the two lines related to one .css-file to override the core style

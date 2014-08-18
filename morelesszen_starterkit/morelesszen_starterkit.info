@@ -45,7 +45,6 @@ stylesheets[screen][] = css/style.less
 ;scripts[] = "js/equalheight.js"
 ;scripts[] = "js/immediate_active_state.js"
 ;scripts[] = "js/jquery.mobilemenu.js"
-;scripts[] = "js/country_dropdown.js"
 
 ; JS files -------------------------------------------------------------------
 
