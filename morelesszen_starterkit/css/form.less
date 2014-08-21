@@ -159,6 +159,17 @@ legend {
   border: 2px solid @error_color;
 }
 
+/* ---------- border-box fallback ----------------------------------- */
+
+.no-boxsizing {
+  input[type="text"], input[type="email"],input[type="number"], input[type="password"], input[type="search"],
+  .form-text input, .form-type-password input, textarea, select, .selecter .selecter-selected {
+    padding-left: 2.3%;
+    padding-right: 2.3%;
+    width: 95%;
+  }
+}
+
 
 /* ==================================================================
  * webform specific styles
