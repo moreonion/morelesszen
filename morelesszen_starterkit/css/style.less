@@ -51,12 +51,18 @@ h1 {
   word-wrap: break-word;
   .sansb;
 }
+@media @tablet {
+  h1 { .f(45); }
+}
 
 h2 {
   .f(20);
   text-transform: uppercase;
   color: darken(@heading_second_color, 5%);
   .sansb;
+}
+@media @tablet {
+  h2 { .f(24); }
 }
 
 h2 a, h2 a:link, h2 a:visited {
@@ -148,58 +154,23 @@ div.messages {
 ::-moz-selection { background: @fmain; color: #fff; text-shadow: none; }
 ::selection { background: @fmain; color: #fff; text-shadow: none; }
 
-/* ==================================================================
- * basic html tablet (overrides mobile)
- * ================================================================== */
-
-@media @tablet {
-  h1 {
-    .f(45);
-  }
-  h2 {
-    .f(24);
-  }
-}
 
 /* ==================================================================
- * basic html desktop (overrides tablet and mobile)
+ * frameworky classes
  * ================================================================== */
 
-@media @desktop {
-
-}
-
-/* ==================================================================
- * top to bottom styling
- * ================================================================== */
-
-/* This section has 3 parts.
- * 1. First the default styles, i.e. the mobile styles.
- * 2. Second the tablet styles. BUT you need to style only the *overrides*
- *    of the mobile styles.
- * 3. Third the desktop styles. They only override both mobile and tablet.
- *
- * If you want to add a style, put it in the *most* generic part!
- *
- * Feel free to add subheaddings! :)
- */
-
-/* ------#### frameworky classes ------------------------------------ */
-
-/* ---------- .center ----------------------------------------------- */
+/* ---------- centering --------------------------------------------- */
 
 .center {
   text-align: center;
 }
-
-/* ---------- .grid-center ------------------------------------------ */
 
 .grid-center {
   margin-left: auto;
   margin-right: auto;
 }
 
-/* ---------- .separator -------------------------------------------- */
+/* ---------- separator --------------------------------------------- */
 
 .separator:after {
   content: ".";
@@ -229,7 +200,7 @@ div.messages {
   width: 60%;
 }
 
-/* ---------- .box, .highlight -------------------------------------- */
+/* ---------- boxes ------------------------------------------------- */
 
 .box {
   padding: @oneline*1.5 6% @oneline*1.5 4%;
@@ -249,9 +220,7 @@ div.messages {
   height: 0;
   overflow: hidden;
   background: transparent;
-}
 
-.video-container, .media-vimeo-video, .media-youtube-video {
   iframe, object, embed {
     position: absolute;
     top: 0;
@@ -261,7 +230,7 @@ div.messages {
   }
 }
 
-/* ---------- blockquotes and highlighted -------------------------------- */
+/* ---------- blockquotes and highlighted --------------------------- */
 
 blockquote {
   .serif;
@@ -293,6 +262,22 @@ p.highlighted, blockquote.highlighted {
     text-decoration: none;
   }
 }
+
+
+/* ==================================================================
+ * top to bottom styling
+ * ================================================================== */
+
+/* This section has 3 parts.
+ * 1. First the default styles, i.e. the mobile styles.
+ * 2. Second the tablet styles. BUT you need to style only the *overrides*
+ *    of the mobile styles.
+ * 3. Third the desktop styles. They only override both mobile and tablet.
+ *
+ * If you want to add a style, put it in the *most* generic part!
+ *
+ * Feel free to add subheaddings! :)
+ */
 
 /* ------#### header ------------------------------------------------ */
 
@@ -558,6 +543,16 @@ p.highlighted, blockquote.highlighted {
 
 }
 
+/* ---------- share light ------------------------------------------- */
+
+.block-share-light {
+  ul.share-light {
+    li {
+
+    }
+  }
+}
+
 /* ---------- field specific styles --------------------------------- */
 
 
@@ -594,6 +589,8 @@ p.highlighted, blockquote.highlighted {
  */
 
 @media @desktop {
+
+/* ---------- ### header -------------------------------------------- */
 
   #header {
 
@@ -696,16 +693,6 @@ p.highlighted, blockquote.highlighted {
   display: none;
 }
 
-/* ---------- share light ------------------------------------------- */
-
-.block-share-light {
-  ul.share-light {
-    li {
-
-    }
-  }
-}
-
 /* ---------- webform widget ---------------------------------------- */
 
 body.embedded-webform {
@@ -715,12 +702,6 @@ body.embedded-webform {
     margin: 0;
     margin-bottom: 1em;
   }
-}
-
-/* ---------- form styling ------------------------------------------ */
-
-input.webform-calendar {
-  width: auto;
 }
 
 
