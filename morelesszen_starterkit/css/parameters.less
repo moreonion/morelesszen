@@ -90,6 +90,20 @@
  * font sizes & typographic elements 
  * ================================================================== */
 
+/* ---------- fonts ------------------------------------------------- */
+
+@serif: Georgia, Times, "Times New Roman", serif ;
+@sans: "Helvetica Neue", Helvetica, Arial, sans;
+
+@mainfont: @sans;
+@codefont: @sans;
+
+.serif  { font-family: @serif; font-weight: normal; font-style: normal; }
+.sans   { font-family: @sans;  font-weight: normal; font-style: normal; }
+.sansb  { font-family: @sans;  font-weight: bold;   font-style: normal; }
+.sansi  { font-family: @sans;  font-weight: normal; font-style: italic; }
+
+
 /* ---------- baseline grid ----------------------------------------- */
 
 @fontsize: 100%;
@@ -98,13 +112,6 @@
 // default 1.5em = 24px on 100% font size (16px)
 @oneline: (@baselineheight/@basefontsize)*1em;
 
-@serif: Georgia, Times, "Times New Roman", serif ;
-@sans: "Helvetica Neue", Helvetica, Arial, sans;
-@sansb: @sans;
-@sansbb: @sans;
-
-@mainfont: @sans;
-@codefont: @sans;
 
 .small () {
   font-size: 75%;

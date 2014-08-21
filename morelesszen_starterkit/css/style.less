@@ -24,8 +24,7 @@
 /* ---------- generic stuff ----------------------------------------- */
 
 body {
-  font-family: @sans;
-  font-weight: normal;
+  .sans;
   // overflow: auto; // ???
 }
 
@@ -46,20 +45,18 @@ img {
 
 h1 {
   .f(24);
-  font-weight: normal;
   color: @heading_color;
   clear: left;
   display: block;
   word-wrap: break-word;
-  font-family: @sansb;
+  .sansb;
 }
 
 h2 {
   .f(20);
   text-transform: uppercase;
-  font-weight: normal;
-  font-family: @sansb;
   color: darken(@heading_second_color, 5%);
+  .sansb;
 }
 
 h2 a, h2 a:link, h2 a:visited {
@@ -74,25 +71,25 @@ h2 a:hover, h2 a:focus {
 
 h3 {
   .f(18);
-  font-weight: bold;
+  .sansb;
   color: darken(@heading_color, 5%);
 }
 
 h4 {
   .f(15);
-  font-weight: bold;
+  .sansb;
   color: darken(@secondary_color, 5%);
 }
 
 h5 {
   .f(15);
-  font-weight: bold;
+  .sansb;
   color: @fmain;
 }
 
 h6 {
   .f(15);
-  font-style: italic;
+  .sansi;
   color: @fmain;
 }
 
@@ -267,7 +264,7 @@ div.messages {
 /* ---------- blockquotes and highlighted -------------------------------- */
 
 blockquote {
-  font-family: @serif;
+  .serif;
   color: lighten(@fmain,10%);
 }
 
@@ -290,7 +287,7 @@ blockquote:after {
 p.highlighted, blockquote.highlighted {
   .f(20);
   color: @fmain;
-  font-family: @serif;
+  .serif;
 
   a {
     text-decoration: none;
@@ -313,15 +310,13 @@ p.highlighted, blockquote.highlighted {
   }
 
   a, a:link, a:visited {
-    font-weight: normal;
-    font-family: @sansbb;
+    .sansb;
     color: desaturate(darken(@main_menu_item_hover_bg_color, 50%),20%);
     text-decoration: none;
     display:block;
     padding: .5em 5%; 
     background-color: @main_menu_item_hover_bg_color;
     border-color: darken(@main_menu_item_hover_bg_color,15%);
-
   }
 
   a:hover, a:focus, a:active {
@@ -350,7 +345,7 @@ p.highlighted, blockquote.highlighted {
       border: 1px solid transparent;
       border-bottom: 1px solid darken(@background_color_light, 15%);
       text-transform: none;
-      font-family: @sans;
+      .sans;
       color: @fmain;
     }
 
@@ -386,9 +381,8 @@ p.highlighted, blockquote.highlighted {
     height: 40px;
     background: url('images/mobile-menu-icon.png') no-repeat 2px center transparent;
     text-decoration: none;
-    font-family: @sansb;
     color: #565456;
-    font-weight:normal;
+    .sansb;
     font-style:normal;
     z-index: 401;
 
@@ -653,9 +647,8 @@ p.highlighted, blockquote.highlighted {
 
       a, a:link, a:visited {
         text-transform: none;
-        font-family: @sans;
+        .sans;
         padding: .7em .8em;
-        font-weight: normal;
         border: 1px solid transparent;
         text-decoration: none;
         color: @main_menu_link_color;
