@@ -66,6 +66,7 @@
 /* backgrounds and background colors  */
 @background: #fff; /* bright theme */
 @background_color_light: @background;
+@background_color_highlight: darken(@background, 10%);
 
 /* errors and warning colors */
 @error_color: #ef4340; /* this color tells you that you've done something wrong */
@@ -446,6 +447,20 @@
     border-radius: 5px;
     margin: 25% auto 0 auto;
     max-width: 15em;
+  }
+}
+
+/* ---------- decorated list ---------------------------------------- */
+
+.decorated_list (@image) {
+  list-style: none;
+  list-style-position: inside;
+
+  li {
+    background: url(@image) no-repeat left 1px transparent;
+    list-style-position: outside;
+    list-style-image: none;
+    padding-left: 1.6em;
   }
 }
 
