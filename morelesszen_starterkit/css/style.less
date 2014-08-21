@@ -202,7 +202,7 @@ div.messages {
     padding: @oneline/4 0 0;
   }
 
-  a, a:visited {
+  a, a:link, a:visited {
     font-weight: normal;
     font-family: @sansbb;
     color: desaturate(darken(@main_menu_item_hover_bg_color, 50%),20%);
@@ -541,7 +541,7 @@ div.messages {
       margin-right: .2em;
       padding: 0;
 
-      a, a:visited {
+      a, a:link, a:visited {
         text-transform: none;
         font-family: @sans;
         padding: .7em .8em;
@@ -629,7 +629,7 @@ input.webform-calendar {
 
 @media print {
   * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; } 
-  a, a:visited { text-decoration: underline; }
+  a, a:link, a:visited { text-decoration: underline; }
   a[href]:after { content: " (" attr(href) ")"; }
   abbr[title]:after { content: " (" attr(title) ")"; }
   .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; } 

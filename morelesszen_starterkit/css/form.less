@@ -21,19 +21,31 @@ fieldset {
 
 /* ---------- buttons ----------------------------------------------- */
 
-input[type="submit"], #edit-submit, a.button, .button  {
+a.button-small, a.button-small:link, a.button-small:visited, .button-small,
+input[type="submit"], #edit-submit, a.button, a.button:link, a.button:visited, .button  {
   background: @primary_color repeat-x top;
-  font-size: 120%;
   font-weight: bold;
   display: block;
-  padding: .5em 1.5em .45em;
   color: @mywhite;
   text-decoration: none;
-  border: 2px solid darken(@primary_color, 5%);
   .textshadow(darken(@primary_color, 10%));
+}
+input[type="submit"], #edit-submit, a.button, a.button:link, a.button:visited, .button  {
+  max-width: 350px;
+  font-size: 120%;
+  padding: .5em 1.5em .45em;
+  border: 2px solid darken(@primary_color, 5%);
   .rounded(4px);
 }
+a.button-small, a.button-small:link, a.button-small:visited, .button-small {
+  max-width: 250px;
+  font-size: 90%;
+  padding: .4em 1.5em .35em;
+  border: 1px solid darken(@primary_color, 5%);
+  .rounded(3px);
+}
 
+a.button-small:hover, a.button-small:focus, .button-small:hover, .button-small:focus,
 input[type="submit"]:hover, #edit-submit:hover, .button:hover, a.button:hover,
 input[type="submit"]:focus, #edit-submit:focus, .button:focus, a.button:focus,
 .ui-body-o a.button:hover, .ui-body-o a.button:focus {
@@ -42,11 +54,13 @@ input[type="submit"]:focus, #edit-submit:focus, .button:focus, a.button:focus,
   color: @mywhite;
 }
 
+a.button-small:active, .button-small:active,
 input[type="submit"]:active, #edit-submit:active, .button:active, a.button:active {
   background: repeat darken(@primary_color, 5%);
   border-color: darken(@primary_color, 10%);
   color: @mywhite;
 }
+
 
 /* ---------- input ------------------------------------------------- */
 
