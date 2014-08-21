@@ -262,3 +262,18 @@ legend {
     .rounded(0);
   }
 }
+
+/* ---------- workaround for IE7 weirdness -------------------------- */
+
+.ie7 {
+  #search-block-form, #search-form #edit-basic {
+    input[type="search"], input[type="text"] {
+      height: 1.2em;
+    }
+  }
+  #search-form #edit-basic {
+    #edit-submit, input[type="submit"] {
+      bottom: 1.4em;
+    }
+  }
+}
