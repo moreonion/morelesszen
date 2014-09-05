@@ -26,9 +26,13 @@ Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
 
 };
 
-})(jQuery);
+Drupal.behaviors.clickableTeasers = {};
+Drupal.behaviors.clickableTeasers.attach = function(context, settings) {
+  $('.node-teaser', context).click(function(event) {
+    window.location.href = $('.node-readmore a', this).attr('href');
+  }).addClass('clickable');
+};
 
-(function($) {
 Drupal.behaviors.mobilemenu = {};
 Drupal.behaviors.mobilemenu.attach = function(context, settings) {
   if ($.fn.mobilemenu) {
