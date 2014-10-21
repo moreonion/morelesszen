@@ -23,6 +23,15 @@ Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
     });
   }
 
+  // container id begins with webform-ajax-wrapper
+  if (context == document) {
+    $('*[id^=webform-ajax-wrapper]').once(function(){$(this).webformAjaxSlide({
+      loadingDummyMsg: Drupal.t('loading'),
+      onSlideBegin: function (ajaxOptions) {},
+      onSlideFinished: function (ajaxOptions) {},
+      onLastSlideFinished: function (ajaxOptions) {}
+    })});
+  }
 
 };
 
