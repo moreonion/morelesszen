@@ -566,3 +566,18 @@ function morelesszen_field__field_heading($variables) {
   return $output;
 }
 
+/**
+ * Prepares variables for webform view
+ * to set classes indicating the current webform page.
+ *
+ * Default function: theme_webform_view().
+ */
+function morelesszen_preprocess_webform_view(&$vars) {
+  $page_num = $vars['webform']['#form']['details']['page_num']['#value'];
+  $page_count = $vars['webform']['#form']['details']['page_count']['#value'];
+
+  $vars['webform']['#form']['#attributes']['class'][] = 'page-' . $page_num;
+  if ($page_num == $page_count) {
+    $vars['webform']['#form']['#attributes']['class'][] = 'page-last';
+  }
+}
