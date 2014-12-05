@@ -114,6 +114,9 @@
       }
 
       // do the slide!
+      // set container overflow to hidden to prevent overlapping¬
+      var $containerWrapper = $('#'+settings.wrapperId);
+      $containerWrapper.css({overflow: 'hidden'});
       // move dummy in
       $loadingdummy.show().animate(reverseAnim, 800);
       // move container out
@@ -132,6 +135,8 @@
         $loadingdummy.css('position', 'absolute').fadeOut(400);
         $container.animate({opacity: 1}, 400, function() {
           $loadingdummy.hide();
+          var $containerWrapper = $('#'+settings.wrapperId);
+          $containerWrapper.css({overflow: 'visible'});
         });
       });
 
