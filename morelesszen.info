@@ -36,7 +36,7 @@ regions[widget] = Widget
 
 ; Libraries
 
-scripts[] = "js/hammer.js"
+;scripts[] = "js/hammer.js"
 scripts[] = "js/jquery.fs.selecter.js"
 scripts[] = "js/jquery.fs.picker.js"
 scripts[] = "js/jquery.fs.filer.js"
