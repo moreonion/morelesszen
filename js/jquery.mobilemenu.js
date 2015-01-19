@@ -145,6 +145,9 @@
       if (settings.collapsibleSubMenus) {
         $('ul ul', $menu).css('display', '');
       }
+      if (settings.animateMenu) {
+        $body.addClass(settings.mobileMenuDirectionClassPrefix + settings.animationFromDirection);
+      }
 
       // callback
       settings.onSwitchToMobile.call($menu, settings, mql);
@@ -157,6 +160,8 @@
 
       cleanClasses();
       $body.removeClass(settings.mobileMenuClass);
+      $body.removeClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection)
+           .removeClass(settings.mobileMenuDirectionClassPrefix + settings.animationFromDirection);
 
       if (moveMenu && !settings.fixedMenu) {
         $menuPlaceholder.before($menu);
@@ -192,8 +197,6 @@
 
     var cleanClasses = function () {
       $body.removeClass(settings.mobileMenuOpenClass)
-           .removeClass(settings.mobileMenuShiftAsideClassPrefix + settings.animationFromDirection)
-           .removeClass(settings.mobileMenuDirectionClassPrefix + settings.animationFromDirection)
            .removeClass(settings.mobileMenuFixedOpenClass);
     }
 
@@ -420,6 +423,7 @@
     mobileMenuFallbackClass: 'mobile-menu-fallback',
     mobileMenuFixedClass: 'mobile-menu-fixed',
     mobileMenuFixedOpenClass: 'mobile-menu-fixed-open',
+    animateMenu: true,
     animationDuration: 300,
     animationFromDirection: 'left',
     shiftBodyAside: false,
