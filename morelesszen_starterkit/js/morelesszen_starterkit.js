@@ -38,6 +38,7 @@ Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
 Drupal.behaviors.clickableTeasers = {};
 Drupal.behaviors.clickableTeasers.attach = function(context, settings) {
   $('.node-teaser', context).click(function(event) {
+    event.preventDefault();
     window.location.href = $('.node-readmore a', this).attr('href');
   }).addClass('clickable');
 };
