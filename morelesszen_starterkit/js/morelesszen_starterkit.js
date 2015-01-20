@@ -45,11 +45,14 @@ Drupal.behaviors.clickableTeasers.attach = function(context, settings) {
 Drupal.behaviors.mobilemenu = {};
 Drupal.behaviors.mobilemenu.attach = function(context, settings) {
   if ($.fn.mobilemenu) {
+    // enable and configure the mobilemenu
+    // for the full set of options see jquery.mobilemenu.js
     $('#main-menu', context).mobilemenu({
+      breakpoint: 780, // same as @menu-breakpoint in parameters.less
+      dimBackground: true,
       dimElement: '.campaignion-dialog-wrapper',
-      shiftBodyAside: true,
-      animationFromDirection: 'left',
-      adaptFullHeightOnResize: false
+      shiftBodyAside: false,
+      animationFromDirection: 'right'
     });
   }
 };
