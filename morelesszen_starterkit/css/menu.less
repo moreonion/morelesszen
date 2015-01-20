@@ -1,6 +1,33 @@
+// ------------------------------------------------------------------
+// some documentation
+// ------------------------------------------------------------------
+// dependencies:
+// - modernizr (class: csstransforms)
+// - JS in browser enabled
+//
+// usually the main menu has the class #main-menu, but to be sure, the JS
+// add the class ".mobile-menu-element" to the menu it was called upon
+// (changable via JS)
+//
+// we have to consider cases where JS is disabled, csstransformation are not
+// supported
+//
+// this mobile menu works by settings classes and let the css do the rest
+// of the job (styling, animation)
+//
+// * .with-mobile-menu: set on body, indicates that the JS has run
+// * .mobile-menu-fallback: we are in fallback mode, i.e. no
+//    csstransformations are supported (TODO)
+// * .gone-mobile: we are in the mobile menu mode (menu closed or open)
+// * .mobile-menu-open: the mobile menu is open, i.e. visible
+// * .mobile-menu-shift-aside-left or .mobile-menu-shift-aside-right:
+//    the menu should be animated and sliding in from the left, resp. right
+// ------------------------------------------------------------------
+
 /* ---------- mobile menu (generic) --------------------------------- */
 
 // menu without mobilemenu.js
+.mobile-menu-element,
 #main-menu { /* main menu mobile */
   position: relative;
 
@@ -62,9 +89,15 @@
 
 } /* end of main menu */
 
+#secondary-menu {
+  display: block;
+  clear: both;
+}
+
 /* ---------- mobile menu (with js) --------------------------------- */
 // header with mobilemenu.js enabled
 // extends styles from above
+
 .with-mobile-menu {
 
   #header .middle {
@@ -89,7 +122,7 @@
     }
   }
 
-  #main-menu {
+  .mobile-menu-element {
     padding: 1em 3%;
     width: 94%;
     max-width: @mobile_menu_width;
@@ -106,13 +139,14 @@
 }
 
 .mobile-menu-fallback {
-  #main-menu {
+  .mobile-menu-element {
     display: none;
-    left: -300px;
+    left: -@mobile_menu_hide_offset;
   }
 }
 
 .gone-mobile {
+  .mobile-menu-element,
   #main-menu {
     position: absolute;
     padding-top: 40px;
@@ -139,10 +173,8 @@
 }
 
 .mobile-menu-open {
-  #main-menu {
-    // margin: 0 -8.6%; // account for .middle wrapper
-    // inner: 80% + 6% padding related to outer: 10% padding of container
-    // 10/(1/0.86) = 8.6
+  .mobile-menu-element {
+    display: block;
   }
 }
 
@@ -163,17 +195,17 @@
   body.mobile-menu-from-left {
     #main-menu {
       left: 0;
-      -webkit-transform: translateX(-300px);
-      -moz-transform: translateX(-300px);
-      transform: translateX(-300px);
+      -webkit-transform: translateX(-@mobile_menu_hide_offset);
+      -moz-transform: translateX(-@mobile_menu_hide_offset);
+      transform: translateX(-@mobile_menu_hide_offset);
     }
   }
   body.mobile-menu-from-right {
     #main-menu {
       right: 0;
-      -webkit-transform: translateX(300px);
-      -moz-transform: translateX(300px);
-      transform: translateX(300px);
+      -webkit-transform: translateX(@mobile_menu_hide_offset);
+      -moz-transform: translateX(@mobile_menu_hide_offset);
+      transform: translateX(@mobile_menu_hide_offset);
     }
   }
 
@@ -187,35 +219,35 @@
 }
 
 .csstransforms body.mobile-menu-shift-aside-left {
-  -webkit-transform: translateX(300px);
-  -moz-transform: translateX(300px);
-  transform: translateX(300px);
+  -webkit-transform: translateX(@mobile_menu_hide_offset);
+  -moz-transform: translateX(@mobile_menu_hide_offset);
+  transform: translateX(@mobile_menu_hide_offset);
   -webkit-transition: -webkit-transform 0.3s ease;
   -moz-transition: -moz-transform 0.3s ease;
   transition: transform 0.3s ease;
-  #main-menu {
-    -webkit-transform: translateX(-300px);
-    -moz-transform: translateX(-300px);
-    transform: translateX(-300px);
+  .mobile-menu-element {
+    -webkit-transform: translateX(-@mobile_menu_hide_offset);
+    -moz-transform: translateX(-@mobile_menu_hide_offset);
+    transform: translateX(-@mobile_menu_hide_offset);
   }
 }
 .csstransforms body.mobile-menu-shift-aside-right {
-  -webkit-transform: translateX(-300px);
-  -moz-transform: translateX(-300px);
-  transform: translateX(-300px);
+  -webkit-transform: translateX(-@mobile_menu_hide_offset);
+  -moz-transform: translateX(-@mobile_menu_hide_offset);
+  transform: translateX(-@mobile_menu_hide_offset);
   -webkit-transition: -webkit-transform 0.3s ease;
   -moz-transition: -moz-transform 0.3s ease;
   transition: transform 0.3s ease;
-  #main-menu {
-    -webkit-transform: translateX(300px);
-    -moz-transform: translateX(300px);
-    transform: translateX(300px);
+  .mobile-menu-element {
+    -webkit-transform: translateX(@mobile_menu_hide_offset);
+    -moz-transform: translateX(@mobile_menu_hide_offset);
+    transform: translateX(@mobile_menu_hide_offset);
   }
 }
 
 
 @media screen and (min-width: (@mobile_menu_width + 2*@mobile_menu_padding)) {
-  .with-mobile-menu #main-menu {
+  .with-mobile-menu .mobile-menu-element {
     padding: 40px @mobile_menu_padding 1em @mobile_menu_padding;
   }
 }
@@ -232,7 +264,7 @@
     }
   }
 
-  .csstransforms body.with-mobile-menu #main-menu {
+  .csstransforms body.with-mobile-menu .mobile-menu-element {
     -webkit-transform: translateX(0px);
     -moz-transform: translateX(0px);
     transform: translateX(0px);
@@ -243,16 +275,15 @@
 
   #header #main-menu { /* #main menu desktop */
     margin-left: 0;
-    padding-top: .7em;
-    float: left;
+    padding: 0;
+    float: right;
     border: 0px solid transparent;
     max-width: 100%;
     background: none transparent;
     margin-bottom: 0;
-    padding: 0;
     display: block;
     position: static;
-    margin-top: .6em;
+    margin-top: @oneline;
     width: auto;
 
     li {

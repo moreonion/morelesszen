@@ -51,8 +51,7 @@ Drupal.behaviors.mobilemenu.attach = function(context, settings) {
       breakpoint: 780, // same as @menu-breakpoint in parameters.less
       dimBackground: true,
       dimElement: '.campaignion-dialog-wrapper',
-      shiftBodyAside: false,
-      animationFromDirection: 'right'
+      animationFromDirection: 'left'
     });
   }
 };
