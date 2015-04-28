@@ -35,7 +35,7 @@
     var $containerWrapper = $('#' + settings.wrapperId);
     if ($containerWrapper.length < 1) {
       $containerWrapper = $('<div id="'+settings.wrapperId+'">');
-      $containerWrapper.css({overflow: 'hidden', position: 'relative'});
+      $containerWrapper.css({position: 'relative'});
       $container.wrap($containerWrapper);
     }
 
