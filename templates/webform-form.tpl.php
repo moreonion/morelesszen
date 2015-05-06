@@ -21,6 +21,9 @@
   // Print webform steps first
   if (isset($form['webform_steps']))
     print drupal_render($form['webform_steps']);
+  if (isset($form['progressbar'])) {
+    print drupal_render($form['progressbar']);
+  }
 
   // wrap the rest of the form
 ?><div class="webform-content-wrapper"><?php
