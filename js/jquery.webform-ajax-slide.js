@@ -123,9 +123,15 @@
       $container.animate(anim, 800, function() {});
     };
 
-    var onSuccess = function(ajaxOptions) {
+    var onSuccess = function(ajaxOptions, response) {
       var $container = $('*[id^=webform-ajax-wrapper]', document);
 
+      // Don't slide-in if a redirect is in progress.
+      for (var i=0; i<response.length; i++) {
+        if (response[i].command == 'redirect') {
+          return;
+        }
+      }
       $container.css({left: '', right: '', position: 'absolute', opacity: 0});
       $loadingdummy.css('position', 'relative');
 
@@ -161,10 +167,11 @@
     });
 
     $(document).ajaxSuccess(function(e, xhr, ajaxOptions) {
+      var response = $.parseJSON(xhr.responseText);
       if (!ajaxOptions.data)
         return;
 
-      onSuccess(ajaxOptions);
+      onSuccess(ajaxOptions, response);
 
       // recreate beforeSubmit callback on newly loaded elements
       processTriggers(Drupal.ajax);
