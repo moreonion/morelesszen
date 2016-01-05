@@ -9,6 +9,9 @@ Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
       var toleratedOffeset = 50;
       if (el && el.length > 0 && Drupal.ajax[el]) {
         var oldsuccess = Drupal.ajax[el].success;
+        if (oldsuccess.mencap_overridden) {
+          return;
+        }
 
         Drupal.ajax[el].success = function (response, status) {
           oldsuccess.call(this, response, status);
@@ -19,6 +22,7 @@ Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
             $('html').animate({ scrollTop: ($wrapper.offset().top - padding)}, 'slow');
           }
         }
+        Drupal.ajax[el].success.mencap_overridden = true;
       }
     });
   }
