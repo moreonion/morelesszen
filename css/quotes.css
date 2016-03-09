@@ -1,0 +1,51 @@
+/* set language specific quotation marks */
+:lang(ar),
+:lang(ca),
+:lang(el),
+:lang(es),
+:lang(fa),
+:lang(fr),
+:lang(hy),
+:lang(nb),
+:lang(no),
+:lang(ru),
+:lang(tr),
+:lang(vi)   {
+  quotes: "\00AB" "\00BB"; 
+}
+:lang(hr),
+:lang(it) {
+  quotes: "\00BB" "\00AB"; 
+}
+:lang(en),
+:lang(eo),
+:lang(id),
+:lang(ko),
+:lang(pt),
+:lang(zh) { 
+  quotes: "\201C" "\201D";
+}
+:lang(bg),
+:lang(cd),
+:lang(cs),
+:lang(da),
+:lang(de),
+:lang(lt),
+:lang(sl),
+:lang(sk) { 
+  quotes: "\201E" "\201C";
+}
+:lang(hu),
+:lang(nl),
+:lang(pl),
+:lang(ro) {
+  quotes: "\201E" "\201D";
+}
+:lang(fi),
+:lang(sv) {
+  quotes: "\201D" "\201D";
+}
+:lang(ja) {
+  quotes: "\300C" "\300D";
+}
+

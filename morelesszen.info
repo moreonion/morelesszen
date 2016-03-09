@@ -45,6 +45,7 @@ scripts[] = "js/formstone.js"
 stylesheets[screen][] = "css/jquery.fs.selecter.css"
 stylesheets[screen][] = "css/jquery.fs.picker.css"
 stylesheets[screen][] = "css/jquery.fs.filer.css"
+stylesheets[screen][] = "css/quotes.css"
 stylesheets[screen][] = "css/jquery.webform-ajax-slide.less"
 
 ; main CSS files
