@@ -46,11 +46,15 @@ stylesheets[screen][] = "css/jquery.fs.selecter.css"
 stylesheets[screen][] = "css/jquery.fs.picker.css"
 stylesheets[screen][] = "css/jquery.fs.filer.css"
 stylesheets[screen][] = "css/quotes.css"
-stylesheets[screen][] = "css/jquery.webform-ajax-slide.less"
+; Only use .less if less is installed and configured.
+stylesheets[screen][] = "css/jquery.webform-ajax-slide.css"
+;stylesheets[screen][] = "css/jquery.webform-ajax-slide.less"
 
 ; main CSS files
 
-stylesheets[screen][] = css/style.less
+; Only use .less if less is installed and configured.
+stylesheets[screen][] = css/style.css
+;stylesheets[screen][] = css/style.less
 
 ; JS files -------------------------------------------------------------------
 

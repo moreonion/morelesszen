@@ -14,6 +14,26 @@ if (theme_get_setting('morelesszen_clear_registry')) {
 }
 
 /**
+ * Implements hook_system_info_alter().
+ *
+ * Use the dynamic LESS file if the less-module is configured correctly.
+ */
+function morelesszen_system_info_alter(&$info, $file, $type) {
+  if ($file->name == 'morelesszen') {
+    if (module_exists('less') && variable_get('less_engine') == 'less.js') {
+      foreach ($info['stylesheets']['screen'] as &$stylesheet) {
+        if ($stylesheet == 'css/style.css') {
+          $stylesheet = 'css/style.less';
+        }
+        if ($stylesheet == 'css/jquery.webform-ajax-slide.css') {
+          $stylesheet = 'css/jquery.webform-ajax-slide.less';
+        }
+      }
+    }
+  }
+}
+
+/**
  * Implements template_html_head_alter();
  *
  * Changes the default meta content-type tag to the shorter HTML5 version
