@@ -60,12 +60,12 @@
     processTriggers(Drupal.ajax);
 
     // called via ajaxSend()
-    var onSend = function(ajaxOptions) {
+    var onSend = function(ajax, ajaxOptions) {
       var targetPageNum;
       // set container anew (from loaded data)
       var $container = $('*[id^=webform-ajax-wrapper]', document);
       var pageNum = parseInt($('input[name="details\[page_num\]"]').attr('value'));
-      var finishingStep = (pageNum == maxPageNum);
+      ajax.onLastSlide = (pageNum == maxPageNum);
 
       settings.onSlideBegin.call($container, ajaxOptions);
 
@@ -109,10 +109,6 @@
         $loadingdummy.insertBefore($container);
       }
 
-      if (finishingStep) {
-        ajaxOptions["onLastSlide"] = true;
-      }
-
       // do the slide!
       // set container overflow to hidden to prevent overlapping¬
       var $containerWrapper = $('#'+settings.wrapperId);
@@ -123,7 +119,7 @@
       $container.animate(anim, 800, function() {});
     };
 
-    var onSuccess = function(ajaxOptions, response) {
+    var onSuccess = function(ajax, response) {
       var $container = $('*[id^=webform-ajax-wrapper]', document);
 
       // Don't slide-in if a redirect is in progress.
@@ -151,30 +147,35 @@
       //  $containerWrapper.css({minHeight: minHeight});
       //}
 
-      if (ajaxOptions["onLastSlide"]) {
+      if (ajax.onLastSlide) {
         // call finishing callback
-        settings.onLastSlideFinished.call($container, ajaxOptions);
+        settings.onLastSlideFinished.call($container, response);
       } else {
-        settings.onSlideFinished.call($container, ajaxOptions);
+        settings.onSlideFinished.call($container, response);
       }
     }
 
-    $(document).ajaxSend(function(e, xhr, ajaxOptions) {
-      if (!ajaxOptions.data)
-        return;
+    var ajax_id = $(this).attr('id');
+    $.each(Drupal.ajax, function() {
+      if (this.wrapper.substr(1) == ajax_id) {
+        var ajax = this;
+        var old_beforeSend = this.beforeSend;
+        var old_success = this.success;
 
-      onSend(ajaxOptions);
-    });
+        this.beforeSend = function(xhr, ajaxOptions) {
+          if (ajaxOptions.data) {
+            onSend(ajax, ajaxOptions);
+          }
+          old_beforeSend.call(ajax, xhr, ajaxOptions);
+        };
 
-    $(document).ajaxSuccess(function(e, xhr, ajaxOptions) {
-      var response = $.parseJSON(xhr.responseText);
-      if (!ajaxOptions.data)
-        return;
-
-      onSuccess(ajaxOptions, response);
-
-      // recreate beforeSubmit callback on newly loaded elements
-      processTriggers(Drupal.ajax);
+        this.success = function(response, status) {
+          onSuccess(ajax, response);
+          // recreate beforeSubmit callback on newly loaded elements
+          processTriggers(Drupal.ajax);
+          old_success.call(ajax, response, status);
+        };
+      }
     });
 
     return this;
