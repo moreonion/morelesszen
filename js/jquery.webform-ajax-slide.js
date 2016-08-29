@@ -6,15 +6,16 @@
 
   $.fn.webformAjaxSlide = function( options ) {
 
-    // bail if we are not call on an webform ajax wrapper
-    if ($(this).attr('id').indexOf("webform-ajax-wrapper") !== 0) {
+    // bail if we are not called on an AJAX enabled webform.
+    var $container = $(this).parents('[id^=webform-ajax-wrapper]').first();
+    if (!$container.length) {
       return this;
     }
 
     // These are the defaults.
     var defaults = {
       minHeight: '0',
-      wrapperId: 'webform-ajax-slide-wrapper',
+      wrapperClass: 'webform-ajax-slide-wrapper',
       loadingDummyClass: 'webform-ajax-slide-loading-dummy',
       loadingDummyMsg: 'loading',
       onSlideFinished: function () {},
@@ -23,24 +24,26 @@
     }
     var settings = $.extend({}, defaults, options );
 
-    var $container = this;
     var minHeight = 0;
-    var stepForward = true;
-    var maxPageNum = parseInt($('input[name="details\[page_count\]"]').attr('value'));
-    var pageNum = parseInt($('input[name="details\[page_num\]"]').attr('value'));
-    var finished = (pageNum == maxPageNum);
+    var maxPageNum = parseInt($('input[name="details\[page_count\]"]', this).attr('value'));
+    var pageNum = parseInt($('input[name="details\[page_num\]"]', this).attr('value'));
 
     // generate an wrapper around the ajax wrapper to
     // prevent elements visually sliding over the page
-    var $containerWrapper = $('#' + settings.wrapperId);
+    var $containerWrapper = $(this).parents('.' + settings.wrapperClass).first();
     if ($containerWrapper.length < 1) {
-      $containerWrapper = $('<div id="'+settings.wrapperId+'">');
+      $containerWrapper = $('<div class="'+settings.wrapperClass+'">');
       $containerWrapper.css({position: 'relative'});
       $container.wrap($containerWrapper);
     }
 
     // generate a dummy div to display while loading
-    var $loadingdummy = $('<div class="'+settings.loadingDummyClass+'"><div class="container"><div>' + settings.loadingDummyMsg + '</div></div></div>');
+    var $loadingdummy = $containerWrapper.find('.' + settings.loadingDummyClass).first();
+    if (!$loadingdummy.length) {
+      var $loadingdummy = $('<div class="'+settings.loadingDummyClass+'"><div class="container"><div>' + settings.loadingDummyMsg + '</div></div></div>');
+      $loadingdummy.hide();
+      $loadingdummy.insertBefore($container);
+    }
 
     // need to set an beforeSubmit callback to get the
     // direction from a data attribute from the markup
@@ -63,8 +66,7 @@
     var onSend = function(ajax, ajaxOptions) {
       var targetPageNum;
       // set container anew (from loaded data)
-      var $container = $('*[id^=webform-ajax-wrapper]', document);
-      var pageNum = parseInt($('input[name="details\[page_num\]"]').attr('value'));
+      var pageNum = parseInt($('input[name="details\[page_num\]"]', $container).attr('value'));
       ajax.onLastSlide = (pageNum == maxPageNum);
 
       settings.onSlideBegin.call($container, ajaxOptions);
@@ -78,16 +80,6 @@
       //  $containerWrapper.css({minHeight: minHeight});
       //}
 
-      // TODO code not working due to _triggering_elemet_value being not fixed
-      // to step number (could be anything) -- wait for webform steps rework
-      // -----------------------
-      // if (ajaxOptions.extraData._triggering_element_name === 'step-btn') {
-      //  stepForward = (parseInt(ajaxOptions.extraData._triggering_element_value) < pageNum);
-      //  console.log([parseInt(ajaxOptions.extraData._triggering_element_value) , pageNum]);
-      //  targetPageNum = parseInt(ajaxOptions.extraData._triggering_element_value);
-      //}
-      // -----------------------
-
       // set dummy dimensions to current container dimensions
       $loadingdummy.css({height: $container.height() + 'px', width: $container.width() + 'px'});
 
@@ -100,18 +92,15 @@
         $container.css({position: 'relative', right: '', left: '0%'});
         anim = {left: '-150%'};
         reverseAnim = {right: '0%'};
-        $loadingdummy.insertBefore($container);
       } else {
         $loadingdummy.css({position: 'absolute', left: '-120%'});
         $container.css({position: 'relative', right: '0%', left: ''});
         anim = {right: '-150%'};
         reverseAnim = {left: '0%'};
-        $loadingdummy.insertBefore($container);
       }
 
       // do the slide!
       // set container overflow to hidden to prevent overlapping¬
-      var $containerWrapper = $('#'+settings.wrapperId);
       $containerWrapper.css({overflow: 'hidden'});
       // move dummy in
       $loadingdummy.show().animate(reverseAnim, 800);
@@ -120,8 +109,6 @@
     };
 
     var onSuccess = function(ajax, response) {
-      var $container = $('*[id^=webform-ajax-wrapper]', document);
-
       // Don't slide-in if a redirect is in progress.
       for (var i=0; i<response.length; i++) {
         if (response[i].command == 'redirect') {
@@ -137,7 +124,6 @@
         $loadingdummy.css('position', 'absolute').fadeOut(400);
         $container.animate({opacity: 1}, 400, function() {
           $loadingdummy.hide();
-          var $containerWrapper = $('#'+settings.wrapperId);
           $containerWrapper.css({overflow: 'visible'});
         });
       });
@@ -155,7 +141,7 @@
       }
     }
 
-    var ajax_id = $(this).attr('id');
+    var ajax_id = $container.attr('id');
     $.each(Drupal.ajax, function() {
       if (this.wrapper.substr(1) == ajax_id) {
         var ajax = this;

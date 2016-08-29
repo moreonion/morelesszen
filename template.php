@@ -34,6 +34,36 @@ function morelesszen_system_info_alter(&$info, $file, $type) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Add a data-direction attribute on ajax enabled webforms to determine the
+ * direction independent of the buttons value (used by morelesszen webform
+ * slide JS).
+ */
+function morelesszen_form_webform_client_form_alter(&$form, &$form_state, $form_id) {
+  $page_count = $form['details']['page_count']['#value'];
+  if($page_count > 1) {
+    // set custom attributes to indicate the form page direction
+    $webform = $form['#node']->webform;
+    $webform_ajax_enabled = module_exists('webform_ajax') && !empty($webform['webform_ajax'])  && $webform['webform_ajax'] != WEBFORM_AJAX_NO_AJAX;
+    if ($webform_ajax_enabled) {
+      $form['actions']['next']['#attributes']['data-direction'] = 'forward';
+      $form['actions']['previous']['#attributes']['data-direction'] = 'back';
+    }
+  }
+  $current_page = $form_state['webform']['page_num'];
+  if (module_exists('webform_steps') && isset($form['step_buttons'])) {
+    foreach (element_children($form['step_buttons']) as $c) {
+      $b = &$form['step_buttons'][$c];
+      $forward = ($c === 'next' || $b['#page'] >= $current_page);
+      $b['#attributes']['data-direction'] = $forward ? 'forward' : 'back';
+      unset($b);
+    }
+  }
+}
+
+
+/**
  * Implements template_html_head_alter();
  *
  * Changes the default meta content-type tag to the shorter HTML5 version
