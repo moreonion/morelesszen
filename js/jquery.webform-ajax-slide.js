@@ -52,7 +52,6 @@
 
     // called via ajaxSend()
     var onSend = function(ajax, ajaxOptions) {
-      var targetPageNum;
       // set container anew (from loaded data)
       var pageNum = parseInt($('input[name="details\[page_num\]"]', $ajaxWrapper).attr('value'));
       ajax.onLastSlide = (pageNum == maxPageNum);
@@ -100,7 +99,7 @@
       // Don't slide-in if a redirect is in progress.
       for (var i=0; i<response.length; i++) {
         if (response[i].command == 'redirect') {
-          return
+          return;
         }
       }
 
