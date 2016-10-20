@@ -9,9 +9,6 @@ Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
       var toleratedOffeset = 50;
       if (el && el.length > 0 && Drupal.ajax[el]) {
         var oldsuccess = Drupal.ajax[el].success;
-        if (oldsuccess.mencap_overridden) {
-          return;
-        }
 
         Drupal.ajax[el].success = function (response, status) {
           oldsuccess.call(this, response, status);
@@ -22,21 +19,17 @@ Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
             $('html').animate({ scrollTop: ($wrapper.offset().top - padding)}, 'slow');
           }
         }
-        Drupal.ajax[el].success.mencap_overridden = true;
       }
     });
   }
 
   // container id begins with webform-ajax-wrapper
-  if (context == document) {
-    $('*[id^=webform-ajax-wrapper]').once(function(){$(this).webformAjaxSlide({
-      loadingDummyMsg: Drupal.t('loading'),
-      onSlideBegin: function (ajaxOptions) {},
-      onSlideFinished: function (ajaxOptions) {},
-      onLastSlideFinished: function (ajaxOptions) {}
-    })});
-  }
-
+  $('.webform-client-form', context).webformAjaxSlide({
+    loadingDummyMsg: Drupal.t('loading'),
+    onSlideBegin: function (ajaxOptions) {},
+    onSlideFinished: function (ajaxOptions) {},
+    onLastSlideFinished: function (ajaxOptions) {}
+  });
 };
 
 Drupal.behaviors.clickableTeasers = {};
