@@ -20,6 +20,8 @@
       slideClass: 'webform-ajax-slide',
       loadingDummyClass: 'webform-ajax-slide-loading-dummy',
       loadingDummyMsg: 'loading',
+      slideAcrossPage: false, // break out of the container
+      slideSpeed: 0.9,        // px per millisecond
       onSlideFinished: function () {},
       onSlideBegin: function () {},
       onLastSlideFinished: function () {}
@@ -71,28 +73,32 @@
       $loadingdummy.css({height: $slide.height() + 'px', width: $slide.width() + 'px'});
 
       // define the animation and it's "reverse"
-      var anim = {};
-      var reverseAnim = {};
-      // one element needs position: relative
+      var anim = {},
+        reverseAnim = {},
+        distance = 0;
       if (stepForward) {
-        $loadingdummy.css({position: 'absolute', right: '-120%'});
-        $slide.css({position: 'relative', right: '', left: '0%'});
-        anim = {left: '-150%'};
-        reverseAnim = {right: '0%'};
+        distance = settings.slideAcrossPage ? $(window).width() - $container.offset().left : $slide.outerWidth() * -1.2;
+        $loadingdummy.css({position: 'absolute', right: distance + 'px', left: ''});
+        reverseAnim = {right: '0px'};
+        $slide.css({position: 'relative', right: '', left: '0px'}); // one element needs position: relative
+        anim = {left: distance + 'px'};
       } else {
-        $loadingdummy.css({position: 'absolute', left: '-120%'});
-        $slide.css({position: 'relative', right: '0%', left: ''});
-        anim = {right: '-150%'};
-        reverseAnim = {left: '0%'};
+        distance = settings.slideAcrossPage ? $container.offset().left + $slide.outerWidth() : $slide.outerWidth() * -1.2;
+        $loadingdummy.css({position: 'absolute', right: '', left: distance + 'px'});
+        reverseAnim = {left: '0px'};
+        $slide.css({position: 'relative', right: '0px', left: ''});
+        anim = {right: distance + 'px'};
       }
 
       // do the slide!
-      // set container overflow to hidden to prevent overlapping¬
-      $container.css({overflow: 'hidden'});
+      // set container overflow to hidden to prevent overlapping
+      if (!settings.slideAcrossPage) {
+        $container.css({overflow: 'hidden'});
+      }
       // move dummy in
-      $loadingdummy.show().animate(reverseAnim, 800);
+      $loadingdummy.show().animate(reverseAnim, Math.abs(distance / settings.slideSpeed));
       // move container out
-      $slide.animate(anim, 800, function() {});
+      $slide.animate(anim, Math.abs(distance / settings.slideSpeed), function() {});
     };
 
     var onSuccess = function(ajax, response) {
@@ -106,7 +112,9 @@
       $slide.queue(function() {
         $slide.css({left: '', right: '', position: 'absolute', opacity: 0});
         $loadingdummy.css('position', 'relative');
-        $container.css({overflow: 'visible'});
+        if (!settings.slideAcrossPage) {
+          $container.css({overflow: 'visible'});
+        }
         // to the incoming slide
         $loadingdummy.animate({height: $slide.height()}, 200, 'swing', function() {
           $slide.css('position', 'relative');
