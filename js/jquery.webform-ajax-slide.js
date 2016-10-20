@@ -103,15 +103,17 @@
         }
       }
 
-      $slide.stop().css({left: '', right: '', position: 'absolute', opacity: 0});
-      $loadingdummy.css('position', 'relative');
-      $container.css({overflow: 'visible'});
-      // to the incoming slide
-      $loadingdummy.animate({height: $slide.height()}, 200, 'swing', function() {
-        $slide.css('position', 'relative');
-        $loadingdummy.css('position', 'absolute').fadeOut(400);
-        $slide.animate({opacity: 1}, 400, function() {
-          $loadingdummy.hide();
+      $slide.queue(function() {
+        $slide.css({left: '', right: '', position: 'absolute', opacity: 0});
+        $loadingdummy.css('position', 'relative');
+        $container.css({overflow: 'visible'});
+        // to the incoming slide
+        $loadingdummy.animate({height: $slide.height()}, 200, 'swing', function() {
+          $slide.css('position', 'relative');
+          $loadingdummy.css('position', 'absolute').fadeOut(400);
+          $slide.animate({opacity: 1}, 400, function() {
+            $loadingdummy.hide();
+          }).dequeue();
         });
       });
 
