@@ -35,22 +35,25 @@
     // generate an wrapper around the ajax wrapper to
     // prevent elements visually sliding over the page
     var $container = $(this).parents('.' + settings.containerClass).first();
-    if ($container.length < 1) {
-      // Generate our containers if needed.
-      $container = $('<div class="'+settings.containerClass+'">');
-      $container.css({position: 'relative'});
-      $ajaxWrapper.wrap($container);
+    if (!$container.length) {
+      $ajaxWrapper.wrap($('<div class="' + settings.containerClass + '">'));
       $container = $ajaxWrapper.parent();
+    }
+    $container.css({position: 'relative'});
 
-      // generate a dummy div to display while loading
-      $('<div class="'+settings.loadingDummyClass+'"><div class="container"><div>' + settings.loadingDummyMsg + '</div></div></div>')
-        .hide().insertBefore($ajaxWrapper);
-
-      $ajaxWrapper.wrap($('<div class="'+settings.slideClass+'">'));
+    // generate a wrapper around the slide if needed
+    var $slide = $ajaxWrapper.parents('.' + settings.slideClass).first();
+    if (!$slide.length) {
+      $ajaxWrapper.wrap($('<div class="' + settings.slideClass + '">'));
+      $slide = $ajaxWrapper.parent();
     }
 
+    // generate a dummy div to display while loading
     var $loadingdummy = $('.' + settings.loadingDummyClass, $container).first();
-    var $slide = $ajaxWrapper.parents('.' + settings.slideClass).first();
+    if (!$loadingdummy.length) {
+      $loadingdummy = $('<div class="' + settings.loadingDummyClass + '"><div class="container"><div>' + settings.loadingDummyMsg + '</div></div></div>')
+        .hide().insertBefore($slide);
+    }
 
     // called via ajaxSend()
     var onSend = function(ajax, ajaxOptions) {
