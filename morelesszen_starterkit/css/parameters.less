@@ -113,7 +113,7 @@
 @basefontsize: 16;
 @baselineheight: 24;
 // default 1.5em = 24px on 100% font size (16px)
-@oneline: (@baselineheight/@basefontsize)*1em;
+@oneline: (@baselineheight/@basefontsize)*1rem;
 
 
 .small () {
@@ -132,13 +132,10 @@
   // multiplier determines the closest multiplier needed to
   // get the next multiple of @baselineheight
   @multiplier: ceil(1/(@lineheight/@fontsize));
-  // font-size: the argument (px) expressed in (r)em, related to @basefontsize
-  font-size: (@fontsize/@basefontsize)*1em; //fallback
+  // font-size: the argument (px) expressed in rem, related to @basefontsize
   font-size: (@fontsize/@basefontsize)*1rem;
   // line-height: the closest multiple of @baselineheight, expressed in em
-  line-height: ((@baselineheight*@multiplier)/@fontsize)*1em;
-  // margin-bottom: always the @baselineheight expressed in em
-  margin-bottom: (@baselineheight/@fontsize)*1em;
+  line-height: ((@lineheight*@multiplier)/@fontsize)*1em;
 }
 
 /* ==================================================================
