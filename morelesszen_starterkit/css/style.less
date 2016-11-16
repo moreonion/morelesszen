@@ -285,6 +285,15 @@ p.highlighted, blockquote.highlighted {
 /* ------#### header ------------------------------------------------ */
 
 #header {
+  @media @desktop {
+    #logo {
+      float: left;
+    }
+
+    #header_search {
+      float: right;
+    }
+  }
 }
 
 /* ------#### main -------------------------------------------------- */
@@ -350,41 +359,6 @@ p.highlighted, blockquote.highlighted {
 /* ------#### footer ------------------------------------------------ */
 
 
-/* ==================================================================
- * top to bottom tablet (overrides mobile)
- * ================================================================== */
-
-// ONLY overrides go in here!
-// If you can style generic (i.e. also for mobile) -- DO IT!
-
-@media @tablet {
-
-}
-
-/* ==================================================================
- * top to bottom desktop (overrides mobile and tablet)
- * ================================================================== */
-
-// ONLY overrides go in here!
-// If you can style generic (i.e. also for mobile) -- DO IT!
-
-@media @desktop {
-
-/* ---------- ### header -------------------------------------------- */
-
-  #header {
-
-    #logo {
-      float: left;
-    }
-
-    #header_search {
-      float: right;
-    }
-  }
-
-}
-
 
 /* ==================================================================
  * sonstiges
@@ -417,26 +391,4 @@ body.embedded-webform {
     margin: 0;
     margin-bottom: 1em;
   }
-}
-
-
-/* ==================================================================
- * media queries
- * ================================================================== */
-
-/* ---------- additional media queries ------------------------------ */
-
-@media print {
-  * { background: transparent !important; color: black !important; text-shadow: none !important; filter:none !important; -ms-filter: none !important; }
-  a, a:link, a:visited { text-decoration: underline; }
-  a[href]:after { content: " (" attr(href) ")"; }
-  abbr[title]:after { content: " (" attr(title) ")"; }
-  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }
-  pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
-  thead { display: table-header-group; }
-  tr, img { page-break-inside: avoid; }
-  img { max-width: 100% !important; }
-  @page { margin: 0.5cm; }
-  p, h2, h3 { orphans: 3; widows: 3; }
-  h2, h3 { page-break-after: avoid; }
 }
