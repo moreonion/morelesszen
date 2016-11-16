@@ -54,4 +54,3 @@ Drupal.behaviors.mobilemenu.attach = function(context, settings) {
   }
 };
 })(jQuery);
-

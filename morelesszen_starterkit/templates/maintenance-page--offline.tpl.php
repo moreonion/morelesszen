@@ -2,7 +2,7 @@
 
 /**
  * @file
- * This file controls the page that is displayed when Drupal cannot 
+ * This file controls the page that is displayed when Drupal cannot
  * access the database (for whatever reason).
  *
  * Implementation to display a single Drupal page while offline.
@@ -13,7 +13,7 @@
  * @see template_preprocess_maintenance_page()
  * @see bartik_process_maintenance_page()
  */
-  
+
   $head_title = 'Maintenance';
   $title = 'Sorry!';
   $logo = path_to_theme() .'/logo.png';
@@ -27,7 +27,7 @@
   unset($site_slogan);
   // Main message. Note HTML markup.
   $content = '<p>This site is currently under maintenance. We should be back shortly. Thank you for your patience.</p>';
-  
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -48,13 +48,13 @@
 
       <div id="header">
         <div class="section middle clearfix">
-        
+
           <?php if ($logo): ?>
             <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="logo">
               <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
             </a>
           <?php endif; ?>
-          
+
         </div> <!-- /.section -->
       </div> <!-- /#header -->
 

@@ -1,12 +1,12 @@
 /* ########## maintenance page ###################################### 
- * 
- * This file defines styles for the maintenance page, which is shown if the 
+ *
+ * This file defines styles for the maintenance page, which is shown if the
  * site is in maintenance mode.
- * 
+ *
  * Usually, styles from style.less and other less files are also available for
  * the maintence page. However, if the database is offline, less files cannot be
  * compiled - so the most basic styles have to be copied to this css file.
- * 
+ *
  * Make sure to change the fonts and colors according to your design!
  */
 
