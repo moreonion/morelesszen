@@ -1,8 +1,8 @@
-/* ########## style.less ############################################
- *
- * this file is for everything that's REALLY site specific, not
- * layout specific
- */
+/* ########## style.less ############################################ */
+
+// This file is for everything that's REALLY site specific, not layout specific.
+// Import all other less files here!
+
 
 @import "parameters.less";
 @import "boilerplate.less";
@@ -277,16 +277,15 @@ p.highlighted, blockquote.highlighted {
  * top to bottom styling
  * ================================================================== */
 
-/* This section has 3 parts.
- * 1. First the default styles, i.e. the mobile styles.
- * 2. Second the tablet styles. BUT you need to style only the *overrides*
- *    of the mobile styles.
- * 3. Third the desktop styles. They only override both mobile and tablet.
- *
- * If you want to add a style, put it in the *most* generic part!
- *
- * Feel free to add subheaddings! :)
- */
+// This section has 3 parts.
+// 1. First the default styles, i.e. the mobile styles.
+// 2. Second the tablet styles. BUT you need to style only the *overrides*
+//    of the mobile styles.
+// 3. Third the desktop styles. They only override both mobile and tablet.
+
+// If you want to add a style, put it in the *most* generic part!
+
+// Feel free to add subheaddings! :)
 
 /* ------#### header ------------------------------------------------ */
 
@@ -360,9 +359,8 @@ p.highlighted, blockquote.highlighted {
  * top to bottom tablet (overrides mobile)
  * ================================================================== */
 
-/* ONLY overrides go in here!
- * If you can style generic (i.e. also for mobile) -- DO IT!
- */
+// ONLY overrides go in here!
+// If you can style generic (i.e. also for mobile) -- DO IT!
 
 @media @tablet {
 
@@ -372,9 +370,8 @@ p.highlighted, blockquote.highlighted {
  * top to bottom desktop (overrides mobile and tablet)
  * ================================================================== */
 
-/* ONLY overrides go in here!
- * If you can style generic (i.e. also for mobile) -- DO IT!
- */
+// ONLY overrides go in here!
+// If you can style generic (i.e. also for mobile) -- DO IT!
 
 @media @desktop {
 

@@ -1,31 +1,31 @@
-/* ########## parameters.less #######################################
- *
- * This file defines variables used in boilerplate, layout.less, style.less and
- * possibly other files too. It has to be imported in these files.
- *
- * Use the variables in your style.less if they are already defined.
- * But it's perfectly ok not to use variables for everything. No need to define
- * additional variables if you are not going to use them alot...
- */
+/* ########## parameters.less ####################################### */
 
-/* ==================================================================
- * Grid & Breakpoints
- * ================================================================== */
+// This file defines variables and mixins used in initialize, layout, style.less
+// and possibly other files too. It has to be imported before these files.
 
-/* ---------- basic grid -------------------------------------------- */
+// Use the variables in your style.less if they are already defined.
+// But it's perfectly ok not to use variables for everything. No need to define
+// additional variables if you are not going to use them a lot...
 
-/* This is the widest that middle or a grid-container will go */
+
+// ==================================================================
+// Grid & Breakpoints
+// ==================================================================
+
+// ---------- basic grid --------------------------------------------
+
+// This is the widest that middle or a grid-container will go
 @max-width: 1200px;
 
-/* This value controls how much padding each grid-x unit recieves on the left/right. */
+// This value controls how much padding each grid-x unit recieves on the left/right.
 @gutter-half: 10px;
 
-/* This values set the width of the sidebars */
+// This values set the width of the sidebars
 @sidebar-first-width: 31.333%;
 @sidebar-second-width: 31.333%;
 
 
-/* ---------- breakpoints ------------------------------------------- */
+// ---------- breakpoints -------------------------------------------
 
 // if you change the breakpoints, make sure to change them in js too!
 
@@ -35,7 +35,7 @@
 @big-breakpoint: 1150px;
 @huge-breakpoint: 1600px;
 
-/* ---------- media query variables from breakpoints ---------------- */
+// ---------- media query variables from breakpoints ----------------
 
 @tablet: ~"screen and (min-width: @{tablet-breakpoint})";
 @desktop: ~"screen and (min-width: @{desktop-breakpoint})";
@@ -44,36 +44,36 @@
 @huge: ~"screen and (min-width: @{huge-breakpoint})";
 
 
-/* ==================================================================
- * happy color collection
- * ================================================================== */
+// ==================================================================
+// happy color collection
+// ==================================================================
 
-@fmain:   #303030; /* used for main font "grey", applies to all text through boilerplate */
-@mywhite: #fff; /* white is used frequently, so mywhite should change consistently */
+@fmain:   #303030; // used for main font "grey", applies to all text through initialize
+@mywhite: #fff; // white is used frequently, so mywhite should change consistently
 @myblack: #000;
 
-/* main colors */
-@primary_color: #f27140; /* orange */
+// main colors
+@primary_color: #f27140; // orange
 @secondary_color: @primary_color;
 
-/* heading colors */
+// heading colors
 @heading_color: @primary_color;
 @heading_second_color: @primary_color;
 
-/* link colors */
+// link colors
 @link_color: @primary_color;
 @link_hover_color: darken(@primary_color, 10%);
 @link_active_color: lighten(@primary_color, 5%);
 
-/* backgrounds and background colors  */
-@background: #fff; /* bright theme */
+// backgrounds and background colors
+@background: #fff; // bright theme
 @background_color_light: @background;
 @background_color_highlight: darken(@background, 10%);
 
-/* errors and warning colors */
-@error_color: #ef4340; /* this color tells you that you've done something wrong */
+// errors and warning colors
+@error_color: #ef4340; // this color tells you that you've done something wrong
 
-/* main menu links */
+// main menu links
 @main_menu_link_color: #515151;
 @main_menu_link_hover_color: #949494;
 @main_menu_link_active_color: #949494;
@@ -84,16 +84,16 @@
 @main_menu_item_hover_border_color: darken(@main_menu_item_bg_color, 4%);
 @main_menu_item_active_border_color: darken(@main_menu_item_bg_color,5%);
 
-/* mobile menu */
+// mobile menu
 @mobile_menu_width: 270px;
 @mobile_menu_padding: 15px;
 @mobile_menu_hide_offset: 400px;
 
-/* ==================================================================
- * font sizes & typographic elements
- * ================================================================== */
+// ==================================================================
+// font sizes & typographic elements
+// ==================================================================
 
-/* ---------- fonts ------------------------------------------------- */
+// ---------- fonts -------------------------------------------------
 
 @serif: Georgia, Times, "Times New Roman", serif ;
 @sans: "Helvetica Neue", Helvetica, Arial, sans;
@@ -107,7 +107,7 @@
 .sansi  { font-family: @sans;  font-weight: normal; font-style: italic; }
 
 
-/* ---------- baseline grid ----------------------------------------- */
+// ---------- baseline grid -----------------------------------------
 
 @fontsize: 100%;
 @basefontsize: 16;
@@ -120,12 +120,11 @@
   line-height: @oneline * .75;
 }
 
-/* ---------- font sizes -------------------------------------------- */
+// ---------- font sizes --------------------------------------------
 
 // see https://github.com/tyssen/Less-Baseline-Grid-Generator
 
-// function to calculate font-size, line-height and margin-bottom
-// according to the baseline grid
+// function to calculate font-size and line-height according to the baseline grid
 // expects
 .f(@fontsize: @basefontsize, @lineheight: @baselineheight) {
   // multiplier determines the closest multiplier needed to
@@ -137,9 +136,9 @@
   line-height: ((@lineheight*@multiplier)/@fontsize)*1em;
 }
 
-/* ==================================================================
- * classes and @ for random reuse
- * ================================================================== */
+// ==================================================================
+// classes and @ for random reuse
+// ==================================================================
 
 .element-invisible {
   position: absolute !important;
@@ -194,11 +193,11 @@
 }
 
 
-/* ==================================================================
- * layout toggles & system stuff
- * ================================================================== */
+// ==================================================================
+// layout toggles & system stuff
+// ==================================================================
 
-/* ---------- basic tab layout -------------------------------------- */
+// ---------- basic tab layout --------------------------------------
 
 .tabs_macro ()  {
 
@@ -288,7 +287,7 @@
   }
 }
 
-/* ---------- vertical tabs stuff ----------------------------------- */
+// ---------- vertical tabs stuff -----------------------------------
 
 .verticaltabs ()  {
 
@@ -379,7 +378,7 @@
   }
 }
 
-/* ---------- floating tabs ----------------------------------------- */
+// ---------- floating tabs -----------------------------------------
 
 .floatingtabs ()  {
 
@@ -427,7 +426,7 @@
   }
 }
 
-/* ---------- mo-dialogs -------------------------------------------- */
+// ---------- mo-dialogs --------------------------------------------
 
 .mo-dialogs() {
   .mo-dialog-wrapper {
@@ -456,7 +455,7 @@
   }
 }
 
-/* ---------- decorated list ---------------------------------------- */
+// ---------- decorated list ----------------------------------------
 
 .decorated_list (@image) {
   list-style: none;
