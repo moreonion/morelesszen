@@ -29,21 +29,21 @@ input[type="submit"], #edit-submit, a.button, a.button:link, a.button:visited, .
   color: @mywhite;
   text-decoration: none;
   white-space: normal;
-  .textshadow(darken(@primary_color, 10%));
+  text-shadow: darken(@primary_color, 10%) 1px 1px 0;
 }
 input[type="submit"], #edit-submit, a.button, a.button:link, a.button:visited, .button  {
   max-width: 350px;
   font-size: 120%;
   padding: .5em 1.5em .45em;
   border: 2px solid darken(@primary_color, 5%);
-  .rounded(4px);
+  border-radius: 4px;
 }
 a.button-small, a.button-small:link, a.button-small:visited, .button-small {
   max-width: 250px;
   font-size: 90%;
   padding: .4em 1.5em .35em;
   border: 1px solid darken(@primary_color, 5%);
-  .rounded(3px);
+  border-radius: 3px;
 }
 
 a.button-small:hover, a.button-small:focus, .button-small:hover, .button-small:focus,
@@ -74,7 +74,6 @@ input[type="text"], input[type="email"],input[type="number"], input[type="passwo
   color: @fmain;
   padding: .5em;
   width: 100%;
-  .boxsizing(border-box);
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
@@ -140,9 +139,6 @@ select {
 .selecter {
   max-width: 100%;
   margin-top: 0;
-  .selecter-options, .selecter-item {
-    .boxsizing(border-box);
-  }
 }
 
 /* ---------- label, legend, description --------------------------- */
@@ -175,17 +171,6 @@ legend {
 .form-item select.error + .selecter .selecter-selected,
 .form-item input.error + .picker .picker-handle {
   border: 2px solid @error_color;
-}
-
-/* ---------- border-box fallback ----------------------------------- */
-
-.no-boxsizing {
-  input[type="text"], input[type="email"],input[type="number"], input[type="password"], input[type="search"],
-  .form-text input, .form-type-password input, textarea, select, .selecter .selecter-selected {
-    padding-left: 2.3%;
-    padding-right: 2.3%;
-    width: 95%;
-  }
 }
 
 
@@ -259,10 +244,10 @@ input.webform-calendar {
     background: #fff;
     font-size: 120%; // needs to correspond with submit-button font-size!
     height: 2.4em; // needs to correspond with submit-button height!
-    .boxshadow_inset(1px,2px,1px,#dddddd);
+    box-shadow: 1px 2px 1px #dddddd inset;
 
     &:focus {
-      .boxshadow(0,0,0,transparent);
+      box-shadow: none;
     }
   }
 
@@ -281,21 +266,6 @@ input.webform-calendar {
     bottom: 0;
     left: 100%;
     border: none;
-    .rounded(0);
-  }
-}
-
-/* ---------- workaround for IE7 weirdness -------------------------- */
-
-.ie7 {
-  #search-block-form, #search-form #edit-basic {
-    input[type="search"], input[type="text"] {
-      height: 1.2em;
-    }
-  }
-  #search-form #edit-basic {
-    #edit-submit, input[type="submit"] {
-      bottom: 1.4em;
-    }
+    .border-radius: 0;
   }
 }
