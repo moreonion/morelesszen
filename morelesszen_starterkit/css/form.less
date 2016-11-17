@@ -94,29 +94,73 @@ input[type="checkbox"] {
   margin-right: 5px;
 }
 
-.form-radios, .form-checkboxes {
-  .form-item {
-    margin-bottom: 0;
-  }
+.form-type-radio,
+.form-type-checkbox {
+  margin-bottom: @oneline/2;
 }
 
+.form-radios,
+.form-checkboxes,
+.form-item > .form-type-checkbox {
+    padding-top: @oneline;
+    margin-bottom: @oneline;
+}
+
+/* formstone picker */
+
+@pickersize: 16px;
+
 .picker {
+  margin-bottom: 0;
+
   .picker-label {
     float: none;
     display: block;
-    margin-left: 24px; //= 16px picker-handle + 5px margin
+    margin-left: @pickersize * 1.5;
   }
 
   .picker-handle {
     background-color: @form_field_color;
+    height: @pickersize;
+    width: @pickersize;
+    border: 1px solid @form_border_color;
   }
 
-  &.picker-radio .picker-flag {
-    background-color: transparent;
-    margin: 4px;
+  &:hover, &:focus, &.focus {
+    .picker-label {
+      color: @form_label_color;
+    }
+    .picker-handle {
+      border-color: darken(@form_border_color, 5%);
+    }
   }
-  &.picker-radio.checked:hover .picker-flag {
-    background-color: #999999;
+}
+
+.picker.picker-radio {
+  .picker-handle {
+    border-radius: 50%;
+  }
+  .picker-flag {
+    background-color: transparent;
+    width: @pickersize/2;
+    height: @pickersize/2;
+    margin: @pickersize/4;
+    border-radius: 50%;
+  }
+  &.checked .picker-flag {
+    background-color: @form_border_color;
+  }
+  &.checked:hover .picker-flag {
+    background-color: @form_border_color;
+  }
+}
+
+.picker.picker-checkbox {
+  .picker-handle {
+    border-radius: 0;
+  }
+  &.checked .picker-flag, .picker-flag {
+    background-color: transparent;
   }
 }
 
@@ -124,15 +168,67 @@ input[type="checkbox"] {
 
 select {
   width: 100%;
+  .f();
 }
 
-.webform-component-select {
+.webform-component-select,
+.webform-component-select-or-other {
   position: relative;
 }
+
+/* formstone selecter */
+
+// The original select needs to stay behind the fancy one, so it is available
+// on Android devices that don't support the formstone selecter.
 
 .selecter {
   max-width: 100%;
   margin-top: 0;
+
+  .selecter-selected {
+    background: none @form_field_color;
+    padding-right: 4rem;
+    border-radius: 0;
+
+    &:before { // border/background
+      content: '';
+      background-color: transparent;
+      display: block;
+      width: 3.2rem;
+      border-left: 1px solid @form_border_color;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+    &:after { // caret
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border: 0.4rem solid transparent;
+      border-top: 0.6rem solid @form_border_color;
+      margin-top: -0.3rem;
+      position: absolute;
+      top: 50%;
+      right: 1.2rem;
+    }
+  }
+  &.open, &.focus, &:focus, &:hover {
+    .selecter-selected {
+      box-shadow: none;
+      background-color: @form_field_color;
+      border-radius: 0;
+    }
+  }
+  .selecter-options, .selecter-item {
+    .f();
+  }
+  .selecter-options {
+    border: 1px solid @form_border_color;
+    border-top: none;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.15);
+  }
 }
 
 /* ---------- label, legend, description --------------------------- */
@@ -142,6 +238,7 @@ select {
 }
 
 label, .picker .picker-label {
+  .f();
   display: block;
   margin-bottom: 0;
   color: @form_label_color;
@@ -172,8 +269,10 @@ label.error {
 
 
 /* ==================================================================
- * webform specific styles
+ * specific styles
  * ================================================================== */
+
+/* ---------- webform ----------------------------------------------- */
 
 input.webform-previous {
   .element-invisible;
@@ -189,10 +288,57 @@ input.webform-calendar {
   bottom: @oneline/2;
 }
 
+/* ---------- e-mail to target form --------------------------------- */
 
-/* ==================================================================
- * search form styles
- * ================================================================== */
+.email-to-target-edit a {
+  margin-left: 0.5em;
+  font-weight: normal;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:after {
+    content: "\25bc";
+    margin-left: 0.2em;
+    font-size: 0.9em;
+  }
+}
+
+.email-to-target-target {
+  .form-item + pre {
+    margin-top: @oneline;
+  }
+  textarea {
+    min-height: 18rem;
+  }
+}
+
+/* ---------- share page e-mail form -------------------------------- */
+
+form.share-page {
+
+  textarea#edit-message-value {
+    min-height: 18em;
+  }
+
+  .filter-wrapper {
+    padding: 0;
+    .filter-help {
+       display: none;
+    }
+    .filter-guidelines {
+      margin-top: @oneline;
+      li {
+        margin-bottom: 0;
+      }
+      .tips {
+        .small;
+        color: @label_color;
+      }
+    }
+  }
+}
+
+/* ---------- search form ------------------------------------------- */
 
 #search-block-form, #search-form {
   position: relative;
