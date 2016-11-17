@@ -10,62 +10,62 @@ form {
   max-width: 40em;
 }
 
-.form-item, .form-action {
+.form-item, .form-actions {
   margin-bottom: @oneline;
 }
 
 /* ---------- buttons ----------------------------------------------- */
 
-a.button-small, a.button-small:link, a.button-small:visited, .button-small,
-input[type="submit"], #edit-submit, a.button, a.button:link, a.button:visited, .button  {
-  background: @primary_color repeat-x top;
-  font-weight: bold;
+input[type="submit"], .webform-submit, button, .button {
+  background-color: @button_color;
+  .sansb;
   display: block;
   color: @mywhite;
-  text-decoration: none;
   white-space: normal;
-  text-shadow: darken(@primary_color, 10%) 1px 1px 0;
-}
-input[type="submit"], #edit-submit, a.button, a.button:link, a.button:visited, .button  {
+  text-shadow: darken(@button_color, 10%) 1px 1px 0;
+
   max-width: 350px;
   font-size: 120%;
   padding: .5em 1.5em .45em;
-  border: 2px solid darken(@primary_color, 5%);
+  border: 2px solid darken(@button_color, 5%);
   border-radius: 4px;
+
+  &:hover, &:focus {
+    background: repeat lighten(@button_color, 5%);
+    border-color: @button_color;
+  }
+
+  &:active {
+    background: repeat darken(@button_color, 5%);
+    border-color: darken(@button_color, 10%);
+  }
+
+  &, &:hover, &:focus, &:active {
+    text-decoration: none;
+    .clickable;
+  }
 }
-a.button-small, a.button-small:link, a.button-small:visited, .button-small {
+
+button.small, .button.small {
   max-width: 250px;
   font-size: 90%;
   padding: .4em 1.5em .35em;
-  border: 1px solid darken(@primary_color, 5%);
+  border-width: 1px;
   border-radius: 3px;
 }
 
-a.button-small:hover, a.button-small:focus, .button-small:hover, .button-small:focus,
-input[type="submit"]:hover, #edit-submit:hover, .button:hover, a.button:hover,
-input[type="submit"]:focus, #edit-submit:focus, .button:focus, a.button:focus,
-.ui-body-o a.button:hover, .ui-body-o a.button:focus {
-  background: repeat lighten(@primary_color, 5%);
-  border-color: @primary_color;
-  color: @mywhite;
+input[type="submit"], .webform-submit, button, .button {
+  width: 100%;
 }
-
-a.button-small:active, .button-small:active,
-input[type="submit"]:active, #edit-submit:active, .button:active, a.button:active {
-  background: repeat darken(@primary_color, 5%);
-  border-color: darken(@primary_color, 10%);
-  color: @mywhite;
-}
-
 
 /* ---------- input ------------------------------------------------- */
 
-input[type="text"], input[type="email"],input[type="number"], input[type="password"], input[type="search"], .form-text input, .form-type-password input, textarea, select, .selecter .selecter-selected {
+input[type="text"], input[type="email"],input[type="number"], input[type="password"],
+input[type="search"], textarea, select, .selecter .selecter-selected {
   font-size: 120%;
-  background-color: @mywhite;
-  border: 1px solid darken(@background, 10%);
-  font-family: @sans;
-  font-weight: normal;
+  background-color: @form_field_color;
+  border: 1px solid @form_border_color;
+  .sans;
   color: @fmain;
   padding: .5em;
   width: 100%;
@@ -73,14 +73,16 @@ input[type="text"], input[type="email"],input[type="number"], input[type="passwo
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
 .form-text input:focus, .form-type-password input:focus, select:focus, textarea:focus {
-  background: @mywhite none;
-  border: 1px solid darken(@background, 15%);
+  border-color: darken(@form_border_color, 5%);
   color: @fmain;
 }
 
 /* ---------- textarea --------------------------------------------- */
 
-.grippie {
+textarea {
+  .f();
+}
+.resizable-textarea .grippie {
   width: 98%;
   margin: 0 auto;
 }
@@ -106,7 +108,7 @@ input[type="checkbox"] {
   }
 
   .picker-handle {
-    background-color: @mywhite;
+    background-color: @form_field_color;
   }
 
   &.picker-radio .picker-flag {
@@ -126,9 +128,6 @@ select {
 
 .webform-component-select {
   position: relative;
-  .ie7 & {
-    position: static;
-  }
 }
 
 .selecter {
@@ -140,18 +139,17 @@ select {
 
 .description, .form-item .description {
   .f(13);
-  margin-bottom: 0;
 }
 
 label, .picker .picker-label {
   display: block;
   margin-bottom: 0;
-  color: lighten(@fmain, 20%);
+  color: @form_label_color;
 }
 
 legend {
-  font-weight: bold;
-  color: @primary_color;
+  .sansb;
+  color: @heading_color;
 }
 
 .marker, .form-required {
@@ -168,35 +166,17 @@ legend {
   border: 2px solid @error_color;
 }
 
+label.error {
+  color: @error_color;
+}
+
 
 /* ==================================================================
  * webform specific styles
  * ================================================================== */
 
-.webform-client-form {
-  padding-bottom: @oneline;
-
-  h2 {
-    margin-bottom: 0;
-  }
-
-  #edit-actions {
-
-    #edit-previous, input[id*="previous"] {
-      .element-invisible;
-    }
-
-    .form-submit {
-      //.button;
-
-      &:hover, &:focus {
-        //.button_hover;
-      }
-      &:active {
-        //.button_active;
-      }
-    }
-  }
+input.webform-previous {
+  .element-invisible;
 }
 
 input.webform-calendar {
