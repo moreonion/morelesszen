@@ -62,8 +62,8 @@
 
 // link colors
 @link_color: @primary_color;
-@link_hover_color: darken(@primary_color, 10%);
-@link_active_color: lighten(@primary_color, 5%);
+@link_hover_color: darken(@link_color, 10%);
+@link_active_color: lighten(@link_color, 5%);
 
 // backgrounds and background colors
 @background: #fff; // bright theme
@@ -77,7 +77,9 @@
 @button_color: @primary_color;
 
 // errors and warning colors
-@error_color: #ef4340; // this color tells you that you've done something wrong
+@error_color: #ef4340;
+@warning_color: #ed5;
+@success_color: #be7;
 
 // main menu links
 @main_menu_link_color: #515151;

@@ -37,29 +37,32 @@ h1 {
   display: block;
   word-wrap: break-word;
   .sansb;
+
+  @media @tablet {
+    .f(45);
+  }
 }
-@media @tablet {
-  h1 { .f(45); }
-}
+
 
 h2 {
   .f(20);
   text-transform: uppercase;
   color: darken(@heading_second_color, 5%);
   .sansb;
-}
-@media @tablet {
-  h2 { .f(24); }
-}
 
-h2 a, h2 a:link, h2 a:visited {
-  text-decoration: none;
-  color: darken(@heading_second_color, 5%);
-}
-
-h2 a:hover, h2 a:focus {
-  text-decoration: underline;
-  color: darken(@heading_second_color, 3%);
+  @media @tablet {
+    .f(24);
+  }
+  a {
+    &, &:link, &:visited {
+      text-decoration: none;
+      color: darken(@heading_second_color, 5%);
+    }
+    &:hover, &:focus {
+      text-decoration: underline;
+      color: darken(@heading_second_color, 3%);
+    }
+  }
 }
 
 h3 {
@@ -100,6 +103,7 @@ a:hover, a:focus {
 }
 
 a:active {
+  color: @link_active_color;
   outline: none;
 }
 
@@ -133,6 +137,21 @@ div.messages {
     &:last-child {
       margin-bottom: 0;
     }
+  }
+  &.error, .error {
+    background-color: @error_color;
+    border-color: @error_color;
+    color: @mywhite;
+ }
+  &.warning, .warning {
+    background-color: @warning_color;
+    border-color: @warning_color;
+    color: @fmain;
+  }
+  &.status, .status {
+    background-color: @success_color;
+    border-color: @success_color;
+    color: @fmain;
   }
 }
 
@@ -228,12 +247,12 @@ blockquote {
 }
 
 blockquote:before {
-  content: "« ";
+  content: open-quote;;
   display: inline;
 }
 
 blockquote:after {
-  content: " »";
+  content: close-quote;;
   display: inline;
 }
 
@@ -258,17 +277,7 @@ p.highlighted, blockquote.highlighted {
  * top to bottom styling
  * ================================================================== */
 
-// This section has 3 parts.
-// 1. First the default styles, i.e. the mobile styles.
-// 2. Second the tablet styles. BUT you need to style only the *overrides*
-//    of the mobile styles.
-// 3. Third the desktop styles. They only override both mobile and tablet.
-
-// If you want to add a style, put it in the *most* generic part!
-
-// Feel free to add subheaddings! :)
-
-/* ------#### header ------------------------------------------------ */
+/* ---------- header ------------------------------------------------ */
 
 #header {
   @media @desktop {
@@ -282,68 +291,107 @@ p.highlighted, blockquote.highlighted {
   }
 }
 
-/* ------#### main -------------------------------------------------- */
-
-/* ---------- sidebar ----------------------------------------------- */
-.sidebar {
-
-}
-/* ---------- node styles ------------------------------------------- */
+/* ---------- main -------------------------------------------------- */
 
 
-/* ---------- teaser styles ----------------------------------------- */
+/* ---------- footer ------------------------------------------------ */
 
 
-/* ---------- views stuff & views list styling ---------------------- */
+/* ==================================================================
+ * field (or block) specific styles
+ * ================================================================== */
 
-.view {
-  .item-list {
-    list-style: none;
+/* ---------- progress bar ------------------------------------------ */
 
-    li.views-row {
-      list-style: none;
-      margin-left: 0;
-      margin-bottom: @oneline;
-    }
 
+/* ---------- recent supporters ------------------------------------- */
+
+
+/* ---------- share light ------------------------------------------- */
+
+ul.share-light {
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin-bottom: @oneline/2;
+  }
+
+  a {
+    .button;
+    text-align: left;
+    padding-left: 5rem;
+    position: relative;
+  }
+
+  a span:before {
+    content: '';
+    background: url('images/share_icons.png') no-repeat center transparent;
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    width: 50px;
+    height: 100%;
+  }
+  .facebook a span:before {
+    background-position: 0 center;
+  }
+  .twitter a span:before {
+    background-position: -50px center;
+  }
+  .email a span:before {
+    background-position: -100px center;
+  }
+  .whatsapp a span:before {
+    background-position: -150px center;
+  }
+  .instagram a span:before {
+    background-position: -200px center;
   }
 }
 
 /* ---------- comments ---------------------------------------------- */
 
 #comments {
-
-  .comment {
-
-  }
-
-  .submitted {
-
-  }
+  .comment {}
+  .submitted {}
 }
 
-#comment-form-wrapper {
+#comment-form-wrapper {}
 
-}
+/* ---------- views stuff & views list styling ---------------------- */
 
-/* ---------- share light ------------------------------------------- */
+ .view {
+   .item-list {
+     list-style: none;
 
-.block-share-light {
-  ul.share-light {
-    li {
+     li.views-row {
+       list-style: none;
+       margin-left: 0;
+       margin-bottom: @oneline;
+     }
 
-    }
+   }
+ }
+
+
+/* ==================================================================
+ * node (or context) specific styles
+ * ================================================================== */
+
+/* ---------- teaser styles ----------------------------------------- */
+
+
+/* ---------- webform widget ---------------------------------------- */
+
+body.embedded-webform {
+  padding: 0;
+  margin: 0;
+  .form-item, .form-actions {
+    margin: 0;
+    margin-bottom: 1em;
   }
 }
-
-/* ---------- field specific styles --------------------------------- */
-
-
-/* ---------- node and context specific styles ---------------------- */
-
-
-/* ------#### footer ------------------------------------------------ */
-
 
 
 /* ==================================================================
@@ -366,15 +414,4 @@ ul.menu {
 
 .locale-untranslated { /* hide all untranslated links */
   display: none;
-}
-
-/* ---------- webform widget ---------------------------------------- */
-
-body.embedded-webform {
-  padding: 0;
-  margin: 0;
-  .form-item, .form-actions {
-    margin: 0;
-    margin-bottom: 1em;
-  }
 }
