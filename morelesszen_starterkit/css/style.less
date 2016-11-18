@@ -386,6 +386,30 @@ ul.share-light {
 
 /* ---------- teaser styles ----------------------------------------- */
 
+.node-teaser {
+  background-color: darken(@background, 5%);
+  padding: @oneline;
+  margin: @oneline 0;
+  border: 1px solid darken(@background, 10%);
+
+  .pgbar-bg {
+    height: 1rem;
+    overflow: hidden;
+  }
+  .node-readmore a {
+    .button;
+    float: right;
+  }
+
+  @media @desktop {
+    .field-name-field-main-image {
+      float: left;
+    }
+    .field-name-field-main-image ~ .field {
+      margin-left: 400px;
+    }
+  }
+}
 
 /* ---------- webform widget ---------------------------------------- */
 
