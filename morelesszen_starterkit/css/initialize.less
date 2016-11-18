@@ -61,8 +61,8 @@
  */
 html {
   .optional-prop(color, @initialize-color);
-  .optional-prop(box-sizing, @initialize-box-sizing);
 
+  box-sizing: @initialize-box-sizing;
   font-family: @initialize-font-family; /* 1 */
   line-height: @initialize-line-height; /* 3 */
   font-size: @initialize-font-size; /* 3 */
@@ -586,13 +586,15 @@ textarea {
    Optional configurations
    ========================================================================== */
 
+// .optional-prop does not work for margins with more than a single value:
+// see github issue: https://github.com/jeroenoomsNL/initialize-css/issues/1
 /*
  * Headings
  */
 
 h1, h2, h3, h4, h5, h6 {
+  margin: @initialize-heading-margins;
   .optional-prop(color, @initialize-heading-color);
-  .optional-prop(margin, @initialize-heading-margins);
   .optional-prop(font-family, @initialize-heading-font-family);
 }
 
@@ -601,7 +603,7 @@ h1, h2, h3, h4, h5, h6 {
  */
 
 p, table, ul, ol, fieldset, blockquote, dl {
-  .optional-prop(margin, @initialize-block-margins);
+  margin: @initialize-block-margins;
 }
 
 
