@@ -1,0 +1,147 @@
+/* ########## webform-steps.less #################################### */
+
+// ---------- variables ---------------------------------------------
+
+@page_base_bgcolor: darken(@background, 5%);
+@page_border_width: 1px;
+@page_fontsize: 0.85em;
+@page_height: 2.5em;
+@has_fixed_width: false;
+
+// ---------- mixins ------------------------------------------------
+
+.set_page_color(@background, @border: darken(@background, 20%)){
+  background-color: @background;
+  border-color: @border;
+
+  &:after {
+    border-left-color: @background;
+  }
+  &:before {
+    border-left-color: @border;
+  }
+}
+
+/* ---------- basic styles ------------------------------------------ */
+
+.webform-progressbar {
+  overflow: hidden;
+  text-align: center;
+  font-size: @page_fontsize;
+}
+.webform-progressbar when (@has_fixed_width = false) {
+  padding-right: @page_height/3;
+}
+
+.webform-progressbar-page {
+  position: relative;
+  box-sizing: border-box;
+  display:block;
+  float: left;
+
+  background-color: @page_base_bgcolor;
+  border: @page_border_width solid darken(@page_base_bgcolor, 10%);
+  padding-right: @page_height/4;
+  padding-left: @page_height/4 + @page_height/3;
+  height: @page_height;
+  line-height: @page_height*0.99;
+
+  &:before, &:after {
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: @page_height/2 solid transparent;
+    border-bottom: @page_height/2 solid transparent;
+    border-left: @page_height/3 solid @page_base_bgcolor;
+    position: absolute;
+    top: 50%;
+    margin-top: -@page_height/2;
+    left: 100%;
+  }
+  &:before {
+    z-index: 1;
+    border-left-color: darken(@page_base_bgcolor, 10%);
+    margin-left: @page_border_width;
+  }
+  &:after {
+    z-index: 2;
+  }
+}
+
+/* ---------- specific styles (active vs. inactive pages) ----------- */
+
+.webform-progressbar-page.previous {
+  cursor: pointer;
+  .set_page_color(@page_base_bgcolor);
+
+  &:hover, &:focus {
+    .set_page_color(darken(@page_base_bgcolor, 10%));
+  }
+}
+
+.webform-progressbar-page.current {
+  cursor: default;
+  .set_page_color(lighten(@page_base_bgcolor, 10%));
+}
+
+.webform-progressbar-page.next {
+  cursor: default;
+  .set_page_color(darken(@page_base_bgcolor, 10%));
+}
+
+& when (@has_fixed_width = true) {
+/* ---------- fixed width ------------------------------------------- */
+
+  /* straight end without border */
+  .webform-progressbar-page:last-child {
+    &:before, &:after {
+      border-top: none;
+      border-left: none;
+      height: @page_height;
+      margin-left: 0;
+    }
+  }
+
+  /* page width */
+  .webform-progressbar-page {
+    .page-total-1 & {
+      width: 100%;
+    }
+    .page-total-2 & {
+      width: 100%/2;
+    }
+    .page-total-3 & {
+      width: 100%/3;
+    }
+    .page-total-4 & {
+      width: 100%/4;
+    }
+    .page-total-5 & {
+      width: 100%/5;
+    }
+  }
+
+  /* only current step label on mobile */
+  @media screen and (max-width: @tablet-breakpoint) {
+    .page-total-3, .page-total-4, .page-total-5 {
+      .webform-progressbar-page:not(.current) span {
+        .element-invisible();
+      }
+      .webform-progressbar-page.current {
+        width: 60%;
+      }
+    }
+    .webform-progressbar-page:not(.current) {
+      .page-total-3 & {
+        width: 40%/2;
+      }
+      .page-total-4 & {
+        width: 40%/3;
+      }
+      .page-total-5 & {
+        width: 40%/4;
+      }
+    }
+  }
+}
