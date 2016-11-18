@@ -24,14 +24,10 @@
 @sidebar-first-width: 31.333%;
 @sidebar-second-width: 31.333%;
 
-
 // ---------- breakpoints -------------------------------------------
-
-// if you change the breakpoints, make sure to change them in js too!
 
 @tablet-breakpoint: 520px;
 @desktop-breakpoint: 780px;
-@menu-breakpoint: @desktop-breakpoint;
 @big-breakpoint: 1150px;
 @huge-breakpoint: 1600px;
 
@@ -39,7 +35,6 @@
 
 @tablet: ~"screen and (min-width: @{tablet-breakpoint})";
 @desktop: ~"screen and (min-width: @{desktop-breakpoint})";
-@menu: ~"screen and (min-width: @{menu-breakpoint})";
 @big: ~"screen and (min-width: @{big-breakpoint})";
 @huge: ~"screen and (min-width: @{huge-breakpoint})";
 
@@ -81,21 +76,6 @@
 @warning_color: #ed5;
 @success_color: #be7;
 
-// main menu links
-@main_menu_link_color: #515151;
-@main_menu_link_hover_color: #949494;
-@main_menu_link_active_color: #949494;
-@main_menu_item_bg_color: #f1f1f1;
-@main_menu_item_hover_bg_color: @main_menu_item_bg_color;
-@main_menu_item_active_bg_color: darken(@main_menu_item_bg_color, 15%);
-@main_menu_item_border_color: transparent;
-@main_menu_item_hover_border_color: darken(@main_menu_item_bg_color, 4%);
-@main_menu_item_active_border_color: darken(@main_menu_item_bg_color,5%);
-
-// mobile menu
-@mobile_menu_width: 270px;
-@mobile_menu_padding: 15px;
-@mobile_menu_hide_offset: 400px;
 
 // ==================================================================
 // font sizes & typographic elements

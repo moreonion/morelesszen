@@ -46,7 +46,7 @@ Drupal.behaviors.mobilemenu.attach = function(context, settings) {
     // enable and configure the mobilemenu
     // for the full set of options see jquery.mobilemenu.js
     $('#main-menu', context).mobilemenu({
-      breakpoint: 780, // same as @menu-breakpoint in parameters.less
+      breakpoint: 780, // same as @menu-breakpoint in menu.less
       dimBackground: true,
       dimElement: '.campaignion-dialog-wrapper',
       animationFromDirection: 'left'
