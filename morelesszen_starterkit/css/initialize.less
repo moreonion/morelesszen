@@ -1,5 +1,5 @@
 /*!
- * Initialize.css (v1.3.1) is a complete and customizable collection of CSS best practices based on Normalize.css and HTML5 Boilerplate.
+ * Initialize.css (v1.3.2) is a complete and customizable collection of CSS best practices based on Normalize.css and HTML5 Boilerplate.
  * http://jeroenoomsnl.github.io/initialize-css
  *
  * HTML5 Boilerplate: https://github.com/h5bp/html5-boilerplate
@@ -43,7 +43,7 @@
 //
 // Mixin for optional properties
 //
-.optional-prop(@property, @value) when (isstring(@value)), (iscolor(@value)), (isnumber(@value)) {
+.optional-prop(@property, @value) when not(@value=null) {
   @{property}: @value;
 }
 
@@ -61,8 +61,8 @@
  */
 html {
   .optional-prop(color, @initialize-color);
+  .optional-prop(box-sizing, @initialize-box-sizing);
 
-  box-sizing: @initialize-box-sizing;
   font-family: @initialize-font-family; /* 1 */
   line-height: @initialize-line-height; /* 3 */
   font-size: @initialize-font-size; /* 3 */
@@ -586,15 +586,13 @@ textarea {
    Optional configurations
    ========================================================================== */
 
-// .optional-prop does not work for margins with more than a single value:
-// see github issue: https://github.com/jeroenoomsNL/initialize-css/issues/1
 /*
  * Headings
  */
 
 h1, h2, h3, h4, h5, h6 {
-  margin: @initialize-heading-margins;
   .optional-prop(color, @initialize-heading-color);
+  .optional-prop(margin, @initialize-heading-margins);
   .optional-prop(font-family, @initialize-heading-font-family);
 }
 
@@ -603,7 +601,7 @@ h1, h2, h3, h4, h5, h6 {
  */
 
 p, table, ul, ol, fieldset, blockquote, dl {
-  margin: @initialize-block-margins;
+  .optional-prop(margin, @initialize-block-margins);
 }
 
 
