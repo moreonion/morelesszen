@@ -6,6 +6,7 @@
 @page_border_width: 1px;
 @page_fontsize: 0.85em;
 @page_height: 2.5em;
+@mini_on_mobile: true;
 @has_fixed_width: false;
 
 // ---------- mixins ------------------------------------------------
@@ -88,6 +89,21 @@
 .webform-progressbar-page.next {
   cursor: default;
   .set_page_color(darken(@page_base_bgcolor, 10%));
+}
+
+& when (@mini_on_mobile = true) {
+/* ---------- hide all but current label on small screens ----------- */
+
+  .webform-progressbar-page:not(.current) span {
+    position: absolute;
+    left: 9999em;
+
+    @media @tablet {
+      & {
+        position: static;
+      }
+    }
+  }
 }
 
 & when (@has_fixed_width = true) {
