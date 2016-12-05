@@ -25,8 +25,9 @@
 
 /* ---------- generic stuff ----------------------------------------- */
 
-li {
-  list-style-position: inside;
+ul, ol {
+  list-style-position: outside;
+  padding-left: @oneline;
 }
 
 img {
@@ -438,11 +439,22 @@ body.embedded-webform {
 
 ul.menu {
   list-style: none;
+  padding: 0;
 
   li {
     list-style: none;
     background: none;
     margin-left: 0;
+  }
+}
+
+ul.action-links {
+  margin: @oneline 0;
+  padding: 0;
+
+  li, li a {
+    margin: 0;
+    padding: 0;
   }
 }
 
