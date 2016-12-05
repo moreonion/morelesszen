@@ -317,6 +317,33 @@ p.highlighted, blockquote.highlighted {
 
 /* ---------- recent supporters ------------------------------------- */
 
+.recent-supporters  {
+  padding: 0;
+
+  .supporter {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #878787;
+    padding: 0 0 @oneline/2;
+    margin-bottom: @oneline/2;
+
+    &:last-child {
+      border-bottom: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    .name {
+      .sans;
+    }
+
+    .time {
+      .small;
+      .sans;
+      float: right;
+    }
+  }
+}
 
 /* ---------- share light ------------------------------------------- */
 
