@@ -102,8 +102,11 @@ input[type="checkbox"] {
 .form-radios,
 .form-checkboxes,
 .form-item > .form-type-checkbox {
-    padding-top: @oneline;
-    margin-bottom: @oneline;
+  margin-bottom: @oneline;
+
+  label:not(.element-invisible) + & {
+    padding-top: @oneline/2;
+  }
 }
 
 /* formstone picker */
@@ -183,7 +186,7 @@ select {
 
 .selecter {
   max-width: 100%;
-  margin-top: 0;
+  margin: 0;
 
   .selecter-selected {
     background: none @form_field_color;
@@ -313,6 +316,9 @@ form pre {
   }
   textarea {
     min-height: 18rem;
+  }
+  .form-type-checkbox + .form-type-textfield {
+    margin-top: @oneline;
   }
 }
 
