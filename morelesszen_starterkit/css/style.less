@@ -30,7 +30,7 @@ ul, ol {
   padding-left: @oneline;
 }
 
-img {
+img, video {
   max-width: 100%;
   height: auto;
 }
@@ -151,7 +151,12 @@ div.messages {
     background-color: @error_color;
     border-color: @error_color;
     color: @mywhite;
- }
+
+    a, a:link {
+      color: @mywhite;
+      text-decoration: underline;
+    }
+  }
   &.warning, .warning {
     background-color: @warning_color;
     border-color: @warning_color;
@@ -334,11 +339,12 @@ p.highlighted, blockquote.highlighted {
       padding: 0;
       margin: 0;
     }
-
+    .country {
+      margin-right: 0.25rem;
+    }
     .name {
       .sans;
     }
-
     .time {
       .small;
       .sans;
@@ -359,6 +365,7 @@ ul.share-light {
 
   a {
     .button;
+    display: block;
     text-align: left;
     padding-left: 5rem;
     position: relative;

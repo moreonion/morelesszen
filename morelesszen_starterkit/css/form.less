@@ -34,12 +34,11 @@ form {
 input[type="submit"], .webform-submit, button, .button {
   background-color: @button_color;
   .sansb;
-  display: block;
+  display: inline-block;
   color: @mywhite;
   white-space: normal;
   text-shadow: darken(@button_color, 10%) 1px 1px 0;
 
-  max-width: 350px;
   font-size: 120%;
   padding: .5em 1.5em .45em;
   border: 2px solid darken(@button_color, 5%);
@@ -62,14 +61,13 @@ input[type="submit"], .webform-submit, button, .button {
 }
 
 button.small, .button.small {
-  max-width: 250px;
   font-size: 90%;
   padding: .4em 1.5em .35em;
   border-width: 1px;
   border-radius: 3px;
 }
 
-input[type="submit"], .webform-submit, button, .button {
+input[type="submit"], .webform-submit {
   width: 100%;
 }
 
@@ -279,8 +277,10 @@ legend {
   border: 2px solid @error_color;
 }
 
-label.error {
-  color: @error_color;
+input + .error {
+  color: @mywhite;
+  background-color: @error_color;
+  padding: @oneline/2;
 }
 
 
@@ -359,6 +359,9 @@ form.share-page {
         color: @form_label_color;
       }
     }
+    .form-item-message-format {
+      display: none;
+    }
   }
 }
 
@@ -385,6 +388,10 @@ form.share-page {
 .webform-component-date {
   .form-item {
     width: 30%;
+
+    &, input[type="text"] {
+      vertical-align: bottom;
+    }
   }
   input.webform-calendar {
     position: absolute;
