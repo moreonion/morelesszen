@@ -10,8 +10,23 @@ form {
   max-width: 40em;
 }
 
-.form-item, .form-actions {
-  margin-bottom: @oneline;
+@form-spacing: @oneline/2;
+
+.form-item {
+  margin-bottom: @form-spacing;
+  margin-top: @form-spacing;
+
+  // more space between fields when there is no label
+  :not(.webform-container-inline) > & > label.element-invisible {
+    + input, + select, ~ .selecter, + .form-radios, + .form-checkboxes, + .form-type-checkbox, + .webform-container-inline {
+      margin-top: @form-spacing*2;
+    }
+  }
+}
+
+.form-actions {
+  margin-top: @form-spacing*2;
+  margin-bottom: @form-spacing;
 }
 
 /* ---------- buttons ----------------------------------------------- */
@@ -96,17 +111,15 @@ input[type="checkbox"] {
 
 .form-type-radio,
 .form-type-checkbox {
-  margin-bottom: @oneline/2;
+  margin-top: @form-spacing/2;
+  margin-bottom: @form-spacing/2;
 }
 
 .form-radios,
 .form-checkboxes,
 .form-item > .form-type-checkbox {
-  margin-bottom: @oneline;
-
-  label:not(.element-invisible) + & {
-    padding-top: @oneline/2;
-  }
+  margin-top: @form-spacing/2;
+  margin-bottom: @form-spacing;
 }
 
 /* formstone picker */
@@ -312,13 +325,13 @@ form pre {
 
 .email-to-target-target {
   .form-item + pre {
-    margin-top: @oneline;
+    margin-top: @form-spacing;
   }
   textarea {
     min-height: 18rem;
   }
   .form-type-checkbox + .form-type-textfield {
-    margin-top: @oneline;
+    margin-top: @form-spacing;
   }
 }
 
@@ -336,7 +349,8 @@ form.share-page {
        display: none;
     }
     .filter-guidelines {
-      margin-top: @oneline;
+      margin-top: @form-spacing;
+
       li {
         margin-bottom: 0;
       }
