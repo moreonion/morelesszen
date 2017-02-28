@@ -11,7 +11,7 @@
 
 // ---------- mixins ------------------------------------------------
 
-.set_page_color(@background, @border: darken(@background, 20%)){
+.set_page_color(@background, @border: darken(@background, 20%), @arrowborder: @border){
   background-color: @background;
   border-color: @border;
 
@@ -19,7 +19,7 @@
     border-left-color: @background;
   }
   &:before {
-    border-left-color: @border;
+    border-left-color: @arrowborder;
   }
 }
 
