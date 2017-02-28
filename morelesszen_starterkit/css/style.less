@@ -98,20 +98,22 @@ h6 {
 
 /* ---------- links and link tags ----------------------------------- */
 
-a, a:link, a:visited {
-  color: @link_color;
-  outline: none;
-}
+a:not(.button) {
+  &, &:link, &:visited {
+    color: @link_color;
+    outline: none;
+  }
 
-a:hover, a:focus {
-  color: @link_hover_color;
-  outline: none;
-  text-decoration: underline;
-}
+  &:hover, &:focus {
+    color: @link_hover_color;
+    outline: none;
+    text-decoration: underline;
+  }
 
-a:active {
-  color: @link_active_color;
-  outline: none;
+  &:active {
+    color: @link_active_color;
+    outline: none;
+  }
 }
 
 /* ---------- messages ---------------------------------------------- */
