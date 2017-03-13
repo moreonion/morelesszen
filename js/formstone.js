@@ -31,7 +31,7 @@ Drupal.behaviors.formstone.attach = function(context, settings) {
       var observer = new MutationObserver(function(mutations) {
         mutations.forEach(function (mutation) {
           if (mutation.target.disabled != $(mutation.target).data("previousDisabled")){
-            formstoneFunction.call($(mutation.target, context), mutation.target.disabled ? "disable" : "enable");
+            formstoneFunction.call($(mutation.target), mutation.target.disabled ? "disable" : "enable");
             $(mutation.target).data("previousDisabled", mutation.target.disabled);
           }
         });
