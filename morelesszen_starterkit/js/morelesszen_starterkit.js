@@ -6,17 +6,18 @@ Drupal.behaviors.morelesszen_starterkit.attach = function(context, settings) {
   if ('ajax' in settings) {
     $.each(settings.ajax, function(el) {
       var padding = 12;
-      var toleratedOffeset = 50;
-      if (el && el.length > 0 && Drupal.ajax[el]) {
+      var toleratedOffset = 50;
+      if (el && Drupal.ajax[el]) {
         var oldsuccess = Drupal.ajax[el].success;
 
         Drupal.ajax[el].success = function (response, status) {
           oldsuccess.call(this, response, status);
-          var $wrapper = $('#' + settings.ajax[el].wrapper);
-          var $html = $('html');
-          var diff = Math.abs($wrapper.offset().top) - Math.abs($html.offset().top);
-          if (diff < 0 || Math.abs(diff) > toleratedOffeset) {
-            $('html').animate({ scrollTop: ($wrapper.offset().top - padding)}, 'slow');
+          var wrapperTop = $('#' + settings.ajax[el].wrapper).offset().top;
+          var diff = Math.abs(wrapperTop) - (Math.abs($('html').offset().top) || $('html')[0].scrollTop); // get scroll position across browsers
+          if (diff < 0 || Math.abs(diff) > toleratedOffset) {
+            // IE scrolls html, not body.
+            var $scrollEl = $('body')[0].scrollTop === 0 ? $('html') : $('body');
+            $scrollEl.animate({ scrollTop: (wrapperTop - padding)}, 'slow');
           }
         }
       }
