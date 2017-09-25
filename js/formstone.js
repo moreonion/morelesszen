@@ -13,12 +13,12 @@ Drupal.behaviors.formstone.attach = function(context, settings) {
   }
 
   if ($.fn.picker) {
-    $picks = $('.webform-client-form input[type=checkbox], .webform-client-form input[type=radio]', context).picker();
+    var $picks = $('.webform-client-form input[type=checkbox], .webform-client-form input[type=radio]', context).picker();
     fixDisabledState($picks, $.fn.picker, ".picker");
   }
 
   if ($.fn.filer) {
-    $uploads = $('.webform-client-form input[type=file]', context).filer();
+    var $uploads = $('.webform-client-form input[type=file]', context).filer();
     fixDisabledState($uploads, $.fn.filer, ".filer");
   }
 
