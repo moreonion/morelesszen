@@ -69,6 +69,7 @@ scripts[] = "js/jquery.webform-ajax-slide.js"
 ; and activate our less file.
 
 stylesheets[screen][] = css/field_collection.theme.css
+stylesheets[screen][] = system.theme.css
 
 ;stylesheets[screen][] = aggregator.css
 ;stylesheets[screen][] = css/core/aggregator.less
