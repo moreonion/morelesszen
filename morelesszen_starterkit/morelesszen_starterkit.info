@@ -67,8 +67,6 @@ scripts[] = "js/morelesszen_starterkit.js"
 ;scripts[] = "js/jquery.fs.filer.js"
 ;scripts[] = "js/formstone.js"
 
-;scripts[] = "js/matchmedia_polyfill.js"
-;scripts[] = "js/matchmedia.addListener.js"
 ;scripts[] = "js/close_messages.js"
 ;scripts[] = "js/equalheight.js"
 ;scripts[] = "js/immediate_active_state.js"
