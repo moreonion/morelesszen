@@ -12,12 +12,13 @@
 }
 
 /* ==================================================================
- * Holy Grail Layout 
- * ref: http://www.alistapart.com/articles/holygrail
- * LC stands for Left Column, RC for Right Column
- * Obvously, this layout is for left-to-right languages. For a
- * right-to-left layout, just swap all the left and rights below.
+ * Holy Grail Layout
  * ================================================================== */
+
+// ref: http://www.alistapart.com/articles/holygrail
+// LC stands for Left Column, RC for Right Column
+// Obvously, this layout is for left-to-right languages.
+// For a right-to-left layout, just swap all the left and rights below.
 
 #page {
   width: 100%;
@@ -54,31 +55,31 @@
   }
 
   .sidebar-first #content .section {
-    padding-left: @sidebar-first-width + 2;   /* LC width */
+    padding-left: @sidebar-first-width + 2;   // LC width
   }
 
   .sidebar-first #introbox {
-    padding-left: @sidebar-first-width + 2;   /* LC width */
+    padding-left: @sidebar-first-width + 2;   // LC width
   }
 
   .sidebar-second #content .section {
-    padding-right: @sidebar-second-width + 4;  /* RC width */
+    padding-right: @sidebar-second-width + 4;  // RC width
   }
 
   .two-sidebars #content .section {
-    padding-left: @sidebar-first-width + 2;   /* LC width */
-    padding-right: @sidebar-second-width + 2;  /* RC width */
+    padding-left: @sidebar-first-width + 2;    // LC width
+    padding-right: @sidebar-second-width + 2;  // RC width
   }
 
   #sidebar-first {
-    width: @sidebar-first-width;          /* LC width */
+    width: @sidebar-first-width;               // LC width
     margin-right: -@sidebar-first-width;
   }
 
   #sidebar-second {
     float: right;
-    width: @sidebar-second-width;          /* RC width */
-    margin-left: -@sidebar-second-width;   /* RC width */
+    width: @sidebar-second-width;             // RC width
+    margin-left: -@sidebar-second-width;      // RC width
   }
 
   /* equal height columns */
@@ -109,51 +110,8 @@
   margin: 0 auto;
   position: relative;
   display: block;
-}
 
-@media @desktop {
-  .middle {
+  @media @desktop {
     width: 85%;
   }
 }
-
-
-/* ---------- Menu mobile / default --------------------------------- */
-
-#main-menu {
-  float: none;
-  clear: both;
-  width: 100%;
-  li {
-    float: none;
-    clear: both;
-    width: 100%;
-  }
-}
-#mobile-menu-icon {
-  display: block;
-  width: 36px;
-  height: 36px;
-  float: right;
-  clear: right;
-  text-indent: 9999px;
-  overflow: hidden;
-}
-
-@media @desktop {
-
-  #main-menu {
-    float: right;
-    clear: right;
-    width: auto;
-    li {
-      float: left;
-      clear: none;
-      width: auto;
-    }
-  }
-  #mobile-menu-icon {
-    display: none;
-  }
-}
-

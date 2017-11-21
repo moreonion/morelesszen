@@ -1,3 +1,5 @@
+/* ########## menu.less ############################################# */
+
 // ------------------------------------------------------------------
 // some documentation
 // ------------------------------------------------------------------
@@ -24,6 +26,69 @@
 //    the menu should be animated and sliding in from the left, resp. right
 // ------------------------------------------------------------------
 
+
+// ---------- variables ---------------------------------------------
+
+// if you change the breakpoint, make sure to change it in js too!
+@menu-breakpoint: @desktop-breakpoint;
+
+// main menu links
+@main_menu_link_color: #515151;
+@main_menu_link_hover_color: #949494;
+@main_menu_link_active_color: #949494;
+@main_menu_item_bg_color: #f1f1f1;
+@main_menu_item_hover_bg_color: @main_menu_item_bg_color;
+@main_menu_item_active_bg_color: darken(@main_menu_item_bg_color, 15%);
+@main_menu_item_border_color: transparent;
+@main_menu_item_hover_border_color: darken(@main_menu_item_bg_color, 4%);
+@main_menu_item_active_border_color: darken(@main_menu_item_bg_color,5%);
+
+// mobile menu
+@mobile_menu_width: 270px;
+@mobile_menu_padding: 15px;
+@mobile_menu_hide_offset: 400px;
+
+
+/* ---------- default layout ---------------------------------------- */
+
+#main-menu {
+  float: none;
+  clear: both;
+  width: 100%;
+  li {
+    float: none;
+    clear: both;
+    width: 100%;
+  }
+}
+#mobile-menu-icon {
+  display: block;
+  width: 36px;
+  height: 36px;
+  float: right;
+  clear: right;
+  text-indent: 9999px;
+  overflow: hidden;
+}
+
+@media @desktop {
+
+  #main-menu {
+    float: right;
+    clear: right;
+    width: auto;
+    li {
+      float: left;
+      clear: none;
+      width: auto;
+    }
+  }
+  #mobile-menu-icon {
+    display: none;
+  }
+}
+
+
 /* ---------- mobile menu (generic) --------------------------------- */
 
 // menu without mobilemenu.js
@@ -40,7 +105,7 @@
     color: desaturate(darken(@main_menu_item_hover_bg_color, 50%),20%);
     text-decoration: none;
     display:block;
-    padding: .5em 5%; 
+    padding: .5em 5%;
     background-color: @main_menu_item_hover_bg_color;
     border-color: darken(@main_menu_item_hover_bg_color,15%);
   }
@@ -93,6 +158,7 @@
   display: block;
   clear: both;
 }
+
 
 /* ---------- mobile menu (with js) --------------------------------- */
 // header with mobilemenu.js enabled
@@ -252,7 +318,7 @@
   }
 }
 
-@media @menu {
+@media screen and (min-width: @menu-breakpoint) {
 
   .with-mobile-menu {
     #mobile-menu-icon {
@@ -319,4 +385,3 @@
   } /* end #main-menu */
 
 }
-

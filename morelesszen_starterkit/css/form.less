@@ -10,83 +10,92 @@ form {
   max-width: 40em;
 }
 
-.form-item, .form-action {
-  margin-bottom: @oneline;
+@form-spacing: @oneline/2;
+
+.form-item {
+  margin-bottom: @form-spacing;
+  margin-top: @form-spacing;
+
+  // more space between fields when there is no label
+  :not(.webform-container-inline) > & > label.element-invisible {
+    + input, + select, ~ .selecter, + .form-radios, + .form-checkboxes, + .form-type-checkbox, + .webform-container-inline {
+      margin-top: @form-spacing*2;
+    }
+  }
 }
 
-fieldset {
-  margin-top: @oneline;
-  margin-bottom: @oneline;
+.form-actions {
+  margin-top: @form-spacing*2;
+  margin-bottom: @form-spacing;
 }
 
 /* ---------- buttons ----------------------------------------------- */
 
-a.button-small, a.button-small:link, a.button-small:visited, .button-small,
-input[type="submit"], #edit-submit, a.button, a.button:link, a.button:visited, .button  {
-  background: @primary_color repeat-x top;
-  font-weight: bold;
-  display: block;
+input[type="submit"], .webform-submit, button, .button {
+  background-color: @button_color;
+  .sansb;
+  display: inline-block;
   color: @mywhite;
-  text-decoration: none;
   white-space: normal;
-  .textshadow(darken(@primary_color, 10%));
-}
-input[type="submit"], #edit-submit, a.button, a.button:link, a.button:visited, .button  {
-  max-width: 350px;
+  text-shadow: darken(@button_color, 10%) 1px 1px 0;
+
   font-size: 120%;
   padding: .5em 1.5em .45em;
-  border: 2px solid darken(@primary_color, 5%);
-  .rounded(4px);
+  border: 2px solid darken(@button_color, 5%);
+  border-radius: 4px;
+
+  &:hover, &:focus {
+    background: repeat lighten(@button_color, 5%);
+    border-color: @button_color;
+  }
+
+  &:active {
+    background: repeat darken(@button_color, 5%);
+    border-color: darken(@button_color, 10%);
+  }
+
+  &, &:hover, &:focus, &:active {
+    text-decoration: none;
+    .clickable;
+  }
 }
-a.button-small, a.button-small:link, a.button-small:visited, .button-small {
-  max-width: 250px;
+
+button.small, .button.small {
   font-size: 90%;
   padding: .4em 1.5em .35em;
-  border: 1px solid darken(@primary_color, 5%);
-  .rounded(3px);
+  border-width: 1px;
+  border-radius: 3px;
 }
 
-a.button-small:hover, a.button-small:focus, .button-small:hover, .button-small:focus,
-input[type="submit"]:hover, #edit-submit:hover, .button:hover, a.button:hover,
-input[type="submit"]:focus, #edit-submit:focus, .button:focus, a.button:focus,
-.ui-body-o a.button:hover, .ui-body-o a.button:focus {
-  background: repeat lighten(@primary_color, 5%);
-  border-color: @primary_color;
-  color: @mywhite;
+input[type="submit"], .webform-submit {
+  width: 100%;
 }
-
-a.button-small:active, .button-small:active,
-input[type="submit"]:active, #edit-submit:active, .button:active, a.button:active {
-  background: repeat darken(@primary_color, 5%);
-  border-color: darken(@primary_color, 10%);
-  color: @mywhite;
-}
-
 
 /* ---------- input ------------------------------------------------- */
 
-input[type="text"], input[type="email"],input[type="number"], input[type="password"], input[type="search"], .form-text input, .form-type-password input, textarea, select, .selecter .selecter-selected {
+input[type="text"], input[type="email"],input[type="number"], input[type="password"],
+input[type="search"], textarea, select, .selecter .selecter-selected {
   font-size: 120%;
-  background-color: @mywhite;
-  border: 1px solid darken(@background, 10%);
-  font-family: @sans;
-  font-weight: normal;
+  background-color: @form_field_color;
+  border: 1px solid @form_border_color;
+  .sans;
   color: @fmain;
   padding: .5em;
   width: 100%;
-  .boxsizing(border-box);
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
 .form-text input:focus, .form-type-password input:focus, select:focus, textarea:focus {
-  background: @mywhite none;
-  border: 1px solid darken(@background, 15%);
+  border-color: darken(@form_border_color, 5%);
   color: @fmain;
 }
 
 /* ---------- textarea --------------------------------------------- */
 
-.grippie {
+textarea {
+  .f();
+}
+.resizable-textarea .grippie {
   width: 98%;
   margin: 0 auto;
 }
@@ -98,29 +107,74 @@ input[type="checkbox"] {
   margin-right: 5px;
 }
 
-.form-radios, .form-checkboxes {
-  .form-item {
-    margin-bottom: 0;
-  }
+.form-type-radio,
+.form-type-checkbox {
+  margin-top: @form-spacing/2;
+  margin-bottom: @form-spacing/2;
 }
 
+.form-radios,
+.form-checkboxes,
+.form-item > .form-type-checkbox {
+  margin-top: @form-spacing/2;
+  margin-bottom: @form-spacing;
+}
+
+/* formstone picker */
+
+@pickersize: 16px;
+
 .picker {
+  margin-bottom: 0;
+
   .picker-label {
     float: none;
     display: block;
-    margin-left: 24px; //= 16px picker-handle + 5px margin
+    margin-left: @pickersize * 1.5;
   }
 
   .picker-handle {
-    background-color: @mywhite;
+    background-color: @form_field_color;
+    height: @pickersize;
+    width: @pickersize;
+    border: 1px solid @form_border_color;
   }
 
-  &.picker-radio .picker-flag {
-    background-color: transparent;
-    margin: 4px;
+  &:hover, &:focus, &.focus {
+    .picker-label {
+      color: @form_label_color;
+    }
+    .picker-handle {
+      border-color: darken(@form_border_color, 5%);
+    }
   }
-  &.picker-radio.checked:hover .picker-flag {
-    background-color: #999999;
+}
+
+.picker.picker-radio {
+  .picker-handle {
+    border-radius: 50%;
+  }
+  .picker-flag {
+    background-color: transparent;
+    width: @pickersize/2;
+    height: @pickersize/2;
+    margin: @pickersize/4;
+    border-radius: 50%;
+  }
+  &.checked .picker-flag {
+    background-color: @form_border_color;
+  }
+  &.checked:hover .picker-flag {
+    background-color: @form_border_color;
+  }
+}
+
+.picker.picker-checkbox {
+  .picker-handle {
+    border-radius: 0;
+  }
+  &.checked .picker-flag, .picker-flag {
+    background-color: transparent;
   }
 }
 
@@ -128,39 +182,85 @@ input[type="checkbox"] {
 
 select {
   width: 100%;
+  .f();
 }
 
-.webform-component-select {
+.webform-component-select,
+.webform-component-select-or-other {
   position: relative;
-  .ie7 & {
-    position: static;
-  }
 }
+
+/* formstone selecter */
+
+// The original select needs to stay behind the fancy one, so it is available
+// on Android devices that don't support the formstone selecter.
 
 .selecter {
   max-width: 100%;
-  margin-top: 0;
+  margin: 0;
+
+  .selecter-selected {
+    background: none @form_field_color;
+    padding-right: 4rem;
+    border-radius: 0;
+
+    &:before { // border/background
+      content: '';
+      background-color: transparent;
+      display: block;
+      width: 3.2rem;
+      border-left: 1px solid @form_border_color;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+    &:after { // caret
+      content: '';
+      display: block;
+      width: 0;
+      height: 0;
+      border: 0.4rem solid transparent;
+      border-top: 0.6rem solid @form_border_color;
+      margin-top: -0.3rem;
+      position: absolute;
+      top: 50%;
+      right: 1.2rem;
+    }
+  }
+  &.open, &.focus, &:focus, &:hover {
+    .selecter-selected {
+      box-shadow: none;
+      background-color: @form_field_color;
+      border-radius: 0;
+    }
+  }
   .selecter-options, .selecter-item {
-    .boxsizing(border-box);
+    .f();
+  }
+  .selecter-options {
+    border: 1px solid @form_border_color;
+    border-top: none;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.15);
   }
 }
 
 /* ---------- label, legend, description --------------------------- */
 
 .description, .form-item .description {
-  .f(13);
-  margin-bottom: 0;
+  .small;
 }
 
 label, .picker .picker-label {
+  .f();
   display: block;
   margin-bottom: 0;
-  color: lighten(@fmain, 20%);
+  color: @form_label_color;
 }
 
 legend {
-  font-weight: bold;
-  color: @primary_color;
+  .sansb;
+  color: @heading_color;
 }
 
 .marker, .form-required {
@@ -177,46 +277,21 @@ legend {
   border: 2px solid @error_color;
 }
 
-/* ---------- border-box fallback ----------------------------------- */
-
-.no-boxsizing {
-  input[type="text"], input[type="email"],input[type="number"], input[type="password"], input[type="search"],
-  .form-text input, .form-type-password input, textarea, select, .selecter .selecter-selected {
-    padding-left: 2.3%;
-    padding-right: 2.3%;
-    width: 95%;
-  }
+input + .error {
+  color: @mywhite;
+  background-color: @error_color;
+  padding: @oneline/2;
 }
 
 
 /* ==================================================================
- * webform specific styles
+ * specific styles
  * ================================================================== */
 
-.webform-client-form {
-  padding-bottom: @oneline;
+/* ---------- webform ----------------------------------------------- */
 
-  h2 {
-    margin-bottom: 0;
-  }
-
-  #edit-actions {
-
-    #edit-previous, input[id*="previous"] {
-      .element-invisible;
-    }
-
-    .form-submit {
-      //.button;
-
-      &:hover, &:focus {
-        //.button_hover;
-      }
-      &:active {
-        //.button_active;
-      }
-    }
-  }
+input.webform-previous {
+  .element-invisible;
 }
 
 input.webform-calendar {
@@ -229,10 +304,134 @@ input.webform-calendar {
   bottom: @oneline/2;
 }
 
+/* ---------- e-mail to target form --------------------------------- */
 
-/* ==================================================================
- * search form styles
- * ================================================================== */
+form pre {
+  .sans;
+}
+
+.email-to-target-edit a {
+  margin-left: 0.5em;
+  font-weight: normal;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:after {
+    content: "\25bc";
+    margin-left: 0.2em;
+    font-size: 0.9em;
+  }
+}
+
+.email-to-target-target {
+  .form-item + pre {
+    margin-top: @form-spacing;
+  }
+  textarea {
+    min-height: 18rem;
+  }
+  .form-type-checkbox + .form-type-textfield {
+    margin-top: @form-spacing;
+  }
+}
+
+/* ---------- share page e-mail form -------------------------------- */
+
+form.share-page {
+
+  textarea#edit-message-value {
+    min-height: 18em;
+  }
+
+  .filter-wrapper {
+    padding: 0;
+    .filter-help {
+       display: none;
+    }
+    .filter-guidelines {
+      margin-top: @form-spacing;
+
+      li {
+        margin-bottom: 0;
+      }
+      .tips {
+        .small;
+        color: @form_label_color;
+      }
+    }
+    .form-item-message-format {
+      display: none;
+    }
+  }
+}
+
+/* ---------- date/time fields -------------------------------------- */
+
+.webform-container-inline {
+  position: relative;
+
+  .form-item, .form-radios {
+    display: inline-block;
+    margin-bottom: 0;
+  }
+  select {
+    width: auto;
+  }
+  .selecter-selected {
+    padding-right: 3rem;
+    &:before {
+      content: none;
+    }
+  }
+}
+
+.webform-component-date {
+  .form-item {
+    width: 30%;
+
+    &, input[type="text"] {
+      vertical-align: bottom;
+    }
+  }
+  input.webform-calendar {
+    position: absolute;
+    right: 0;
+    top: 33%;
+  }
+}
+
+.webform-component-time {
+  .clearfix;
+
+  .webform-container-inline > .form-item {
+    width: 25%;
+  }
+  .form-radios {
+    float: right;
+    margin-top: @oneline/2;
+  }
+}
+
+/* ---------- file upload ------------------------------------------- */
+
+.webform-component-file {
+  input[type=submit] {
+    background-image: none;
+  }
+  .filer {
+    width: 100%;
+    margin: 0;
+  }
+  .filer-filename {
+    width: 70%;
+  }
+  .filer-browse {
+    width: 30%;
+    cursor: pointer;
+  }
+}
+
+/* ---------- search form ------------------------------------------- */
 
 #search-block-form, #search-form {
   position: relative;
@@ -259,13 +458,13 @@ input.webform-calendar {
     background: #fff;
     font-size: 120%; // needs to correspond with submit-button font-size!
     height: 2.4em; // needs to correspond with submit-button height!
-    .boxshadow_inset(1px,2px,1px,#dddddd);
+    box-shadow: 1px 2px 1px #dddddd inset;
 
     &:focus {
-      .boxshadow(0,0,0,transparent);
+      box-shadow: none;
     }
   }
-  
+
   /* button to start the search */
   #edit-submit, input[type="submit"] {
     background: url('images/search.png') no-repeat center center #E6E6E6;
@@ -281,21 +480,6 @@ input.webform-calendar {
     bottom: 0;
     left: 100%;
     border: none;
-    .rounded(0);
-  }
-}
-
-/* ---------- workaround for IE7 weirdness -------------------------- */
-
-.ie7 {
-  #search-block-form, #search-form #edit-basic {
-    input[type="search"], input[type="text"] {
-      height: 1.2em;
-    }
-  }
-  #search-form #edit-basic {
-    #edit-submit, input[type="submit"] {
-      bottom: 1.4em;
-    }
+    border-radius: 0;
   }
 }

@@ -3,9 +3,9 @@
 // http://unsemantic.com/
 // https://gist.github.com/nicooprat/7200266
 
-/* ==================================================================
- * Variables
- * ================================================================== */
+// ==================================================================
+// Variables
+// ==================================================================
 
 @mobile-only: ~"screen and (max-width: @{tablet-breakpoint})";
 @tablet-only: ~"screen and (min-width: @{tablet-breakpoint}) and (max-width: @{desktop-breakpoint})";
@@ -18,9 +18,9 @@
 // @gutter-half as defined in parameters.less
 
 
-/* ==================================================================
- * Miscellaneous
- * ================================================================== */
+// ==================================================================
+// Miscellaneous
+// ==================================================================
 
 // IE10 "Snap" Mode
 @media screen and (max-width: 400px) {
@@ -30,9 +30,9 @@
 }
 
 
-/* ==================================================================
- * Common
- * ================================================================== */
+// ==================================================================
+// Common
+// ==================================================================
 
 // All grid units are contained within a top level element, with the class name grid-container.
 // This has a built in "clearfix" so it does not require a clearing element at the end.
@@ -105,9 +105,9 @@
 }
 
 
-/* ==================================================================
- * Mixins
- * ================================================================== */
+// ==================================================================
+// Mixins
+// ==================================================================
 
 // Grid classes are named grid-x where "x" is a number that represents the percentage width of each grid unit.
 
@@ -125,7 +125,7 @@
 // If you want to swap the visual arrangement of columns, but not affect source order,
 // you can use push-x and pull-x classes
 
-// Makes pull classes - elements are pulled to the left 
+// Makes pull classes - elements are pulled to the left
 // @offset is the offset of the element in %
 .make-pull(@offset) {
   position: relative;
@@ -136,7 +136,7 @@
   /* </IE7> */
 }
 
-// Makes push classes - elements are pushed to the right 
+// Makes push classes - elements are pushed to the right
 // @offset is the offset of the element in %
 .make-push(@offset) {
   position: relative;
@@ -171,9 +171,9 @@
 }
 
 
-/* ==================================================================
- * Loop
- * ================================================================== */
+// ==================================================================
+// Loop
+// ==================================================================
 
 .loop (@index,@step) when (@index > 0) {
 
@@ -215,9 +215,9 @@
 .loop (2,33);
 
 
-/* ==================================================================
- * Width specific
- * ================================================================== */
+// ==================================================================
+// Width specific
+// ==================================================================
 
 @media @mobile-only {
 
