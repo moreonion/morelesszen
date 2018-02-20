@@ -32,6 +32,10 @@ Drupal.behaviors.formstone.attach = function(context, settings) {
         mutations.forEach(function (mutation) {
           if (mutation.target.disabled != $(mutation.target).data("previousDisabled")){
             formstoneFunction.call($(mutation.target), mutation.target.disabled ? "disable" : "enable");
+            if (formstoneFunction === $.fn.picker) {
+              // enabling the picker does not set a checked class, update is needed as well.
+              formstoneFunction.call($(mutation.target), "update");
+            }
             $(mutation.target).data("previousDisabled", mutation.target.disabled);
           }
         });
