@@ -32,6 +32,31 @@ Drupal.behaviors.mobilemenu.attach = function(context, settings) {
   }
 };
 
+Drupal.behaviors.showMore = {};
+Drupal.behaviors.showMore.attach = function(context, settings) {
+  // link for revealing more info
+  $('.show-more', context).each(function(){
+    var $toggle = $(this);
+    var $target = $($toggle.attr('href'));
+
+    if ($toggle.is(':visible') && $target.length) {
+      $target.hide();
+      $toggle.on('click', function(e) {
+        $toggle.hide();
+        $target.slideDown();
+        e.preventDefault();
+      });
+    }
+  });  
+  // class for smooth scrolling to anchor
+  $('a.scroll', context).each(function(){
+    $(this).on('click', function(e){
+      $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
+      e.preventDefault();
+    });
+  });
+};
+
 Drupal.behaviors.payment_slide = {};
 Drupal.behaviors.payment_slide.attach = function(context, settings) {
   /*
