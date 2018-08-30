@@ -53,11 +53,9 @@ Drupal.behaviors.showMore.attach = function (context, settings) {
     }
   });
   // Class for smooth scrolling to anchor.
-  $('a.scroll', context).each(function () {
-    $(this).on('click', function (e) {
-      $('html,body').animate({scrollTop:$(this.hash).offset().top}, 500);
-      e.preventDefault();
-    });
+  $('a.scroll', context).on('click', function (e) {
+    $('html,body').animate({scrollTop:$(e.currentTarget.hash).offset().top}, 500);
+    e.preventDefault();
   });
 };
 
