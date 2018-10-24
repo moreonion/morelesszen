@@ -7,7 +7,7 @@ Drupal.behaviors.formstone.attach = function(context, settings) {
     fixDisabledState($selects, $.fn.selecter, ".selecter");
 
     // fix for selecter not working on Android 6+ and Android Chrome 50+
-    if (navigator.userAgent.match(/Android (\d+)\./i)) {
+    if (navigator.userAgent.match(/Android (\d+)/i)) {
       $('.selecter').css('pointer-events', 'none');
     }
   }
