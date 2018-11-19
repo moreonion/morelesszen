@@ -39,7 +39,7 @@ input[type="submit"], .webform-submit, button, .button {
   white-space: normal;
   text-shadow: darken(@button_color, 10%) 1px 1px 0;
 
-  font-size: 120%;
+  .f(20);
   padding: .5em 1.5em .45em;
   border: 2px solid darken(@button_color, 5%);
   border-radius: 4px;
@@ -74,18 +74,22 @@ input[type="submit"], .webform-submit {
 /* ---------- input ------------------------------------------------- */
 
 input[type="text"], input[type="email"],input[type="number"], input[type="password"],
-input[type="search"], textarea, select, .selecter .selecter-selected {
-  font-size: 120%;
+input[type="search"], textarea, select, .selecter .selecter-selected,
+.select2-container .select2-selection,
+.select2-container .select2-search--dropdown .select2-search__field {
+  .f(20);
+  .sans;
   background-color: @form_field_color;
   border: 1px solid @form_border_color;
-  .sans;
+  border-radius: 0;
   color: @fmain;
-  padding: .5em;
+  padding: @oneline/2 .5em;
   width: 100%;
 }
 
 input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus,
-.form-text input:focus, .form-type-password input:focus, select:focus, textarea:focus {
+.form-text input:focus, .form-type-password input:focus, select:focus, textarea:focus,
+.select2-container.select2-container--focus .select2-selection, .select2-search__field:focus {
   border-color: darken(@form_border_color, 5%);
   color: @fmain;
 }
@@ -186,8 +190,39 @@ select {
 }
 
 .webform-component-select,
-.webform-component-select-or-other {
+.webform-component-select-or-other,
+.webform-component-autocomplete {
   position: relative;
+}
+
+.caret-bg {
+  background-color: transparent;
+  display: block;
+  width: 3.2rem;
+  border-left: 1px solid @form_border_color;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+}
+
+.caret {
+  display: block;
+  width: 0;
+  height: 0;
+  border: 0.4rem solid transparent;
+  border-bottom-width: 0.6rem;
+  border-top: 0.6rem solid @form_border_color;
+  margin: -0.3rem -0.4rem;
+  position: absolute;
+  top: 50%;
+  right: 1.6rem;
+}
+.caret.up {
+  border-top-color: transparent;
+  border-bottom-color: @form_border_color;
+  margin-top: -0.9rem;
 }
 
 /* formstone selecter */
@@ -202,48 +237,107 @@ select {
   .selecter-selected {
     background: none @form_field_color;
     padding-right: 4rem;
-    border-radius: 0;
 
     &:before { // border/background
       content: '';
-      background-color: transparent;
-      display: block;
-      width: 3.2rem;
-      border-left: 1px solid @form_border_color;
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
+      .caret-bg;
     }
     &:after { // caret
       content: '';
-      display: block;
-      width: 0;
-      height: 0;
-      border: 0.4rem solid transparent;
-      border-top: 0.6rem solid @form_border_color;
-      margin-top: -0.3rem;
-      position: absolute;
-      top: 50%;
-      right: 1.2rem;
+      .caret;
     }
+  }
+  // switch arrow direction on open container
+  &.open .selecter-selected:after {
+    .caret.up;
   }
   &.open, &.focus, &:focus, &:hover {
     .selecter-selected {
       box-shadow: none;
       background-color: @form_field_color;
-      border-radius: 0;
     }
   }
   .selecter-options, .selecter-item {
     .f();
   }
+  // dropdown container
   .selecter-options {
     border: 1px solid @form_border_color;
     border-top: none;
     box-shadow: 0 3px 2px rgba(0, 0, 0, 0.15);
   }
+  // hovering over item in dropdown
+  .selecter-item:hover, .selecter-item:focus {
+    color: @mywhite;
+    background-color: lighten(@primary_color, 5%);
+  }
+  // previously selected item in dropdown
+  .selecter-item.selected {
+    display: none;
+  }
 }
+
+/* select2 */
+
+// form field
+select + .select2-container {
+  min-width: 100%;
+}
+.select2-container .select2-selection {
+  height: auto;
+  min-height: @oneline*2;
+
+  .select2-selection__placeholder {
+    color: @fmain;
+  }
+
+  &.select2-selection--single {
+    padding-right: 4rem;
+
+    .select2-selection__rendered {
+      color: @fmain;
+      line-height: inherit;
+      padding: 0;
+    }
+    .select2-selection__arrow {
+      .caret-bg;
+      b { .caret; }
+    }
+  }
+}
+// switch arrow direction on open container
+.select2-container.select2-container--open .select2-selection--single .select2-selection__arrow b {
+  .caret.up;
+}
+
+// dropdown container
+.select2-dropdown {
+  border-color: @form_border_color;
+  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.15);
+
+  .select2-results {
+    margin: 0;
+    padding: 0;
+
+    .select2-results__option {
+      margin: 0;
+    }
+    .select2-results__message, .loading-results {
+      .small;
+      color: @fmain;
+    }
+    // hovering over item in dropdown
+    .select2-results__option--highlighted[aria-selected] {
+      color: @mywhite;
+      background-color: lighten(@primary_color, 5%);
+    }
+    // previously selected item in dropdown
+    .select2-results__option[aria-selected=true] {
+      display: none;
+    }
+  }
+}
+
 
 /* ---------- label, legend, description --------------------------- */
 
@@ -273,6 +367,7 @@ legend {
 .form-item textarea.error,
 .form-item select.error,
 .form-item select.error + .selecter .selecter-selected,
+.form-item select.error + .select2-container .select2-selection,
 .form-item input.error + .picker .picker-handle {
   border: 2px solid @error_color;
 }
