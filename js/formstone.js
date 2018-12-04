@@ -2,8 +2,16 @@
 Drupal.behaviors.formstone = {};
 Drupal.behaviors.formstone.attach = function(context, settings) {
 
+  function cssExclude(components) {
+    function addNot(cssClass) {
+      return ':not(' + cssClass +')';
+    }
+    return components.map(addNot).join('');
+  }
+
   if ($.fn.selecter) {
-    var $selects = $('.webform-client-form select', context).selecter();
+    var excludedComponents = ['.webform-component-autocomplete'];
+    var $selects = $('.webform-component' + cssExclude(excludedComponents) + ' select', context).selecter();
     fixDisabledState($selects, $.fn.selecter, ".selecter");
 
     // fix for selecter not working on Android 6+ and Android Chrome 50+
