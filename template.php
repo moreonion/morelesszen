@@ -148,8 +148,19 @@ function morelesszen_preprocess_html(&$vars) {
 
 }
 
-function _morelesszen_menu_links($menu) {
-  $data = menu_tree_page_data($menu, 1);
+/**
+ * Render a menu tree up down to a certain level.
+ *
+ * @param string $menu
+ *   The name of the menu.
+ * @param int $max_depth
+ *   Render the menu down to this depth.
+ *
+ * @return array
+ *   A renderable array for rendering the menu.
+ */
+function _morelesszen_menu_links($menu, $max_depth = 1) {
+  $data = menu_tree_page_data($menu, $max_depth);
   if (module_exists('i18n_menu')) {
     $data = i18n_menu_localize_tree($data);
   }
