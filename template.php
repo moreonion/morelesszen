@@ -216,11 +216,11 @@ function morelesszen_preprocess_page(&$vars) {
  * Ensures that metatags are rendered regardless of whether the template
  * actually renders the region (or any region).
  */
-function morelesszen_process_page(&$vars) {
+function morelesszen_page_alter($page) {
   // Render metatags even if we don’t render the $page[$region].
   $region = variable_get('metatag_page_region', 'content');
-  if (!empty($vars['page'][$region]['metatags'])) {
-    render($vars['page'][$region]['metatags']);
+  if (!empty($page[$region]['metatags'])) {
+    render($page[$region]['metatags']);
   }
 }
 
