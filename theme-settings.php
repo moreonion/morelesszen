@@ -5,7 +5,7 @@
  * Theme settings for the Zentropy
  */
 function morelesszen_form_system_theme_settings_alter(&$form, &$form_state) {
-  
+
   /**
    * General Settings
    */
@@ -58,7 +58,7 @@ function morelesszen_form_system_theme_settings_alter(&$form, &$form_state) {
     '#title' => t('Hide the breadcrumb if the breadcrumb only contains the link to the front page.'),
     '#default_value' => theme_get_setting('morelesszen_breadcrumb_hideonlyfront'),
   );
-  
+
   $form['morelesszen_breadcrumb']['morelesszen_breadcrumb_showtitle'] = array(
     '#type' => 'checkbox',
     '#title' => t('Show page title on breadcrumb.'),
@@ -81,19 +81,19 @@ function morelesszen_form_system_theme_settings_alter(&$form, &$form_state) {
     '#type' => 'fieldset',
     '#title' => t('Google Analytics'),
   );
-  
+
   $form['morelesszen_ga']['morelesszen_ga_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable Google Analytics'),
     '#default_value' => theme_get_setting('morelesszen_ga_enable'),
   );
-  
+
   $form['morelesszen_ga']['morelesszen_ga_trackingcode'] = array(
     '#type' => 'textfield',
     '#title' => t('Tracking code'),
     '#default_value' => theme_get_setting('morelesszen_ga_trackingcode'),
   );
-  
+
   $form['morelesszen_ga']['morelesszen_ga_trackroles'] = array(
     '#type' => 'checkboxes',
     '#title' => t('Exclude roles'),
@@ -101,7 +101,7 @@ function morelesszen_form_system_theme_settings_alter(&$form, &$form_state) {
     '#description' => t('Exclude the following roles from being tracked'),
     '#default_value' => !empty($roles_tracked) ? array_values((array) $roles_tracked) : array(),
   );
-  
+
   $form['morelesszen_ga']['morelesszen_ga_anonimize'] = array(
     '#type' => 'checkbox',
     '#title' => t('Anonimize IP'),

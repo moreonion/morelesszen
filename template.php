@@ -75,7 +75,7 @@ function morelesszen_preprocess(&$vars, $hook) {
  * Implements template_preprocess_html().
  */
 function morelesszen_preprocess_html(&$vars) {
-  
+
   $vars['doctype'] = _morelesszen_doctype();
   $vars['rdf'] = _morelesszen_rdf($vars);
 
@@ -204,7 +204,7 @@ function morelesszen_preprocess_page(&$vars) {
     // Make sure the shortcut link is the first item in title_suffix.
     $vars['title_suffix']['add_or_remove_shortcut']['#weight'] = -100;
   }
-  
+
   if(!theme_get_setting('morelesszen_feed_icons')) {
     $vars['feed_icons'] = '';
   }
@@ -272,11 +272,11 @@ function morelesszen_preprocess_node(&$vars) {
   if ($vars['uid'] && $vars['uid'] === $GLOBALS['user']->uid) {
     $classes[] = 'node-mine'; // Node is authored by current user.
   }
-  
+
   $vars['submitted'] = t('Submitted by !username on ', array('!username' => $vars['name']));
   $vars['submitted_date'] = t('!datetime', array('!datetime' => $vars['date']));
   $vars['submitted_pubdate'] = format_date($vars['created'], 'custom', 'Y-m-d\TH:i:s');
-  
+
   if ($vars['view_mode'] == 'full' && node_is_page($vars['node'])) {
     $vars['classes_array'][] = 'node-full';
   }
@@ -330,15 +330,15 @@ function morelesszen_field__taxonomy_term_reference($vars) {
  *  Return a themed breadcrumb trail
  */
 function morelesszen_breadcrumb($vars) {
-  
+
   $breadcrumb = isset($vars['breadcrumb']) ? $vars['breadcrumb'] : array();
-  
+
   if (theme_get_setting('morelesszen_breadcrumb_hideonlyfront')) {
     $condition = count($breadcrumb) > 1;
   } else {
     $condition = !empty($breadcrumb);
   }
-  
+
   if(theme_get_setting('morelesszen_breadcrumb_showtitle')) {
     $title = drupal_get_title();
     if(!empty($title)) {
@@ -346,13 +346,13 @@ function morelesszen_breadcrumb($vars) {
       $breadcrumb[] = $title;
     }
   }
-  
+
   $separator = theme_get_setting('morelesszen_breadcrumb_separator');
 
   if (!$separator) {
     $separator = '»';
   }
-  
+
   if ($condition) {
     return implode(" {$separator} ", $breadcrumb);
   }
@@ -558,7 +558,7 @@ function morelesszen_preprocess_menu_link(&$variables) {
 /**
  * Implements template_preprocess_field() for main pic/vid
  */
- 
+
 function morelesszen_field__image($variables) {
   $output = '';
 

@@ -5,7 +5,7 @@ $exts = 'txt|png|gif|jpe?g|shtml?|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp|xml'
 if (!strpos($_SERVER['QUERY_STRING'], 'imagecache') && !strpos($_SERVER['QUERY_STRING'], '/advagg_')) {
   // It is not our main feed page
   if ($_SERVER['QUERY_STRING'] != 'rss.xml') {
-    // Is it a static file? 
+    // Is it a static file?
     if (preg_match('/\.(' . $exts . ')$/', $_SERVER['QUERY_STRING']))
       // Just send a 404 right now ...
       {

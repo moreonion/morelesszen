@@ -27,7 +27,7 @@ ServerSignature Off
 # Cross-domain AJAX requests
 # ----------------------------------------------------------------------
 
-# Serve cross-domain ajax requests, disabled.   
+# Serve cross-domain ajax requests, disabled.
 # enable-cors.org
 # code.google.com/p/html5security/wiki/CrossOriginRequestSecurity
 
