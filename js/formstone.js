@@ -34,7 +34,10 @@ Drupal.behaviors.formstone.attach = function(context, settings) {
     var $uploads = $('input[type=file]', context).filter(function() {
       return $(this).closest('.filer').length == 0 && $(this).closest('form').is('.webform-client-form');
     }).filer().on('change', function() {
-      $(this).closest('.form-managed-file').find('[type=submit]').mousedown();
+      var $widget = $(this).closest('.form-managed-file');
+      if ($widget.find('.file-upload-js-error').length <= 0) {
+        $widget.find('[type=submit]').mousedown();
+      }
     }).each(function() {
       $(this).closest('.form-managed-file').find('[type=submit]').hide();
     });
