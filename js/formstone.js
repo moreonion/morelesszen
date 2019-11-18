@@ -33,7 +33,11 @@ Drupal.behaviors.formstone.attach = function(context, settings) {
     //   as context.
     var $uploads = $('input[type=file]', context).filter(function() {
       return $(this).closest('.filer').length == 0 && $(this).closest('form').is('.webform-client-form');
-    }).filer();
+    }).filer().on('change', function() {
+      $(this).closest('.form-managed-file').find('[type=submit]').mousedown();
+    }).each(function() {
+      $(this).closest('.form-managed-file').find('[type=submit]').hide();
+    });
     fixDisabledState($uploads, $.fn.filer, ".filer");
   }
 
