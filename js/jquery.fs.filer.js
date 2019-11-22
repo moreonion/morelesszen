@@ -131,7 +131,6 @@ if (jQuery) (function($) {
 	// Handle update
 	function _update(e) {
 		e.preventDefault();
-		e.stopPropagation();
 		
 		var data = e.data;
 		

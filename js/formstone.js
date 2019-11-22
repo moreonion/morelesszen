@@ -26,7 +26,21 @@ Drupal.behaviors.formstone.attach = function(context, settings) {
   }
 
   if ($.fn.filer) {
-    var $uploads = $('.webform-client-form input[type=file]', context).filer();
+    // Add filer to all file uploads in webforms.
+    // - Do this even when only part of the form are AJAX replaced. This means
+    //   the context is a sub-element of the form.
+    // - Avoid doing it twice when the behavior gets an extra call with the form
+    //   as context.
+    var $uploads = $('input[type=file]', context).filter(function() {
+      return $(this).closest('.filer').length == 0 && $(this).closest('form').is('.webform-client-form');
+    }).filer().on('change', function() {
+      var $widget = $(this).closest('.form-managed-file');
+      if ($widget.find('.file-upload-js-error').length <= 0) {
+        $widget.find('[type=submit]').mousedown();
+      }
+    }).each(function() {
+      $(this).closest('.form-managed-file').find('[type=submit]').hide();
+    });
     fixDisabledState($uploads, $.fn.filer, ".filer");
   }
 
