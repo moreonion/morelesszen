@@ -16,7 +16,7 @@
 <?php if ($element['#editable']): ?>
   <?php echo render($element['subject']); ?>
 <?php else: ?>
-  <p class="form-label email-to-target-subject-title"><?php echo filter_xss_admin($element['subject']['#title']); ?></p>
+  <label class="email-to-target-subject-title"><?php echo filter_xss_admin($element['subject']['#title']); ?></label>
   <p class="email-to-target-subject"><strong><?php echo check_plain($element['subject']['#default_value']); ?></strong></p>
 <?php endif; ?>
 <pre class="email-to-target-header"><?php echo render($element['header']); ?></pre>
