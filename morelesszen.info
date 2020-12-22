@@ -41,6 +41,7 @@ scripts[] = "js/jquery.fs.selecter.js"
 scripts[] = "js/jquery.fs.picker.js"
 scripts[] = "js/jquery.fs.filer.js"
 scripts[] = "js/formstone.js"
+scripts[] = "js/webform-ajax-scroll.js"
 
 stylesheets[screen][] = "css/jquery.fs.selecter.css"
 stylesheets[screen][] = "css/jquery.fs.picker.css"
