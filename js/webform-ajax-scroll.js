@@ -6,6 +6,9 @@ $(document).ready(function() {
   // We want this behavior to execute last.
   Drupal.behaviors.webform_ajax_scroll = {};
   Drupal.behaviors.webform_ajax_scroll.attach = function(context) {
+    if (Drupal.settings.webform_ajax_scroll.skip_scroll) {
+      return;
+    }
     // Scroll to top of the form + padding if we are below or more than the
     // toleratedOffset above it.
     var padding = 12;
